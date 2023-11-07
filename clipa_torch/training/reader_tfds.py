@@ -182,12 +182,12 @@ class ReaderTfds:
         # For test set, make sure the total number of samples is divisible by the product of world_size and num_workers
         # in this repo, only master rank is used for eval
         if self.is_training:
-            if dist.is_available() and dist.is_initialized() and dist.get_world_size() > 1 and not single_replica:
-                self.dist_rank = dist.get_rank()
-                self.dist_num_replicas = dist.get_world_size()
-            elif use_xla():
-                self.dist_rank = xm.get_ordinal()
-                self.dist_num_replicas = xm.xrt_world_size()
+            # if dist.is_available() and dist.is_initialized() and dist.get_world_size() > 1 and not single_replica:
+            #     self.dist_rank = dist.get_rank()
+            #     self.dist_num_replicas = dist.get_world_size()
+            # elif use_xla():
+            self.dist_rank = xm.get_ordinal()
+            self.dist_num_replicas = xm.xrt_world_size()
         logging.info(f'is_training: {self.is_training} rank: {self.dist_rank} num_replicas: {self.dist_num_replicas}')
 
         # Attributes that are updated in _lazy_init, including the tf.data pipeline itself

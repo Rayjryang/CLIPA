@@ -13,9 +13,16 @@ from torch import optim
 from torch.cuda.amp import GradScaler
 from functools import partial
 
+from torch.nn.parallel import DistributedDataParallel as DDP
+import torch.distributed as dist
+import torch_xla.distributed.xla_backend
+
+
 try:
     import torch_xla.core.xla_model as xm
     import torch_xla
+    import torch_xla.experimental.pjrt_backend
+    import torch_xla.experimental.pjrt as pjrt
     _HAS_XLA = True
 except ImportError as e:
     xm = None
@@ -39,7 +46,7 @@ except ImportError:
 
 from open_clip import create_model_and_transforms, trace_model, get_tokenizer, create_loss
 from training.data import get_data
-from training.distributed import is_master, init_distributed_device, broadcast_object
+from training.distributed import is_master,  broadcast_object
 from training.device_env_factory import use_xla
 from training.logger import setup_logging
 from training.params import parse_args
@@ -91,8 +98,18 @@ def main(args):
         torch.backends.cudnn.deterministic = False
 
     # fully initialize distributed device environment
-    device = init_distributed_device(args)
+    # device = init_distributed_device(args)
+    device = xm.xla_device()
+    # dist.init_process_group('xla', init_method='pjrt://')
+    dist.init_process_group('xla', init_method='pjrt://')
+    # dist.init_process_group('xla', rank=xm.get_ordinal(), world_size=xm.xrt_world_size())
+    args.local_rank = xm.get_local_ordinal()
+    args.world_size = xm.xrt_world_size()
+    args.rank = xm.get_ordinal()
+    args.distributed = True if args.world_size > 1 else False
+    args.device = device
 
+    
     # get the name of the experiments
     if args.name is None:
         # sanitize model name for filesystem / uri use, easier if we don't use / in name as a rule?
@@ -118,11 +135,11 @@ def main(args):
         os.makedirs(log_base_path, exist_ok=True)
         log_filename = f'out-{args.rank}' if args.log_local else 'out.log'
         args.log_path = os.path.join(log_base_path, log_filename)
-        if os.path.exists(args.log_path) and not resume_latest:
-            print(
-                "Error. Experiment already exists. Use --name {} to specify a new experiment."
-            )
-            return -1
+        # if os.path.exists(args.log_path) and not resume_latest:
+        #     print(
+        #         "Error. Experiment already exists. Use --name {} to specify a new experiment."
+        #     )
+            # return -1
 
     # Setup text logger
     args.log_level = logging.DEBUG if args.debug else logging.INFO
@@ -132,6 +149,7 @@ def main(args):
     args.wandb = 'wandb' in args.report_to or 'all' in args.report_to
     args.tensorboard = 'tensorboard' in args.report_to or 'all' in args.report_to
     args.checkpoint_path = os.path.join(log_base_path, "checkpoints")
+    '''
     if is_master(args):
         args.tensorboard_path = os.path.join(log_base_path, "tensorboard") if args.tensorboard else ''
         for dirname in [args.tensorboard_path, args.checkpoint_path]:
@@ -139,6 +157,8 @@ def main(args):
                 os.makedirs(dirname, exist_ok=True)
     else:
         args.tensorboard_path = ''
+    '''
+
 
     if resume_latest:
         resume_from = None
@@ -175,6 +195,7 @@ def main(args):
             resume_from = broadcast_object(args, resume_from)
         args.resume = resume_from
 
+    '''
     if args.copy_codebase and is_master(args):
         copy_codebase(args)
 
@@ -205,6 +226,7 @@ def main(args):
         logging.warning(
             'It is recommended to use AMP mixed-precision instead of FP16. '
             'FP16 support needs further verification and tuning, especially for train.')
+    '''
 
     if args.horovod:
         logging.info(
@@ -219,15 +241,22 @@ def main(args):
 
     dist_model = None
     args.distill = args.distill_model is not None and args.distill_pretrained is not None
+    
+    '''
     if args.distill:
         #FIXME: support distillation with grad accum.
         assert args.accum_freq == 1
         #FIXME: support distillation with coca.
         assert 'coca' not in args.model.lower()
+    '''
+
 
     if isinstance(args.force_image_size, (tuple, list)) and len(args.force_image_size) == 1:
         # arg is nargs, single (square) image size list -> int
         args.force_image_size = args.force_image_size[0]
+    
+
+
     random_seed(args.seed, 0)
     model, preprocess_train, preprocess_val = create_model_and_transforms(
         args.model,
@@ -249,6 +278,7 @@ def main(args):
         interpolation=args.interpolation,  # only effective for inference
         square_resize_only=args.square_resize_only,  # only effective for inference
     )
+    
     if args.distill:
         # FIXME: currenlty assumes the model your distilling from has the same tokenizer & transforms.
         dist_model, _, _ = create_model_and_transforms(
@@ -258,9 +288,11 @@ def main(args):
             precision=args.precision,
             output_dict=True,
         )
+    
 
     random_seed(args.seed, args.rank)
 
+    '''
     if args.trace:
         assert not use_xla()
         model = trace_model(model, batch_size=args.batch_size, device=device)
@@ -277,7 +309,10 @@ def main(args):
 
     if args.grad_checkpointing:
         model.set_grad_checkpointing()
+    '''
 
+
+    '''
     if is_master(args):
         logging.info("Model:")
         logging.info(f"{str(model)}")
@@ -288,7 +323,9 @@ def main(args):
                 val = getattr(args, name)
                 logging.info(f"  {name}: {val}")
                 f.write(f"{name}: {val}\n")
+    '''
 
+    '''
     if args.distributed and not args.horovod and not use_xla():
         if args.use_bn_sync:
             model = torch.nn.SyncBatchNorm.convert_sync_batchnorm(model)
@@ -300,11 +337,19 @@ def main(args):
 
         if args.distill:
             dist_model = torch.nn.parallel.DistributedDataParallel(dist_model, device_ids=[device], **ddp_args)
+    '''
 
     # create optimizer and scaler
     optimizer = None
     scaler = None
 
+
+    model  = model.to(device)
+    pjrt.broadcast_master_param(model)
+    # model = DDP(model, gradient_as_bucket_view=True)
+   
+    model = DDP(model, gradient_as_bucket_view=True, broadcast_buffers=False)
+    
     if args.train_data or args.dataset_type == "synthetic":
         assert not args.trace, 'Cannot train with traced model'
 
@@ -354,7 +399,7 @@ def main(args):
             # loading a bare (model only) checkpoint for fine-tune or evaluation
             model.load_state_dict(checkpoint)
             logging.info(f"=> loaded checkpoint '{args.resume}' (epoch {start_epoch})")
-
+    
     # initialize datasets
     tokenizer = get_tokenizer(args.model)
     data = get_data(args, (preprocess_train, preprocess_val), epoch=start_epoch, tokenizer=tokenizer,)
@@ -502,8 +547,9 @@ def copy_codebase(args):
     return 1
 
 
-def _mp_entry(*args):
+def _mp_entry(index,*args):
+    print("index:",index)
     main(sys.argv[1:])
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
+# if __name__ == "__main__":
+#     main(sys.argv[1:])

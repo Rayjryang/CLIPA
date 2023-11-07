@@ -156,13 +156,16 @@ def after_train_step(model,
                 torch.cuda.empty_cache()
 
 def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist_model, args, tb_writer=None):
-    device = torch.device(args.device)
+    #device = torch.device(args.device)
+    device = args.device
     autocast = get_autocast(args.precision)
     cast_dtype = get_cast_dtype(args.precision)
 
-
+    if dist_model:
+        print("===========================================")
     model.train()
     if args.distill:
+        print("distill distill distill distill distill")
         dist_model.eval()
 
     data['train'].set_epoch(epoch)  # set epoch in process safe manner via sampler or shared_epoch
@@ -187,6 +190,8 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
         images, texts = batch
         images = images.to(device=device, non_blocking=True)
         texts = texts.to(device=device, non_blocking=True)
+        #images = images.to(device=device, non_blocking=True)
+        #texts = texts.to(device=device, non_blocking=True)
 
         if args.to_float_on_device:
             image_mean = args.image_mean or getattr(unwrap_model(model).visual, 'image_mean', None)

@@ -56,8 +56,10 @@ def main():
     mod = importlib.import_module(args.module)
 
     sys.argv = [args.module] + args.script_args
-
-    xmp.spawn(mod._mp_entry, args=(), nprocs=args.num_devices)
+    os.environ['PJRT_DEVICE'] = 'TPU'
+    
+    # xmp.spawn(mod._mp_entry, args=(), nprocs=args.num_devices)
+    xmp.spawn(mod._mp_entry, args=(), nprocs=None)
 
 
 if __name__ == "__main__":

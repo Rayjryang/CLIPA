@@ -3,17 +3,12 @@ export ZONE=europe-west4-a
 export TPU_NAME=tpu-v3-32-pod-vm-spot-1
 
 
-# run this script on a TPU v3-64 machine
-python3 -m torch_xla.distributed.xla_dist \
---tpu=${TPU_NAME} \
---restart-tpuvm-pod-server \
---env TORCH_CUDNN_V8_API_ENABLED=1 \
---env TFDS_PREFETCH_SIZE=1024 \
--- python3 /abs_path/to/launch_xla.py --num-devices 8 training.main \
+gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command=" \
+PJRT_DEVICE=TPU NUMBA_NUM_THREADS=1 python3 -W ignore  ~/CLIPA/clipa_torch/launch_xla.py --num-devices 8 training.main \
     --save-frequency 1 \
     --save-most-recent \
     --zeroshot-frequency 1 \
-    --train-data '/path/to/laion-400m' \
+    --train-data "gs://jaxtpu-data-eu-west4/laion-400m-cv2resize-356m" \
     --dataset-type tfrecord \
     --lr "2.048e-3" \
     --beta1 0.9 \
@@ -35,7 +30,5 @@ python3 -m torch_xla.distributed.xla_dist \
     --log-every-n-steps 32 --zeroshot-steps 1526 --val-steps 1526 \
     --seed 0 \
     --logs ./logs/ \
-    --imagenet-val '/path/to/imagenet/val'
-
-
-
+    --name ./debug_xla_v3_32_11/ \
+    --imagenet-val "gs://jaxtpu-tfds-imagenet-eu-west4-a/imagenet2012""
