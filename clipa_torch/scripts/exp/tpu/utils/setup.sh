@@ -6,11 +6,13 @@ WANDB_log=b6b4e923d9e742d710ad470384368394b14a1df2 # only if you set wandb.log_w
 
 
 
-gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command="pip install --upgrade transformers==4.28"
+#gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command="pip install --upgrade transformers==4.28"
 ## prepara env && login wandb
 
-#gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command \
-#" cd ~/CLIPA/clipa_torch && pip3 install -r requirements.txt"
+gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command \
+" cd ~/CLIPA/clipa_torch && pip3 install -r requirements.txt"
 
-#gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command \
-#"python3 -m wandb login $WANDB_log && python3 -m wandb online"
+gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command="pip3 install -U click"
+
+gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command \
+"python3 -m wandb login $WANDB_log && python3 -m wandb online"
