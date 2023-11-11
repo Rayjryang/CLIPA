@@ -88,11 +88,14 @@ def after_train_step(model,
                      tb_writer=None,
                      ):
     batch_count = i_accum + 1
+    # return
     if is_master(args) and (i_accum % args.log_every_n_steps == 0 or batch_count == num_batches_per_epoch):
+        # for j in range(3): print("rank: ",args.rank,"startstartstartstartstartstartstartstartstartstartstartstart")
         batch_size = len(images)
         num_samples = batch_count * batch_size * args.accum_freq * args.world_size
         samples_per_epoch = dataloader.num_samples
         percent_complete = 100.0 * batch_count / num_batches_per_epoch
+        # for j in range(3): print("rank: ",args.rank,"8888888888888888888888888888888888888888")
 
         # NOTE loss is coarsely sampled, just master node and per log update
         for key, val in losses.items():
@@ -100,6 +103,7 @@ def after_train_step(model,
                 losses_m[key] = AverageMeter()
             losses_m[key].update(val.item(), batch_size)
 
+        # for j in range(3): print("rank: ",args.rank,"99999999999999999999999999999999999999999999")
         logit_scale_scalar = logit_scale.item()
         loss_log = " ".join(
             [
@@ -128,18 +132,22 @@ def after_train_step(model,
         }
         log_data.update({name: val.val for name, val in losses_m.items()})
 
+        # for j in range(3): print("rank: ",args.rank,"7777777777777777777777777777777777777777")
         for name, val in log_data.items():
             name = "train/" + name
             if tb_writer is not None:
                 tb_writer.add_scalar(name, val, step)
-            if args.wandb:
-                assert wandb is not None, 'Please install wandb.'
-                wandb.log({name: val, 'step': step})
-
+            # if args.wandb:
+            #     assert wandb is not None, 'Please install wandb.'
+            #     wandb.log({name: val, 'step': step})
+        
+        # for j in range(3): print("rank: ",args.rank,"55555555555555555555555555555555555")
         # resetting batch / data time meters per log window
         batch_time_m.reset()
         data_time_m.reset()
+        # for j in range(3): print("rank: ",args.rank,"666666666666666666666666666666666666666666666")
 
+    
     if any(v in data for v in ('val', 'imagenet-val', 'imagenet-v2')):
         should_zero_eval = args.zeroshot_steps != 0 and (step + 1) % args.zeroshot_steps == 0
         should_val = args.val_steps != 0 and (step + 1) % args.val_steps == 0
@@ -152,20 +160,19 @@ def after_train_step(model,
                  tb_writer=tb_writer)
         if should_zero_eval or should_val:
             model.train()
-            if not use_xla():
-                torch.cuda.empty_cache()
+            # if not use_xla():
+            #     torch.cuda.empty_cache()
+    
 
 def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist_model, args, tb_writer=None):
-    #device = torch.device(args.device)
+    # device = torch.device(args.device)
     device = args.device
     autocast = get_autocast(args.precision)
     cast_dtype = get_cast_dtype(args.precision)
 
-    if dist_model:
-        print("===========================================")
+   
     model.train()
     if args.distill:
-        print("distill distill distill distill distill")
         dist_model.eval()
 
     data['train'].set_epoch(epoch)  # set epoch in process safe manner via sampler or shared_epoch
@@ -181,12 +188,18 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
     data_time_m = AverageMeter()
     end = time.time()
     for i, batch in enumerate(dataloader):
+    # for i in range(100):
         i_accum = i // args.accum_freq
         step = num_batches_per_epoch * epoch + i_accum
 
         if not args.skip_scheduler:
             scheduler(step)
 
+        # images = torch.randn((args.batch_size,3,112,112),device=device)
+        # texts = torch.randint(low=1, high=40000, size=(args.batch_size, 16), dtype=torch.long)
+        # texts = texts.to(device=device)
+
+        
         images, texts = batch
         images = images.to(device=device, non_blocking=True)
         texts = texts.to(device=device, non_blocking=True)
@@ -218,7 +231,9 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
                 losses["loss"] = total_loss
 
             backward(total_loss, scaler)
+            # for j in range(3): print("rank: ",args.rank,"backwardbackwardbackwardbackward")
         else:
+            for j in range(3): print("rank: ",args.rank,"warningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarning")
             # First, cache the features without any gradient tracking.
             with torch.no_grad():
                 with autocast():
@@ -260,8 +275,13 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
                     losses["loss"] = total_loss
                 backward(total_loss, scaler)
 
-        if use_xla() and args.distributed:
-            xm.reduce_gradients(optimizer)
+
+        # for j in range(3): print("rank: ",args.rank,"1111111111111111111111111111111111111111111111")
+        # if use_xla() and args.distributed:
+        # xm.reduce_gradients(optimizer)
+        # for j in range(3): print("rank: ",args.rank,"reduce_gradientsreduce_gradientsreduce_gradientsreduce_gradients")
+
+
         if scaler is not None:
             assert not use_xla(), 'currently pytorch xla does not work with amp!'
             if args.horovod:
@@ -280,6 +300,7 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
         else:
             if args.grad_clip_norm is not None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_norm, norm_type=2.0)
+            # for j in range(3): print("rank: ",args.rank,"optimizeroptimizeroptimizer")
             optimizer.step()
 
         # reset gradient accum, if enabled
@@ -288,11 +309,14 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
 
         # Note: we clamp to 4.6052 = ln(100), as in the original paper.
         with torch.no_grad():
+            # for j in range(3): print("rank: ",args.rank,"22222222222222222222222222222222222")
             unwrap_model(model).logit_scale.clamp_(0, math.log(100))
 
-        if use_xla():
-            xm.mark_step()
-
+        # for j in range(3): print("rank: ",args.rank,"333333333333333333333333333333333333333")
+        # if use_xla():
+        xm.mark_step()
+        # xm.optimizer_step(optimizer)
+        # for j in range(3): print("rank: ",args.rank,"4444444444444444444444444444444444444444444")
         batch_time_m.update(time.time() - end)
         end = time.time()
         after_train_step_args = [model,
@@ -312,10 +336,15 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
                 optimizer,
                 sample_digits,
                 tb_writer]
-        if not use_xla():
-            after_train_step(*after_train_step_args)
-        else:
-            xm.add_step_closure(after_train_step, after_train_step_args)
+
+
+        # if not use_xla():
+        #     after_train_step(*after_train_step_args)
+        # else:
+        # for j in range(2): print("iter : ",i,"kkkkkkkkkkk")
+        xm.add_step_closure(after_train_step, after_train_step_args)
+
+        for j in range(2): print("iter : ",i,"endendendendendendendendendendendendendendendendendendendend")
     # end for
 
 
@@ -379,7 +408,7 @@ def evaluate(model, data, epoch, step, args, should_zero_eval, should_val, tb_wr
                     ) / 2
 
                     gen_loss = maybe_compute_generative_loss(model_out)
-
+        
                 cumulative_loss += total_loss * batch_size
                 num_samples += batch_size
                 if is_master(args) and (i % 100) == 0:

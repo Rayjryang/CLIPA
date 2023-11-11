@@ -160,7 +160,7 @@ def main(args):
     '''
 
 
-    if resume_latest:
+    if False and resume_latest:
         resume_from = None
         checkpoint_path = args.checkpoint_path
         # If using remote_sync, need to check the remote instead of the local checkpoints folder.
@@ -346,9 +346,9 @@ def main(args):
 
     model  = model.to(device)
     pjrt.broadcast_master_param(model)
-    # model = DDP(model, gradient_as_bucket_view=True)
-   
-    model = DDP(model, gradient_as_bucket_view=True, broadcast_buffers=False)
+    model = DDP(model, gradient_as_bucket_view=True)
+    
+    # model = DDP(model, gradient_as_bucket_view=True, broadcast_buffers=False)
     
     if args.train_data or args.dataset_type == "synthetic":
         assert not args.trace, 'Cannot train with traced model'
@@ -465,7 +465,7 @@ def main(args):
 
         train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist_model, args, tb_writer=writer)
         completed_epoch = epoch + 1
-
+        
         if any(v in data for v in ('val', 'imagenet-val', 'imagenet-v2')):
             evaluate(model=model,
                      data=data,

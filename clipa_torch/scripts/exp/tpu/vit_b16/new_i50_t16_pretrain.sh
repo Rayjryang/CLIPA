@@ -1,9 +1,9 @@
 export PROJECT_ID=focus-album-323718
 export ZONE=europe-west4-a
-export TPU_NAME=tpu-v3-32-pod-vm-spot-1
+export TPU_NAME=tpu-v3-vm-5
+# export XLA_NO_SPECIAL_SCALARS=1
 
 
-gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command=" \
 PJRT_DEVICE=TPU  python3   ~/CLIPA/clipa_torch/launch_xla.py --num-devices 8 training.main \
     --save-frequency 1 \
     --save-most-recent \
@@ -15,7 +15,7 @@ PJRT_DEVICE=TPU  python3   ~/CLIPA/clipa_torch/launch_xla.py --num-devices 8 tra
     --beta2 0.95 \
     --warmup 782 \
     --wd 0.2 \
-    --batch-size 1024 \
+    --batch-size 256 \
     --aug-cfg scale='(0.4, 1.0)' \
     --pos-embed 'sin_cos_2d' \
     --epochs=6 \
@@ -30,5 +30,5 @@ PJRT_DEVICE=TPU  python3   ~/CLIPA/clipa_torch/launch_xla.py --num-devices 8 tra
     --log-every-n-steps 32 --zeroshot-steps 1526 --val-steps 1526 \
     --seed 0 \
     --logs ./logs/ \
-    --name ./debug_xla_v3_32_11/ \
-    --imagenet-val "gs://jaxtpu-tfds-imagenet-eu-west4-a/imagenet2012""
+    --name ./debug_xla_v3_32_13/ \
+    --imagenet-val "gs://jaxtpu-tfds-imagenet-eu-west4-a/imagenet2012"

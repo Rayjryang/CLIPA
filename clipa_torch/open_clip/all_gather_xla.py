@@ -40,6 +40,7 @@ class _AllGather(torch.autograd.Function):
     ctx.world_size = xm.xrt_world_size()
     return xm.all_gather(input, dim=dim,pin_layout=False)
 
+  
   @staticmethod
   def backward(ctx, grad_output):
     gxs = _AlltoAll.apply(grad_output, ctx.dim, ctx.dim, ctx.world_size, None, False)

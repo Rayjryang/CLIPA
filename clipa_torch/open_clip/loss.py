@@ -39,6 +39,8 @@ def gather_features(
 ):
     assert has_distributed, 'torch.distributed did not import correctly, please use a PyTorch version with support.'
     if False:
+    # if use_horovod:
+        for i in range(2): print("use_horovoduse_horovoduse_horovoduse_horovoduse_horovod")
         assert hvd is not None, 'Please install horovod'
         if gather_with_grad:
             all_image_features = hvd.allgather(image_features)
@@ -58,8 +60,13 @@ def gather_features(
     else:
         # We gather tensors from all gpus
         #if use_xla() or True:
+        # if not use_xla():
+        #     for i in range(2): print("use_xlause_xlause_xlause_xlause_xlause_xla")
+
+        # if use_xla():
         if True:
             if gather_with_grad:
+                # for i in range(2): print("33333333333333333333333333")
                 all_image_features = xlaf_all_gather(image_features)
                 all_text_features = xlaf_all_gather(text_features)
             else:
@@ -118,6 +125,7 @@ class ClipLoss(nn.Module):
         if self.prev_num_logits != num_logits or device not in self.labels:
             labels = torch.arange(num_logits, device=device, dtype=torch.long)
             if self.world_size > 1 and self.local_loss:
+                # for i in range(2): print("444444444444444444444444444")
                 labels = labels + num_logits * self.rank
             if self.cache_labels:
                 self.labels[device] = labels
@@ -125,14 +133,16 @@ class ClipLoss(nn.Module):
         else:
             labels = self.labels[device]
         return labels
-
+    
     def get_logits(self, image_features, text_features, logit_scale):
         if self.world_size > 1:
+            # for i in range(2): print("111111111111111111")
             all_image_features, all_text_features = gather_features(
                 image_features, text_features,
                 self.local_loss, self.gather_with_grad, self.rank, self.world_size, self.use_horovod)
 
             if self.local_loss:
+                # for i in range(2): print("222222222222222222222222222222")
                 logits_per_image = logit_scale * image_features @ all_text_features.T
                 logits_per_text = logit_scale * text_features @ all_image_features.T
             else:
@@ -147,7 +157,7 @@ class ClipLoss(nn.Module):
     def forward(self, image_features, text_features, logit_scale, output_dict=False):
         device = image_features.device
         logits_per_image, logits_per_text = self.get_logits(image_features, text_features, logit_scale)
-        #device = xm.xla_device()
+        # device = xm.xla_device()
         labels = self.get_ground_truth(device, logits_per_image.shape[0])
 
         total_loss = (

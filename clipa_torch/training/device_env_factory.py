@@ -44,6 +44,7 @@ def initialize_device(args) -> torch.device:
     return device
 
 def use_xla():
+    return True
     return USE_XLA
 
 
