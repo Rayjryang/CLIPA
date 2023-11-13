@@ -165,8 +165,8 @@ def after_train_step(model,
     
 
 def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist_model, args, tb_writer=None):
-    # device = torch.device(args.device)
-    device = args.device
+    device = torch.device(args.device)
+    # device = args.device
     autocast = get_autocast(args.precision)
     cast_dtype = get_cast_dtype(args.precision)
 
@@ -188,6 +188,7 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
     data_time_m = AverageMeter()
     end = time.time()
     for i, batch in enumerate(dataloader):
+        for j in range(3): print(i," vdataloaderdataloaderdataloaderdataloaderdataloader")
     # for i in range(100):
         i_accum = i // args.accum_freq
         step = num_batches_per_epoch * epoch + i_accum
@@ -210,12 +211,21 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
             image_mean = args.image_mean or getattr(unwrap_model(model).visual, 'image_mean', None)
             image_std = args.image_std or getattr(unwrap_model(model).visual, 'image_std', None)
             images = images.float().div(255)
+            for j in range(3): print("rank: ",args.rank,"beforeNormalizebeforeNormalizebeforeNormalize")
             images = transforms.Normalize(mean=image_mean, std=image_std)(images)
-        # need to cast data type after to_float_on_device
-        images = images.to(dtype=cast_dtype)
+            for j in range(3): print("rank: ",args.rank,"afterNormalizeafterNormalizeafterNormalize")
 
+        # need to cast data type after to_float_on_device
+        for j in range(3): print("rank: ",args.rank,"cast_dtypecast_dtypecast_dtypecast_dtypecast_dtypecast_dtype")
+
+        images = images.to(dtype=cast_dtype)
+        
         data_time_m.update(time.time() - end)
+        for j in range(3): print("rank: ",args.rank,"beforeoptimizerbeforeoptimizerbeforeoptimizerbeforeoptimizer")
+
         optimizer.zero_grad()
+
+        for j in range(3): print("rank: ",args.rank,"forwardvforwardforwardforwardforwardforwardforward")
 
         if args.accum_freq == 1:
             with autocast():
@@ -230,8 +240,9 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
                 total_loss = sum(losses.values())
                 losses["loss"] = total_loss
 
+            for j in range(3): print("rank: ",args.rank,"beforebeforebeforebeforebeforebeforebefore")
             backward(total_loss, scaler)
-            # for j in range(3): print("rank: ",args.rank,"backwardbackwardbackwardbackward")
+            for j in range(3): print("rank: ",args.rank,"backwardbackwardbackwardbackward")
         else:
             for j in range(3): print("rank: ",args.rank,"warningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarning")
             # First, cache the features without any gradient tracking.
@@ -300,7 +311,7 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
         else:
             if args.grad_clip_norm is not None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_norm, norm_type=2.0)
-            # for j in range(3): print("rank: ",args.rank,"optimizeroptimizeroptimizer")
+            for j in range(3): print("rank: ",args.rank,"optimizeroptimizeroptimizer")
             optimizer.step()
 
         # reset gradient accum, if enabled
@@ -312,11 +323,11 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
             # for j in range(3): print("rank: ",args.rank,"22222222222222222222222222222222222")
             unwrap_model(model).logit_scale.clamp_(0, math.log(100))
 
-        # for j in range(3): print("rank: ",args.rank,"333333333333333333333333333333333333333")
+        for j in range(3): print("rank: ",args.rank,"333333333333333333333333333333333333333")
         # if use_xla():
         xm.mark_step()
         # xm.optimizer_step(optimizer)
-        # for j in range(3): print("rank: ",args.rank,"4444444444444444444444444444444444444444444")
+        for j in range(3): print("rank: ",args.rank,"4444444444444444444444444444444444444444444")
         batch_time_m.update(time.time() - end)
         end = time.time()
         after_train_step_args = [model,

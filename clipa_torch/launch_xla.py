@@ -52,6 +52,7 @@ def main():
     # current_env["WORLD_SIZE"] = str(dist_world_size)
     # if 'OMP_NUM_THREADS' not in os.environ and args.nproc_per_node > 1:
     #    current_env["OMP_NUM_THREADS"] = str(1)
+    # os.environ['NUM_TPU_CORES'] = '1'
 
     mod = importlib.import_module(args.module)
 

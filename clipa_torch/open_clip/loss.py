@@ -133,7 +133,7 @@ class ClipLoss(nn.Module):
         else:
             labels = self.labels[device]
         return labels
-    
+
     def get_logits(self, image_features, text_features, logit_scale):
         if self.world_size > 1:
             # for i in range(2): print("111111111111111111")
@@ -156,6 +156,8 @@ class ClipLoss(nn.Module):
 
     def forward(self, image_features, text_features, logit_scale, output_dict=False):
         device = image_features.device
+        # device = xm.xla_device()
+        # for i in range(5): print("devices:",device) # device: xla:0 and device: xla:1
         logits_per_image, logits_per_text = self.get_logits(image_features, text_features, logit_scale)
         # device = xm.xla_device()
         labels = self.get_ground_truth(device, logits_per_image.shape[0])

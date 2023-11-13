@@ -48,9 +48,9 @@ from .data import SharedEpoch
 from .device_env_factory import use_xla
 
 
-MAX_TP_SIZE = int(os.environ.get('TFDS_TP_SIZE', 4))  # maximum TF threadpool size, for jpeg decodes and queuing activities
-SHUFFLE_SIZE = int(os.environ.get('TFDS_SHUFFLE_SIZE', 1024))  # samples to shuffle in DS queue
-PREFETCH_SIZE = int(os.environ.get('TFDS_PREFETCH_SIZE', 512))  # samples to prefetch
+MAX_TP_SIZE = int(os.environ.get('TFDS_TP_SIZE', 2))  # maximum TF threadpool size, for jpeg decodes and queuing activities
+SHUFFLE_SIZE = int(os.environ.get('TFDS_SHUFFLE_SIZE', 128))  # samples to shuffle in DS queue
+PREFETCH_SIZE = int(os.environ.get('TFDS_PREFETCH_SIZE', 1024))  # samples to prefetch
 REINIT_EACH_ITER = bool(int(os.environ.get('TFDS_REINIT_EACH_ITER', True))) # whether to reinit reader_tfds each epoch
 
 
