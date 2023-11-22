@@ -1,13 +1,16 @@
 export PROJECT_ID=focus-album-323718
 export ZONE=europe-west4-a
-export TPU_NAME=tpu-v3-vm-5
+export TPU_NAME=tpu-v3-8-pod-vm2
 # export NUM_TPU_CORES=1
 # os.environ[''] = '8'
 # export XLA_NO_SPECIAL_SCALARS=1
 # export TPU_PROCESS_BOUNDS=1,1,1
 # export  TPU_VISIBLE_CHIPS=0
-
+# PJRT_DEVICE=TPU  
+rm -r ./log/*
+# TPU_PROCESS_BOUNDS=1,1,1 TPU_VISIBLE_CHIPS=0   
     # --to-float-on-device \
+    # PJRT_DEVICE=TPU  python3  ~/CLIPA/clipa_torch/training/main.py \
 PJRT_DEVICE=TPU  python3  ~/CLIPA/clipa_torch/launch_xla.py --num-devices 8 training.main \
     --save-frequency 1 \
     --save-most-recent \
@@ -19,7 +22,7 @@ PJRT_DEVICE=TPU  python3  ~/CLIPA/clipa_torch/launch_xla.py --num-devices 8 trai
     --beta2 0.95 \
     --warmup 782 \
     --wd 0.2 \
-    --batch-size 512 \
+    --batch-size 256 \
     --aug-cfg scale='(0.4, 1.0)' \
     --pos-embed 'sin_cos_2d' \
     --epochs=6 \

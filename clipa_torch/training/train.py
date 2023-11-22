@@ -188,14 +188,24 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
     data_time_m = AverageMeter()
     end = time.time()
     for i, batch in enumerate(dataloader):
-        for j in range(3): print(i," vdataloaderdataloaderdataloaderdataloaderdataloader")
+        for j in range(30): print("iteration:",i," ")
     # for i in range(100):
+
+        # for j in range(3): print("rank:",args.rank)
+        print("rank:",args.rank,"\tparameter:\n",model.visual.conv1.weight[0][0][0])
+        # print("rank:",args.rank,"\tparameter:\n",model.module.visual.conv1.weight[0][0][0])
+        # for j in range(3): print("rank:",args.rank)
+
         i_accum = i // args.accum_freq
         step = num_batches_per_epoch * epoch + i_accum
 
         if not args.skip_scheduler:
             scheduler(step)
 
+
+        # print("model:\n",model)
+        # print("parameter:\n",model.visual.conv1.weight)
+       
         # images = torch.randn((args.batch_size,3,112,112),device=device)
         # texts = torch.randint(low=1, high=40000, size=(args.batch_size, 16), dtype=torch.long)
         # texts = texts.to(device=device)
@@ -211,21 +221,20 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
             image_mean = args.image_mean or getattr(unwrap_model(model).visual, 'image_mean', None)
             image_std = args.image_std or getattr(unwrap_model(model).visual, 'image_std', None)
             images = images.float().div(255)
-            for j in range(3): print("rank: ",args.rank,"beforeNormalizebeforeNormalizebeforeNormalize")
+           
             images = transforms.Normalize(mean=image_mean, std=image_std)(images)
-            for j in range(3): print("rank: ",args.rank,"afterNormalizeafterNormalizeafterNormalize")
-
+          
         # need to cast data type after to_float_on_device
-        for j in range(3): print("rank: ",args.rank,"cast_dtypecast_dtypecast_dtypecast_dtypecast_dtypecast_dtype")
+        
 
         images = images.to(dtype=cast_dtype)
         
         data_time_m.update(time.time() - end)
-        for j in range(3): print("rank: ",args.rank,"beforeoptimizerbeforeoptimizerbeforeoptimizerbeforeoptimizer")
+       
 
         optimizer.zero_grad()
 
-        for j in range(3): print("rank: ",args.rank,"forwardvforwardforwardforwardforwardforwardforward")
+        
 
         if args.accum_freq == 1:
             with autocast():
@@ -240,11 +249,11 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
                 total_loss = sum(losses.values())
                 losses["loss"] = total_loss
 
-            for j in range(3): print("rank: ",args.rank,"beforebeforebeforebeforebeforebeforebefore")
+            # for j in range(3): print("rank: ",args.rank,"beforebeforebeforebeforebeforebeforebefore")
             backward(total_loss, scaler)
-            for j in range(3): print("rank: ",args.rank,"backwardbackwardbackwardbackward")
+            # for j in range(3): print("rank: ",args.rank,"backwardbackwardbackwardbackward")
         else:
-            for j in range(3): print("rank: ",args.rank,"warningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarning")
+            # for j in range(3): print("rank: ",args.rank,"warningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarning")
             # First, cache the features without any gradient tracking.
             with torch.no_grad():
                 with autocast():
@@ -287,10 +296,10 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
                 backward(total_loss, scaler)
 
 
-        # for j in range(3): print("rank: ",args.rank,"1111111111111111111111111111111111111111111111")
+      
         # if use_xla() and args.distributed:
         # xm.reduce_gradients(optimizer)
-        # for j in range(3): print("rank: ",args.rank,"reduce_gradientsreduce_gradientsreduce_gradientsreduce_gradients")
+      
 
 
         if scaler is not None:
@@ -311,8 +320,8 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
         else:
             if args.grad_clip_norm is not None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_norm, norm_type=2.0)
-            for j in range(3): print("rank: ",args.rank,"optimizeroptimizeroptimizer")
-            optimizer.step()
+            # for j in range(3): print("rank: ",args.rank,"optimizeroptimizeroptimizer")
+            # optimizer.step()
 
         # reset gradient accum, if enabled
         if args.accum_freq > 1:
@@ -323,11 +332,11 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
             # for j in range(3): print("rank: ",args.rank,"22222222222222222222222222222222222")
             unwrap_model(model).logit_scale.clamp_(0, math.log(100))
 
-        for j in range(3): print("rank: ",args.rank,"333333333333333333333333333333333333333")
+       
         # if use_xla():
-        xm.mark_step()
-        # xm.optimizer_step(optimizer)
-        for j in range(3): print("rank: ",args.rank,"4444444444444444444444444444444444444444444")
+        # xm.mark_step()
+        xm.optimizer_step(optimizer)
+       
         batch_time_m.update(time.time() - end)
         end = time.time()
         after_train_step_args = [model,
@@ -355,7 +364,7 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
         # for j in range(2): print("iter : ",i,"kkkkkkkkkkk")
         xm.add_step_closure(after_train_step, after_train_step_args)
 
-        for j in range(2): print("iter : ",i,"endendendendendendendendendendendendendendendendendendendend")
+        # for j in range(2): print("iter : ",i,"endendendendendendendendendendendendendendendendendendendend")
     # end for
 
 

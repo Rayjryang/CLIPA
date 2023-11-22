@@ -44,6 +44,11 @@ try:
 except ImportError:
     hvd = None
 
+print("Current working directory:", os.getcwd())
+
+sys.path.append('/home/jyang347/CLIPA/clipa_torch/')
+
+
 from open_clip import create_model_and_transforms, trace_model, get_tokenizer, create_loss
 from training.data import get_data
 from training.distributed import is_master,  broadcast_object
@@ -54,7 +59,7 @@ from training.scheduler import cosine_lr, const_lr, const_lr_cooldown
 from training.train import train_one_epoch, evaluate
 from training.file_utils import pt_load, check_exists, start_sync_process, remote_sync
 
-from .device_env_factory import state_dict_to_cpu
+from training.device_env_factory import state_dict_to_cpu
 
 LATEST_CHECKPOINT_NAME = "epoch_latest.pt"
 
@@ -108,6 +113,7 @@ def main(args):
     args.rank = xm.get_ordinal()
     args.distributed = True if args.world_size > 1 else False
     args.device = device
+    print("world_size:",args.world_size)
 
     
     # get the name of the experiments
@@ -345,8 +351,8 @@ def main(args):
 
 
     model  = model.to(device)
-    pjrt.broadcast_master_param(model)
-    model = DDP(model, gradient_as_bucket_view=True)
+    # pjrt.broadcast_master_param(model)
+    # model = DDP(model, gradient_as_bucket_view=True)
     
     # model = DDP(model, gradient_as_bucket_view=True, broadcast_buffers=False)
     
@@ -550,6 +556,8 @@ def copy_codebase(args):
 def _mp_entry(index,*args):
     print("index:",index)
     main(sys.argv[1:])
+
+# main(sys.argv[1:])
 
 # if __name__ == "__main__":
 #     main(sys.argv[1:])
