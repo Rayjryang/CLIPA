@@ -321,7 +321,7 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
             if args.grad_clip_norm is not None:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_norm, norm_type=2.0)
             # for j in range(3): print("rank: ",args.rank,"optimizeroptimizeroptimizer")
-            # optimizer.step()
+            optimizer.step()
 
         # reset gradient accum, if enabled
         if args.accum_freq > 1:
@@ -334,8 +334,8 @@ def train_one_epoch(model, data, loss, epoch, optimizer, scaler, scheduler, dist
 
        
         # if use_xla():
-        # xm.mark_step()
-        xm.optimizer_step(optimizer)
+        xm.mark_step()
+        # xm.optimizer_step(optimizer)
        
         batch_time_m.update(time.time() - end)
         end = time.time()

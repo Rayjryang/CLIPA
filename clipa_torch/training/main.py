@@ -351,8 +351,8 @@ def main(args):
 
 
     model  = model.to(device)
-    # pjrt.broadcast_master_param(model)
-    # model = DDP(model, gradient_as_bucket_view=True)
+    pjrt.broadcast_master_param(model)
+    model = DDP(model, gradient_as_bucket_view=True)
     
     # model = DDP(model, gradient_as_bucket_view=True, broadcast_buffers=False)
     
