@@ -69,6 +69,7 @@ def get_config(arg=None):
   config.save_ckpt = True
 
   config.input = {}
+  #config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='')
   config.input.data = dict(name='liaon-400m', split='full', data_dir='')
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
