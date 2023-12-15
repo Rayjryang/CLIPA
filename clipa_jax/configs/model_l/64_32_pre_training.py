@@ -24,7 +24,7 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=84, runlocal=False, batchsize=65336,  token_len=8, txt='bert_base', img='H/14',
+      arg,  res=64, runlocal=False, batchsize=32768,  token_len=16, txt='bert_base', img='L/16',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
@@ -33,7 +33,8 @@ def get_config(arg=None):
 
  # input section include augmentation
   config.input = {}
-  config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
+  #config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
+  config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='[your data(laion-400m) location]')
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
   config.init_shapes = [(1, arg.res, arg.res, 3), (1, arg.token_len,)]
@@ -88,7 +89,8 @@ def get_config(arg=None):
   total_seen_samples = imagenet_samples * vitual_imagenet_epoch
 
   config.optax_name = 'scale_by_adam'
-  config.total_steps = int(total_seen_samples // arg.batchsize)  # seen_samples // batchsize to get the number of steps
+  #config.total_steps = int(total_seen_samples // arg.batchsize)  # seen_samples // batchsize to get the number of steps
+  config.total_epochs = 7.0
   config.lr = 8e-6 * (arg.batchsize // 256)
   config.wd = 0.2
   warmup_steps = int(52428800 // arg.batchsize) # seen_samples // batchsize to get the number of steps

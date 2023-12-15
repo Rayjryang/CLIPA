@@ -60,7 +60,7 @@ def get_config(arg=None):
       log_wandb=True,
       wandb_offline=False,
       resume=False,
-      debug_data=False,
+      debug_data=True,
       project='clip_scaling',
       experiment=f'B16_32k_{arg.res}_{arg.token_len}_tok_sin2d_lr8e',
       entity='xianhangli'
@@ -69,8 +69,8 @@ def get_config(arg=None):
   config.save_ckpt = True
 
   config.input = {}
-  #config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='')
-  config.input.data = dict(name='liaon-400m', split='full', data_dir='')
+  config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='')
+  #config.input.data = dict(name='liaon-400m', split='full', data_dir='')
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
 
@@ -91,7 +91,7 @@ def get_config(arg=None):
   config.pp_modules = [
       'ops_general', 'ops_image', 'ops_text', 'bert_ops']
 
-  config.log_training_steps = 50
+  config.log_training_steps = 1
   config.ckpt_steps = 1000
 
   # Gather representations across TPU cores for larger batch size for loss.
@@ -133,7 +133,7 @@ def get_config(arg=None):
 
   config.optax_name = 'scale_by_adam'
 
-  batch_factor = 2
+  batch_factor = 8
   config.input.batch_size = 1024 * 16 * batch_factor
 
   config.total_epochs = 7.0 if not arg.runlocal else 1
@@ -160,6 +160,7 @@ def get_config(arg=None):
 
   # Eval section (Both few-shot and zero-shot)
   config.eval_only = False
+ #log_steps=2000 // batch_factor,
   eval_common = dict(
       type='proj.image_text.contrastive',
       use_global_batch=config.loss_use_global_batch,

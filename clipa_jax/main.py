@@ -164,10 +164,11 @@ def main(argv):
     # Start prefetching already.
     n_prefetch = config.get("prefetch_to_device", 1)
 
+    #shard=False if config.wandb.debug_data else True,
     train_iter = input_pipeline.start_input_pipeline(
         train_ds,
         n_prefetch,
-        shard=False if config.wandb.debug_data else True,
+        shard=True,
         config=config)
 
     total_steps = steps("total", config, ntrain_img, batch_size)
