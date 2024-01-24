@@ -1,12 +1,12 @@
 export PROJECT_ID=focus-album-323718
 export ZONE=europe-west4-a
-export TPU_NAME=tpu-v3-128-pod-vm-spot
+export TPU_NAME=tpu-v3-64-pod-vm
 
 echo  $PROJECT_ID
 echo $ZONE
 echo $TPU_NAME
 
-gcloud compute config-ssh # need to configure ssh first time
+# gcloud compute config-ssh # need to configure ssh first time
 
 # upload files to all your pods (make sure all files are synced)
 gcloud alpha compute tpus tpu-vm scp --recurse ~/CLIPA/  $TPU_NAME:~/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
