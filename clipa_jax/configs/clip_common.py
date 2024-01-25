@@ -39,7 +39,8 @@ inits = {
     'L/16': ('L/16', 'gs://vit_models/augreg/L_16-i21k-300ep-lr_0.001-aug_strong1-wd_0.1-do_0.0-sd_0.0.npz'),
     'L/14': ('L/14', 'gs://vit_models/augreg/L_16-i21k-300ep-lr_0.001-aug_strong1-wd_0.1-do_0.0-sd_0.0.npz'),
     'H/14': ('H/14', 'gs://vit_models/augreg/L_16-i21k-300ep-lr_0.001-aug_strong1-wd_0.1-do_0.0-sd_0.0.npz'),
-    'So150m/14': ('So150m/14', '')
+    'So150m/14': ('So150m/14', ''),
+    'So150m/16': ('So150m/16', '')
 }
 # pylint: enable=line-too-long
 

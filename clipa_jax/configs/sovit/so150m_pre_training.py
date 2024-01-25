@@ -24,7 +24,7 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=224, runlocal=False, batchsize=32768,  token_len=16, txt='bert_base', img='So150m/14',
+      arg,  res=56, runlocal=False, batchsize=32768,  token_len=16, txt='bert_base', img='So150m/14',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
@@ -33,8 +33,8 @@ def get_config(arg=None):
 
  # input section include augmentation
   config.input = {}
-  config.input.data = dict(name='liaon-400m', split='full', data_dir='gs://jaxtpu-data-eu-west4/laion-400m-cv2resize-356m')
-#   config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='[your data(laion-400m) location]')
+#   config.input.data = dict(name='liaon-400m', split='full', data_dir='gs://jaxtpu-data-eu-west4/laion-400m-cv2resize-356m')
+  config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='[your data(laion-400m) location]')
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
   config.init_shapes = [(1, arg.res, arg.res, 3), (1, arg.token_len,)]
@@ -71,7 +71,7 @@ def get_config(arg=None):
       'head_zeroinit': False,
   })
   config.model.text = ConfigDict({
-      'variant': "B/16",
+      'variant': 'B/16',
       'pool_type': 'last',
       'head_zeroinit': False,
   })
@@ -81,7 +81,7 @@ def get_config(arg=None):
   dim = {'T': 192, 'S':384, 'B': 512, "So150m": 512, 'L': 768, 'H': 1024}[arg.img.split("/")[0]]
  # dim = 768
   config.model.out_dim = (dim if arg.img_head else None, dim)  # (image_out_dim, text_out_dim)
-
+#   config.model.out_dim = (768,768)
 
   # optimizer config
 
