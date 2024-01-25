@@ -71,7 +71,7 @@ class Model(nn.Module):
             # Normalize the embeddings the models give us.
             out["txt/norm"] = jnp.linalg.norm(ztxt, axis=1, keepdims=True)
             out["txt/normalized"] = ztxt = ztxt / (out["txt/norm"] + 1e-8)
-
+            
         if image is not None:
             image_model = importlib.import_module(f"models.{self.image_model}").Model(
                 **{"num_classes": out_dims[0], **(self.image or {})}, name="img", **kw)  # pylint: disable=not-a-mapping

@@ -104,11 +104,13 @@ class ConvNeXtBlock(nn.Module):
 
 
 class _Model(nn.Module):
-    """ViT model."""
+    """convnext model."""
 
     num_classes: Optional[int] = None
     dims: Iterable = (96, 192, 384, 768)
     depths: Iterable = (3, 3, 9, 3)
+    posemb: str = None
+    pool_type: str = None
     layer_scale_init_value: float = 0.0
     head_init_scale: float = 1.0
     dropout: float = 0.0
