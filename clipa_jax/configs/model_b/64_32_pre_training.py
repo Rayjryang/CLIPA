@@ -50,7 +50,7 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=64, runlocal=False, token_len=32, txt='bert_base', img='B/16',
+      arg,  res=64, runlocal=False , token_len=16, txt='bert_base', img='B/16',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
@@ -60,14 +60,14 @@ def get_config(arg=None):
       log_wandb=True,
       wandb_offline=False,
       resume=False,
-      debug_data=True,
+      debug_data=False,
       project='clip_scaling',
       experiment=f'B16_32k_{arg.res}_{arg.token_len}_tok_sin2d_lr8e',
       entity='xianhangli'
   )
 
   config.save_ckpt = True
-
+    
   config.input = {}
   config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='')
   #config.input.data = dict(name='liaon-400m', split='full', data_dir='')
@@ -134,7 +134,8 @@ def get_config(arg=None):
   config.optax_name = 'scale_by_adam'
 
   batch_factor = 8
-  config.input.batch_size = 1024 * 16 * batch_factor
+#   config.input.batch_size = 1024 * 16 * batch_factor
+  config.input.batch_size = 65536
 
   config.total_epochs = 7.0 if not arg.runlocal else 1
   config.lr = 8e-6 * 64  * batch_factor # lr for 256

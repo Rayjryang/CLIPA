@@ -8,7 +8,7 @@ echo $TPU_NAME
 
 
 # sync_name=/home/jyang347/CLIPA/clipa_jax/configs/convnext/convnext_pre_training.py
-sync_name=/home/jyang347/CLIPA/clipa_jax/models/convnext.py
+sync_name=/home/jyang347/CLIPA/clipa_jax/flexi_main.py
 sync_dir=$(dirname $sync_name)
 
 
@@ -19,6 +19,17 @@ sync_dir=$(dirname $sync_name)
 # gcloud alpha compute tpus tpu-vm scp  ~/CLIPA/clipa_jax/scripts/pre_training.sh  $TPU_NAME:~/CLIPA/clipa_jax/scripts/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
 #gcloud alpha compute tpus tpu-vm scp  /home/jyang347/CLIPA/clipa_jax/configs/model_b/64_32_pre_training.py  $TPU_NAME:/home/jyang347/CLIPA/clipa_jax/configs/model_b/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
 gcloud alpha compute tpus tpu-vm scp  $sync_name  $TPU_NAME:$sync_dir/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
+
+
+# gcloud alpha compute tpus tpu-vm scp --recurse  /home/jyang347/CLIPA/clipa_jax/configs/model_flexi  $TPU_NAME:/home/jyang347/CLIPA/clipa_jax/configs/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
+
+
+# gcloud alpha compute tpus tpu-vm scp  /home/jyang347/CLIPA/clipa_jax/flexi_common.py  $TPU_NAME:/home/jyang347/CLIPA/clipa_jax/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
+# gcloud alpha compute tpus tpu-vm scp  /home/jyang347/CLIPA/clipa_jax/flexi_main.py  $TPU_NAME:/home/jyang347/CLIPA/clipa_jax/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
+
+# gcloud alpha compute tpus tpu-vm scp  /home/jyang347/CLIPA/clipa_jax/models/two_towers.py  $TPU_NAME:/home/jyang347/CLIPA/clipa_jax/models/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
+# gcloud alpha compute tpus tpu-vm scp  /home/jyang347/CLIPA/clipa_jax/models/flexi_model.py  $TPU_NAME:/home/jyang347/CLIPA/clipa_jax/models/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
+# gcloud alpha compute tpus tpu-vm scp  /home/jyang347/CLIPA/clipa_jax/models/flexi_vit.py  $TPU_NAME:/home/jyang347/CLIPA/clipa_jax/models/  --zone=$ZONE --worker=all --project ${PROJECT_ID}
 
 
 

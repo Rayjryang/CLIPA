@@ -46,6 +46,7 @@ class Model(nn.Module):
             mae_layer=-1,
             rng_mask=None,
             train=False,
+            seqhw=None,
             **kw):
         """Returns (B,C) image and (B,C) text representations."""
 
@@ -71,7 +72,7 @@ class Model(nn.Module):
             # Normalize the embeddings the models give us.
             out["txt/norm"] = jnp.linalg.norm(ztxt, axis=1, keepdims=True)
             out["txt/normalized"] = ztxt = ztxt / (out["txt/norm"] + 1e-8)
-            
+
         if image is not None:
             image_model = importlib.import_module(f"models.{self.image_model}").Model(
                 **{"num_classes": out_dims[0], **(self.image or {})}, name="img", **kw)  # pylint: disable=not-a-mapping
@@ -79,8 +80,10 @@ class Model(nn.Module):
                 zimg, out_img = image_model(
                     image, mask_ratio=mask_ratio, mae_layer=mae_layer, rng_mask=rng_mask, **kw)
             else:
+                # zimg, out_img = image_model(
+                #     image, mask_ratio=mask_ratio, train=train, **kw)
                 zimg, out_img = image_model(
-                    image, mask_ratio=mask_ratio, train=train, **kw)
+                    image, seqhw = seqhw, train=train, **kw)
             for k, v in out_img.items():
                 out[f"img/{k}"] = v
 
