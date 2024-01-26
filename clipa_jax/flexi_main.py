@@ -240,6 +240,8 @@ def main(argv):
                      for sched_fn in sched_fns]
 
     flexi_argnames = sorted(config.flexi)
+    
+    # print("flexi_argnames:",flexi_argnames)
 
     @functools.partial(jax.pmap, axis_name="batch", donate_argnums=(0, 1),
                        static_broadcasted_argnums=tuple(range(4, 4 + len(flexi_argnames))))
@@ -262,7 +264,7 @@ def main(argv):
         rng, rng_model = jax.random.split(rng, 2)
         rng_model_local = jax.random.fold_in(
             rng_model, jax.lax.axis_index("batch"))
-
+        
         def loss_fn(params, images, labels):
 
             zimg, ztxt, extras = model.apply({"params": params}, images, labels, train=True,**dict(zip(flexi_argnames, args)), mask_ratio=config.mask_ratio, rngs={
@@ -366,6 +368,8 @@ def main(argv):
 
             if 'Transformer' in img_grads.keys():
                 for i in range(len(img_grads['Transformer'].keys())):
+                    if i >= 12:
+                        continue
                     block_name = 'encoderblock_' + str(i)
                     gs = jax.tree_leaves(
                         optim.replace_frozen(
@@ -492,6 +496,7 @@ def main(argv):
             flexi.choice(config.flexi[n].v, config.flexi[n].p, np_rng)
             for n in flexi_argnames
         ]
+        # print("flexi_args:",flexi_args)
 
         with jax.profiler.StepTraceAnnotation("train_step", step_num=step):
             with chrono.log_timing("z/secs/update0", noop=step > first_step + 1):

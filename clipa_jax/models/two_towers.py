@@ -96,7 +96,7 @@ class Model(nn.Module):
                        jnp.ones(shape, dtype), (1,), jnp.float32)
         out["t"] = jnp.exp(t)
         out["t/parameter"] = t
-
+        
         return zimg, ztxt, out
 
 
