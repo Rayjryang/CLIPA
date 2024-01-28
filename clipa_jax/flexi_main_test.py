@@ -207,7 +207,7 @@ def main(argv):
     # We want all parameters to be created in host RAM, not on any device, they'll
     # be sent there later as needed, otherwise we already encountered two
     # situations where we allocate them twice.
-    @functools.partial(jax.jit, backend="cpu", static_argnums=1)
+    # @functools.partial(jax.jit, backend="cpu", static_argnums=1)
     def init(rng, text_size):
         bs = batch_size // jax.device_count()
         image_size = tuple(train_ds.element_spec["image"].shape[1:])
@@ -219,11 +219,9 @@ def main(argv):
         
         params = flax.core.unfreeze(
             model.init(rng, no_image, no_text))["params"]
-        # print("params init:",params)
-        # jax.debug.print("jax.debug.print params init {x}",x=params)
-
+        print("params init:",params)
         return params
-
+    
     if config.get('noun_sample', False):
         text_size = (config.text_length, )
     else:
@@ -234,18 +232,56 @@ def main(argv):
     with chrono.log_timing("z/secs/init"):
         params_cpu = init(rng_init, text_size)
 
-    # print("params_cpu:",params_cpu)
+    print("params_cpu:",params_cpu)
 
-    # def contains_nan(x):
-    #     return jnp.any(jnp.isnan(x))
+    rng, rng_model = jax.random.split(rng, 2)
 
-    # # 使用 tree_map 应用这个函数到整个 params 结构
-    # nan_check = jax.tree_util.tree_map(contains_nan, params_cpu)
 
-    # # 使用 tree_reduce 或任何其他方法来合并结果
-    # has_nan = jax.tree_util.tree_reduce(lambda x, y: x or y, nan_check, False)
+    #debug code
+    ikey = jax.random.PRNGKey(0)  # 示例种子
+    tkey = jax.random.PRNGKey(1)  # 示例种子
+    bs = batch_size // jax.device_count()
+    image_size = tuple(train_ds.element_spec["image"].shape[1:])
 
-    # print("Contains NaN:", has_nan)
+    dummy_image = jax.random.uniform(ikey, (bs,) + image_size, dtype=jnp.float32)
+    dummy_text = jnp.zeros((bs,) + text_size, jnp.int32)
+    
+    flexi_args = [10] #(5, 6, 8, 10, 12, 15, 16, 20, 24, 30),
+    flexi_argnames = ['seqhw']
+
+    zimg, ztxt, extras = model.apply({"params": params_cpu}, image=dummy_image, text=dummy_text, train=True, mask_ratio=config.mask_ratio , rngs={
+                "dropout": rng_model, 'drop_path': rng_model, 'random_mask': rng_model},**dict(zip(flexi_argnames,flexi_args)))
+            
+
+    jax.debug.print("jax.debug.print zimg,ztxt {x} {y}",x=zimg,y=ztxt)
+
+    print("debug output:",zimg,ztxt)
+
+    has_nan = jnp.any(jnp.isnan(zimg))
+
+    print("Contains NaN:", has_nan)
+
+    has_nan = jnp.any(jnp.isnan(ztxt))
+
+    print("Contains NaN:", has_nan)
+
+    print("out[img/norm]:",extras["img/norm"])
+    has_nan = jnp.any(jnp.isnan(extras["img/norm"]))
+
+    print("Contains NaN:", has_nan)
+
+    exit()
+
+    def contains_nan(x):
+        return jnp.any(jnp.isnan(x))
+
+    # 使用 tree_map 应用这个函数到整个 params 结构
+    nan_check = jax.tree_util.tree_map(contains_nan, params_cpu)
+
+    # 使用 tree_reduce 或任何其他方法来合并结果
+    has_nan = jax.tree_util.tree_reduce(lambda x, y: x or y, nan_check, False)
+    
+    print("Contains NaN:", has_nan)
 
 
     if jax.process_index() == 0:
@@ -269,15 +305,16 @@ def main(argv):
 
     # @functools.partial(jax.pmap, axis_name="batch", donate_argnums=(0, 1),
     #                    static_broadcasted_argnums=tuple(range(4, 4 + len(flexi_argnames))))
-    @functools.partial(jax.pmap, axis_name="batch", donate_argnums=(0, 1),static_broadcasted_argnums=tuple(range(4, 4 + len(flexi_argnames))))
+    @functools.partial(jax.pmap, axis_name="batch", donate_argnums=(0, 1),
+                       static_broadcasted_argnums=tuple(range(4, 4 + len(flexi_argnames))))
     def update_fn(params, opt, rng, batch, *args):
         """Update step."""
         #assert "mixup" not in config, "We still have to figure out mixup."
-        # print("args in update_fn:",args)
-        # print("flexi_argnames in update_fn",flexi_argnames)
+        print("args in update_fn:",args)
+        print("flexi_argnames in update_fn",flexi_argnames)
         images = batch["image"]
         labels = batch["labels"]
-        # print("image update_fn:",images)
+        print("image update_fn:",images)
 
         if config.get("cpu_unit8", True):
             mean = jnp.asarray(
@@ -286,36 +323,37 @@ def main(argv):
                 [0.229 * 255, 0.224 * 255, 0.225 * 255])[None, None, None, :]
             images = (jnp.asarray(images, dtype=jnp.float32) - mean) / std
 
-        # print("image after cpu_unit8:",images)
-        # jax.debug.print("jax.debug.printimage after cpu_unit8 {x}",x=images)
-
+        print("image after cpu_unit8:",images)
         # Get device-specific loss rng.
         rng, rng_model = jax.random.split(rng, 2)
-        rng_model_local = jax.random.fold_in(rng_model, jax.lax.axis_index("batch"))
+        rng_model_local = jax.random.fold_in(
+            rng_model, jax.lax.axis_index("batch"))
         # rng_model_local = jax.random.fold_in(
         #     rng_model)
         
         def loss_fn(params, images, labels):
             print("image loss_fn:",images)
-            
-            zimg, ztxt, extras = model.apply({"params": params}, image=images, text=labels, train=True, mask_ratio=config.mask_ratio, **dict(zip(flexi_argnames, args)),rngs={
-                "dropout": rng_model_local, 'drop_path': rng_model_local, 'random_mask': rng_model_local}
+            zimg, ztxt, extras = model.apply({"params": params}, image=images, text=labels, train=True, mask_ratio=config.mask_ratio, **dict(zip(flexi_argnames, args), rngs={
+                "dropout": rng_model_local, 'drop_path': rng_model_local, 'random_mask': rng_model_local})
                 )
             # logging.info("zip(flexi_argnames, args):", zip(flexi_argnames, args))
             
             # print("zip(flexi_argnames, args):",zip(flexi_argnames, args))
-            # zimg, ztxt, extras = model.apply({"params": params}, image=images, text=labels, train=True, mask_ratio=config.mask_ratio, rngs={
-            #     "dropout": rng_model, 'drop_path': rng_model, 'random_mask': rng_model}, **dict(zip(flexi_argnames, args))
-            #     )
+            # zimg, ztxt, extras = model.apply({"params": params}, images, labels, train=True, mask_ratio=config.mask_ratio, rngs={
+            #     "dropout": rng_model_local, 'drop_path': rng_model_local, 'random_mask': rng_model_local})
             
-            # jax.debug.print("jax.debug.printimage zimg, ztxt in loss fn {x} {y}",x=zimg,y=ztxt)
+
+            print("=============================")
+            print("zimg shape:",zimg.shape,zimg)
+            print("ztxt shape:",ztxt.shape,ztxt)
+            print("=============================")
+
 
 
             if config.get("local_loss", False):
                 local_img, local_txt = zimg, ztxt
             else:
                 local_img, local_txt = None, None
-
 
             # Gather representations across cores for larger batch size for
             # loss.
@@ -325,7 +363,6 @@ def main(argv):
             l, l_extras = losses.bidirectional_contrastive_loss(
                 zimg, ztxt, extras["t"], reduction=True, local_loss=config.local_loss, local_img_logits=local_img, local_txt_logits=local_txt)
 
-            # jax.debug.print("jax.debug.printimage img/norm in loss fn {x}",x=jnp.mean(extras["img/norm"]))
 
             return l, {
                 "t": extras["t"],
@@ -335,15 +372,16 @@ def main(argv):
                 **l_extras,
             }
 
-        # print("images input loss_fn:",images)
+        print("images input loss_fn:",images)
         (l, measurements), grads = jax.value_and_grad(
             loss_fn, has_aux=True)(params, images, labels)
         # loss_fn(params, images, labels)
-        l, measurements, grads = jax.lax.pmean((l, measurements, grads), axis_name="batch")
-        # l, measurements, grads = jnp.mean((l, measurements, grads))
+        l, measurements, grads = jax.lax.pmean((l, measurements, grads),
+                                               axis_name="batch")
+        # l, measurements, grads = jax.lax.pmean((l, measurements, grads))
         updates, opt = tx.update(grads, opt, params)
         params = optax.apply_updates(params, updates)
-        
+
         def record_grads(grads, measurements):
             img_grads = grads['img']
 
@@ -506,7 +544,6 @@ def main(argv):
 
     rng, rng_loop = jax.random.split(rng, 2)
     rngs_loop = flax.jax_utils.replicate(rng_loop)
-    # rngs_loop = rng_loop
     ckpt_writer = None
 
     write_note(f"First step compilations...\n{chrono.note}")
@@ -545,7 +582,8 @@ def main(argv):
         with jax.profiler.StepTraceAnnotation("train_step", step_num=step):
             with chrono.log_timing("z/secs/update0", noop=step > first_step + 1):
                 params_repl, opt_repl, rngs_loop, loss_value, measurements = update_fn(
-                    params_repl, opt_repl, rngs_loop, batch, *flexi_args)
+                    params_repl, opt_repl, rngs_loop, batch,
+                    *flexi_args)
 
         # On the first host, let's always profile a handful of early steps.
         if jax.process_index() == 0:

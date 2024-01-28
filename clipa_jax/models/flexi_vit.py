@@ -191,12 +191,12 @@ class _Model(nn.Module):
   rep_size: Union[int, bool] = False
   dropout: float = 0.0
   pool_type: str = "gap"  # Can also be "map" or "tok"
-  head_zeroinit: bool = True
+  head_zeroinit: bool = False
   scan: bool = False
   # or "dots_with_no_batch_dims_saveable" for more speed (memory costly)
   remat_policy: str = "nothing_saveable"
   dtype_mm: str = "float32"
-
+  
   @nn.compact
   def __call__(self, image, *, train=False):
     out = {}

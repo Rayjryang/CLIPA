@@ -1,0 +1,1171 @@
+nohup: ignoring input
+2024-01-28 06:57:31.231903: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2024-01-28 06:57:31.865019: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2024-01-28 06:57:31.865142: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2024-01-28 06:57:31.865157: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2024-01-28 06:57:34.336278: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: :/usr/local/lib
+2024-01-28 06:57:34.336345: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
+I0128 06:57:37.387363 139849920552000 flexi_main.py:90] [33mHello from process 0 holding 8/8 devices and writing to workdir gs://lxh_jaxtpu_eu_ckpt/jinruiyang_ckpt/clipa/tpu-v3-128-pod-vm-spot-flexivit-b16-debug.[0m
+[nltk_data] Downloading package punkt to /home/jyang347/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]     /home/jyang347/nltk_data...
+[nltk_data]   Package averaged_perceptron_tagger is already up-to-
+[nltk_data]       date!
+I0128 06:57:37.803187 139849920552000 flexi_main.py:120] [33mNOTE[0m: Initializing...
+I0128 06:57:37.804683 139849920552000 flexi_main.py:120] [33mNOTE[0m: Global batch size 16 on 1 hosts results in 16 local batch size. With 8 dev per host (8 dev total), that's a 2 per-device batch size.
+I0128 06:57:37.911741 139849920552000 flexi_main.py:120] [33mNOTE[0m: Initializing train dataset...
+I0128 06:57:38.333107 139849920552000 dataset_info.py:566] Load dataset info from gs://jaxtpu-data-eu-west4/laion400m_blip_filtered
+I0128 06:57:40.599086 139849920552000 dataset_info.py:642] Field info.module_name from disk and from code do not match. Keeping the one from code.
+WARNING:tensorflow:From /home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/tensorflow_datasets/core/reader.py:100: CounterV2 (from tensorflow.python.data.experimental.ops.counter) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.counter(...)` instead.
+W0128 06:57:41.916854 139849920552000 deprecation.py:350] From /home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/tensorflow_datasets/core/reader.py:100: CounterV2 (from tensorflow.python.data.experimental.ops.counter) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.counter(...)` instead.
+I0128 06:57:41.996708 139849920552000 logging_logger.py:49] Constructing tf.data.Dataset laion400m for split _EvenSplit(split='full-filter', index=0, count=1, drop_remainder=False), from gs://jaxtpu-data-eu-west4/laion400m_blip_filtered
+I0128 06:57:47.828979 139849920552000 api.py:459] Data before pre-processing:
+{'LICENSE': <tf.Tensor 'args_0:0' shape=() dtype=string>, 'NSFW': <tf.Tensor 'args_1:0' shape=() dtype=string>, 'caption': <tf.Tensor 'args_2:0' shape=() dtype=string>, 'error_message': <tf.Tensor 'args_3:0' shape=() dtype=string>, 'exif': <tf.Tensor 'args_4:0' shape=() dtype=string>, 'height': <tf.Tensor 'args_5:0' shape=() dtype=int64>, 'jpg': <tf.Tensor 'args_6:0' shape=(None, None, 3) dtype=uint8>, 'key': <tf.Tensor 'args_7:0' shape=() dtype=string>, 'original_height': <tf.Tensor 'args_8:0' shape=() dtype=int64>, 'original_width': <tf.Tensor 'args_9:0' shape=() dtype=int64>, 'sha256': <tf.Tensor 'args_10:0' shape=() dtype=string>, 'status': <tf.Tensor 'args_11:0' shape=() dtype=string>, 'txt': <tf.Tensor 'args_13:0' shape=() dtype=string>, 'url': <tf.Tensor 'args_14:0' shape=() dtype=string>, 'width': <tf.Tensor 'args_15:0' shape=() dtype=int64>, 'tfds_id': <tf.Tensor 'args_12:0' shape=() dtype=string>}
+WARNING:tensorflow:From /home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/tensorflow/python/autograph/pyct/static_analysis/liveness.py:83: Analyzer.lamba_check (from tensorflow.python.autograph.pyct.static_analysis.liveness) is deprecated and will be removed after 2023-09-23.
+Instructions for updating:
+Lambda fuctions will be no more assumed to be used in the statement where they are used, or at least in the same block. https://github.com/tensorflow/tensorflow/issues/56089
+W0128 06:57:47.968671 139849920552000 deprecation.py:350] From /home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/tensorflow/python/autograph/pyct/static_analysis/liveness.py:83: Analyzer.lamba_check (from tensorflow.python.autograph.pyct.static_analysis.liveness) is deprecated and will be removed after 2023-09-23.
+Instructions for updating:
+Lambda fuctions will be no more assumed to be used in the statement where they are used, or at least in the same block. https://github.com/tensorflow/tensorflow/issues/56089
+/tmp/__autograph_generated_filetllkark9.py:11: FutureWarning: jax.tree_flatten is deprecated, and will be removed in a future release. Use jax.tree_util.tree_flatten instead.
+  ag__.converted_call(ag__.ld(warnings).warn, (f'jax.{ag__.ld(f).__name__} is deprecated, and will be removed in a future release. Use jax.tree_util.{ag__.ld(f).__name__} instead.',), dict(category=ag__.ld(FutureWarning), stacklevel=2), fscope)
+I0128 06:57:49.681067 139849920552000 api.py:459] Data after pre-processing:
+{'image': <tf.Tensor 'Cast:0' shape=(240, 240, 3) dtype=uint8>, 'labels': <tf.Tensor 'cond/Identity:0' shape=(16,) dtype=int32>}
+I0128 06:57:49.995800 139849920552000 flexi_main.py:120] [33mNOTE[0m: Running for 114716000 steps, that means 7.000000 epochs
+I0128 06:57:49.996056 139849920552000 flexi_main.py:120] [33mNOTE[0m: Initializing two_towers model...
+W0128 06:57:50.164598 139849920552000 checkpoints.py:55] GlobalAsyncCheckpointManager is not imported correctly. Checkpointing of GlobalDeviceArrays will not be available.To use the feature, install tensorstore.
+I0128 06:58:32.804455 139849920552000 utils.py:844] [35m[0][0m z/secs/init = 42.66192595695611
+I0128 06:58:32.804936 139849920552000 utils.py:427] TIMING[z/secs/init]: 42.66192595695611
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:252: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  num_params = sum(p.size for p in jax.tree_leaves(params_cpu))
+I0128 06:58:33.089304 139849920552000 parameter_overview.py:264] 
+init params
++-----------------------------------------------------------------------------+----------------+------------+-----------+----------+
+| Name                                                                        | Shape          | Size       | Mean      | Std      |
++-----------------------------------------------------------------------------+----------------+------------+-----------+----------+
+| img/Transformer/encoder_norm/bias                                           | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoder_norm/scale                                          | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_0/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_0/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_0/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_0/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_0/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | -3.38e-08 | 9.75e-07 |
+| img/Transformer/encoderblock_0/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | -6.72e-06 | 0.0228   |
+| img/Transformer/encoderblock_0/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | -1.79e-09 | 1.01e-06 |
+| img/Transformer/encoderblock_0/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | 2.95e-05  | 0.0228   |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | -1.04e-05 | 0.0361   |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | 3.53e-05  | 0.0361   |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | 3.68e-05  | 0.0361   |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | -4.72e-05 | 0.0361   |
+| img/Transformer/encoderblock_1/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_1/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_1/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_1/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_1/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | -2.27e-10 | 1e-06    |
+| img/Transformer/encoderblock_1/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | 7.57e-06  | 0.0228   |
+| img/Transformer/encoderblock_1/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | -5.43e-08 | 1e-06    |
+| img/Transformer/encoderblock_1/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | -1.13e-05 | 0.0228   |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | -2.07e-05 | 0.0361   |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | -3.42e-05 | 0.0361   |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | -6.93e-05 | 0.0361   |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | -5.87e-05 | 0.0361   |
+| img/Transformer/encoderblock_10/LayerNorm_0/bias                            | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_10/LayerNorm_0/scale                           | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_10/LayerNorm_1/bias                            | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_10/LayerNorm_1/scale                           | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_10/MlpBlock_0/Dense_0/bias                     | (3072,)        | 3,072      | 1.1e-08   | 1e-06    |
+| img/Transformer/encoderblock_10/MlpBlock_0/Dense_0/kernel                   | (768, 3072)    | 2,359,296  | -4.03e-05 | 0.0228   |
+| img/Transformer/encoderblock_10/MlpBlock_0/Dense_1/bias                     | (768,)         | 768        | 2.8e-08   | 9.93e-07 |
+| img/Transformer/encoderblock_10/MlpBlock_0/Dense_1/kernel                   | (3072, 768)    | 2,359,296  | -5.91e-06 | 0.0228   |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/bias     | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/kernel   | (768, 12, 64)  | 589,824    | 1.24e-05  | 0.0361   |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/bias     | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/kernel   | (12, 64, 768)  | 589,824    | 9.98e-06  | 0.0361   |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/bias   | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/kernel | (768, 12, 64)  | 589,824    | 4.96e-05  | 0.0361   |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/bias   | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/kernel | (768, 12, 64)  | 589,824    | -4.86e-05 | 0.036    |
+| img/Transformer/encoderblock_11/LayerNorm_0/bias                            | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_11/LayerNorm_0/scale                           | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_11/LayerNorm_1/bias                            | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_11/LayerNorm_1/scale                           | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_11/MlpBlock_0/Dense_0/bias                     | (3072,)        | 3,072      | 2.22e-08  | 9.96e-07 |
+| img/Transformer/encoderblock_11/MlpBlock_0/Dense_0/kernel                   | (768, 3072)    | 2,359,296  | 1.6e-05   | 0.0228   |
+| img/Transformer/encoderblock_11/MlpBlock_0/Dense_1/bias                     | (768,)         | 768        | 4.45e-08  | 9.78e-07 |
+| img/Transformer/encoderblock_11/MlpBlock_0/Dense_1/kernel                   | (3072, 768)    | 2,359,296  | 7.8e-06   | 0.0228   |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/bias     | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/kernel   | (768, 12, 64)  | 589,824    | -3.21e-05 | 0.0361   |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/bias     | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/kernel   | (12, 64, 768)  | 589,824    | -2.72e-05 | 0.0361   |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/bias   | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/kernel | (768, 12, 64)  | 589,824    | -1.56e-05 | 0.0361   |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/bias   | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/kernel | (768, 12, 64)  | 589,824    | 3.44e-05  | 0.0361   |
+| img/Transformer/encoderblock_2/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_2/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_2/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_2/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_2/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | 2.5e-08   | 9.92e-07 |
+| img/Transformer/encoderblock_2/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | 1.01e-05  | 0.0228   |
+| img/Transformer/encoderblock_2/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | 1.23e-08  | 1.03e-06 |
+| img/Transformer/encoderblock_2/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | 5.56e-06  | 0.0228   |
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | -3.56e-05 | 0.0361   |
+I0128 06:58:33.089565 139849920552000 parameter_overview.py:264] 
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | 3.68e-05  | 0.0361   |
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | 5.17e-06  | 0.0361   |
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | -4.86e-05 | 0.0361   |
+| img/Transformer/encoderblock_3/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_3/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_3/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_3/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_3/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | -2.99e-10 | 1e-06    |
+| img/Transformer/encoderblock_3/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | 7.05e-06  | 0.0228   |
+| img/Transformer/encoderblock_3/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | -4.96e-08 | 9.94e-07 |
+| img/Transformer/encoderblock_3/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | 8.92e-06  | 0.0228   |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | 1.85e-06  | 0.0361   |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | 1.2e-05   | 0.0361   |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | -1.63e-05 | 0.0361   |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | -8.69e-05 | 0.036    |
+| img/Transformer/encoderblock_4/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_4/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_4/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_4/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_4/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | -4.4e-09  | 9.98e-07 |
+| img/Transformer/encoderblock_4/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | -5.64e-06 | 0.0228   |
+| img/Transformer/encoderblock_4/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | 5.12e-09  | 1.02e-06 |
+| img/Transformer/encoderblock_4/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | -3.41e-05 | 0.0228   |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | 5.01e-05  | 0.0361   |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | -5.61e-05 | 0.0361   |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | 1.29e-05  | 0.0361   |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | 3.39e-05  | 0.0361   |
+| img/Transformer/encoderblock_5/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_5/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_5/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_5/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_5/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | 4.46e-10  | 1.03e-06 |
+| img/Transformer/encoderblock_5/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | 1.26e-05  | 0.0228   |
+| img/Transformer/encoderblock_5/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | 5.08e-09  | 1.03e-06 |
+| img/Transformer/encoderblock_5/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | 1.85e-05  | 0.0228   |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | -0.000142 | 0.0361   |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | -4.05e-05 | 0.0361   |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | 5.09e-05  | 0.0361   |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | 1.98e-05  | 0.036    |
+| img/Transformer/encoderblock_6/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_6/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_6/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_6/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_6/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | -6.91e-10 | 9.98e-07 |
+| img/Transformer/encoderblock_6/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | -5.17e-06 | 0.0228   |
+| img/Transformer/encoderblock_6/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | 7.58e-08  | 9.69e-07 |
+| img/Transformer/encoderblock_6/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | -3.71e-08 | 0.0228   |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | 5.95e-05  | 0.0361   |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | 0.00011   | 0.0361   |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | -5.99e-05 | 0.0361   |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | -2.43e-05 | 0.0361   |
+| img/Transformer/encoderblock_7/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_7/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_7/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_7/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_7/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | 3.68e-09  | 1.01e-06 |
+| img/Transformer/encoderblock_7/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | -1.89e-06 | 0.0228   |
+| img/Transformer/encoderblock_7/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | 6.46e-08  | 9.97e-07 |
+| img/Transformer/encoderblock_7/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | 1.54e-05  | 0.0228   |
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | 2.41e-05  | 0.0361   |
+I0128 06:58:33.089644 139849920552000 parameter_overview.py:264] 
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | -2.31e-05 | 0.0361   |
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | 1.81e-05  | 0.0361   |
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | -2.96e-05 | 0.0361   |
+| img/Transformer/encoderblock_8/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_8/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_8/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_8/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_8/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | -1.89e-08 | 1e-06    |
+| img/Transformer/encoderblock_8/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | 5.25e-06  | 0.0228   |
+| img/Transformer/encoderblock_8/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | -2.66e-08 | 9.95e-07 |
+| img/Transformer/encoderblock_8/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | 7.32e-06  | 0.0228   |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | -3.92e-05 | 0.0361   |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | 2.95e-05  | 0.0361   |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | 8.9e-05   | 0.0361   |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | -6.7e-05  | 0.036    |
+| img/Transformer/encoderblock_9/LayerNorm_0/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_9/LayerNorm_0/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_9/LayerNorm_1/bias                             | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_9/LayerNorm_1/scale                            | (768,)         | 768        | 1.0       | 0.0      |
+| img/Transformer/encoderblock_9/MlpBlock_0/Dense_0/bias                      | (3072,)        | 3,072      | 8.53e-10  | 9.96e-07 |
+| img/Transformer/encoderblock_9/MlpBlock_0/Dense_0/kernel                    | (768, 3072)    | 2,359,296  | -3.04e-06 | 0.0228   |
+| img/Transformer/encoderblock_9/MlpBlock_0/Dense_1/bias                      | (768,)         | 768        | -3.95e-08 | 1e-06    |
+| img/Transformer/encoderblock_9/MlpBlock_0/Dense_1/kernel                    | (3072, 768)    | 2,359,296  | -3.31e-06 | 0.0228   |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/bias      | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/kernel    | (768, 12, 64)  | 589,824    | 3.72e-05  | 0.0361   |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/bias      | (768,)         | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/kernel    | (12, 64, 768)  | 589,824    | -1.82e-05 | 0.0361   |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/kernel  | (768, 12, 64)  | 589,824    | 3.77e-05  | 0.0361   |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/bias    | (12, 64)       | 768        | 0.0       | 0.0      |
+| img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/kernel  | (768, 12, 64)  | 589,824    | 2.15e-05  | 0.036    |
+| img/cls                                                                     | (1, 1, 768)    | 768        | 0.0       | 0.0      |
+| img/embedding/bias                                                          | (768,)         | 768        | 0.0       | 0.0      |
+| img/embedding/kernel                                                        | (8, 8, 3, 768) | 147,456    | -0.000105 | 0.0361   |
+| img/head/bias                                                               | (512,)         | 512        | 0.0       | 0.0      |
+| img/head/kernel                                                             | (768, 512)     | 393,216    | -3.4e-05  | 0.0361   |
+| img/pos_embedding                                                           | (1, 49, 768)   | 37,632     | 0.000381  | 0.0361   |
+| t                                                                           | (1,)           | 1          | 2.66      | 0.0      |
+| txt/Embed_0/embedding                                                       | (32000, 512)   | 16,384,000 | 4e-06     | 0.02     |
+| txt/Transformer/encoderblock_0/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_0/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_0/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 2.28e-05  | 0.0313   |
+| txt/Transformer/encoderblock_0/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | -6.61e-06 | 0.00902  |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | -5.43e-05 | 0.0442   |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | 4.5e-06   | 0.00903  |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | 2.26e-05  | 0.0442   |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | 3.43e-05  | 0.0442   |
+| txt/Transformer/encoderblock_1/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_1/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_1/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 2.36e-06  | 0.0313   |
+| txt/Transformer/encoderblock_1/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | 2.28e-06  | 0.00902  |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | 7.03e-05  | 0.0442   |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | -1.81e-05 | 0.00902  |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | 4.3e-06   | 0.0441   |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | 5.16e-05  | 0.0441   |
+| txt/Transformer/encoderblock_10/LayerNorm_0/bias                            | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/LayerNorm_0/scale                           | (512,)         | 512        | 1.0       | 0.0      |
+I0128 06:58:33.089712 139849920552000 parameter_overview.py:264] 
+| txt/Transformer/encoderblock_10/LayerNorm_1/bias                            | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/LayerNorm_1/scale                           | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_10/MlpBlock_0/Dense_0/bias                     | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/MlpBlock_0/Dense_0/kernel                   | (512, 2048)    | 1,048,576  | -9.68e-06 | 0.0312   |
+| txt/Transformer/encoderblock_10/MlpBlock_0/Dense_1/bias                     | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/MlpBlock_0/Dense_1/kernel                   | (2048, 512)    | 1,048,576  | -7.3e-06  | 0.00901  |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/bias     | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/kernel   | (512, 8, 64)   | 262,144    | 2.7e-05   | 0.0442   |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/bias     | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/kernel   | (8, 64, 512)   | 262,144    | -7.14e-06 | 0.00903  |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/bias   | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/kernel | (512, 8, 64)   | 262,144    | 3.06e-05  | 0.0441   |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/bias   | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/kernel | (512, 8, 64)   | 262,144    | -0.000111 | 0.0442   |
+| txt/Transformer/encoderblock_11/LayerNorm_0/bias                            | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/LayerNorm_0/scale                           | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_11/LayerNorm_1/bias                            | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/LayerNorm_1/scale                           | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_11/MlpBlock_0/Dense_0/bias                     | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/MlpBlock_0/Dense_0/kernel                   | (512, 2048)    | 1,048,576  | -2.45e-05 | 0.0313   |
+| txt/Transformer/encoderblock_11/MlpBlock_0/Dense_1/bias                     | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/MlpBlock_0/Dense_1/kernel                   | (2048, 512)    | 1,048,576  | 5.18e-06  | 0.00901  |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/bias     | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/kernel   | (512, 8, 64)   | 262,144    | 2.29e-05  | 0.0441   |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/bias     | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/kernel   | (8, 64, 512)   | 262,144    | 8.92e-06  | 0.00904  |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/bias   | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/kernel | (512, 8, 64)   | 262,144    | -0.000123 | 0.0442   |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/bias   | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/kernel | (512, 8, 64)   | 262,144    | 0.000117  | 0.0442   |
+| txt/Transformer/encoderblock_2/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_2/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_2/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 1.85e-05  | 0.0312   |
+| txt/Transformer/encoderblock_2/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | 1.13e-05  | 0.00902  |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | 2.76e-05  | 0.0441   |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | 1.78e-05  | 0.00902  |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | 8.18e-05  | 0.0442   |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | -1.15e-05 | 0.0443   |
+| txt/Transformer/encoderblock_3/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_3/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_3/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 2.61e-05  | 0.0312   |
+| txt/Transformer/encoderblock_3/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | -1.15e-05 | 0.00903  |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | -3.85e-05 | 0.0443   |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | 1.74e-05  | 0.00902  |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | -8.37e-05 | 0.0441   |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | -0.000173 | 0.0444   |
+| txt/Transformer/encoderblock_4/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_4/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_4/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 7.67e-05  | 0.0313   |
+| txt/Transformer/encoderblock_4/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | 9.1e-06   | 0.00901  |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | 4.27e-05  | 0.0444   |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | 1.37e-05  | 0.00902  |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | 0.000109  | 0.0441   |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | -0.000132 | 0.0441   |
+| txt/Transformer/encoderblock_5/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+I0128 06:58:33.089771 139849920552000 parameter_overview.py:264] 
+| txt/Transformer/encoderblock_5/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_5/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 4.78e-05  | 0.0312   |
+| txt/Transformer/encoderblock_5/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | -5.45e-06 | 0.00903  |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | -0.000206 | 0.0442   |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | -3.86e-06 | 0.00901  |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | 2.11e-05  | 0.0442   |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | 2.62e-05  | 0.0442   |
+| txt/Transformer/encoderblock_6/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_6/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_6/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | -6.34e-05 | 0.0313   |
+| txt/Transformer/encoderblock_6/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | -6.81e-06 | 0.00903  |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | 7.69e-05  | 0.0442   |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | -8.59e-06 | 0.00902  |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | -2.12e-05 | 0.0443   |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | -7.48e-05 | 0.0442   |
+| txt/Transformer/encoderblock_7/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_7/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_7/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | -2.7e-05  | 0.0312   |
+| txt/Transformer/encoderblock_7/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | 9.78e-06  | 0.00902  |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | 4.24e-05  | 0.0442   |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | -7.1e-06  | 0.00903  |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | -7.34e-05 | 0.0443   |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | -4.52e-05 | 0.0442   |
+| txt/Transformer/encoderblock_8/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_8/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_8/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 2.52e-05  | 0.0313   |
+| txt/Transformer/encoderblock_8/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | -6.68e-06 | 0.00902  |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | -2.64e-05 | 0.0442   |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | 1.66e-05  | 0.00902  |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | 6.85e-05  | 0.0442   |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | 4.4e-05   | 0.0442   |
+| txt/Transformer/encoderblock_9/LayerNorm_0/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/LayerNorm_0/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_9/LayerNorm_1/bias                             | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/LayerNorm_1/scale                            | (512,)         | 512        | 1.0       | 0.0      |
+| txt/Transformer/encoderblock_9/MlpBlock_0/Dense_0/bias                      | (2048,)        | 2,048      | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/MlpBlock_0/Dense_0/kernel                    | (512, 2048)    | 1,048,576  | 3.33e-05  | 0.0313   |
+| txt/Transformer/encoderblock_9/MlpBlock_0/Dense_1/bias                      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/MlpBlock_0/Dense_1/kernel                    | (2048, 512)    | 1,048,576  | 1.11e-06  | 0.00902  |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/bias      | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/kernel    | (512, 8, 64)   | 262,144    | -2.11e-05 | 0.0442   |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/bias      | (512,)         | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/kernel    | (8, 64, 512)   | 262,144    | 1.05e-05  | 0.00904  |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/kernel  | (512, 8, 64)   | 262,144    | 1.34e-06  | 0.0442   |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/bias    | (8, 64)        | 512        | 0.0       | 0.0      |
+| txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/kernel  | (512, 8, 64)   | 262,144    | 4.68e-05  | 0.0442   |
+| txt/encoder_norm/bias                                                       | (512,)         | 512        | 0.0       | 0.0      |
+| txt/encoder_norm/scale                                                      | (512,)         | 512        | 1.0       | 0.0      |
+I0128 06:58:33.089819 139849920552000 parameter_overview.py:264] 
+| txt/head/kernel                                                             | (512, 512)     | 262,144    | 6.96e-05  | 0.0441   |
+| txt/pos_embedding                                                           | (1, 16, 512)   | 8,192      | -3.76e-05 | 0.0101   |
++-----------------------------------------------------------------------------+----------------+------------+-----------+----------+
+Total: 140,120,321
+I0128 06:58:33.089937 139849920552000 utils.py:844] [35m[0][0m num_params = 140120321.0
+I0128 06:58:33.090053 139849920552000 flexi_main.py:120] [33mNOTE[0m: Initializing scale_by_adam optimizer...
+/home/jyang347/CLIPA/clipa_jax/helpers/utils.py:492: FutureWarning: jax.tree_flatten is deprecated, and will be removed in a future release. Use jax.tree_util.tree_flatten instead.
+  vals, tree_def = jax.tree_flatten(tree)
+I0128 06:58:33.092514 139849920552000 utils.py:769] config.schedule: img/Transformer/encoder_norm/bias - matched by .*
+I0128 06:58:33.092650 139849920552000 utils.py:769] config.schedule: img/Transformer/encoder_norm/scale - matched by .*
+I0128 06:58:33.092705 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.092746 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.092783 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.092820 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.092865 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.092901 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.092936 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.092971 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.093006 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.093041 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.093075 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.093110 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.093144 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.093178 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.093212 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.093246 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.093280 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.093313 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.093347 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.093381 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.093416 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.093450 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.093483 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.093517 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.093552 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.093585 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.093619 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.093660 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.093695 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.093729 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.093763 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.093797 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.093832 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.093873 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.093908 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.093942 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.093976 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.094010 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.094044 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.094078 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.094112 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.094146 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.094180 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.094214 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.094247 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.094281 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.094316 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.094350 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.094384 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.094418 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.094452 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.094486 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.094520 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.094557 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.094600 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.094635 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.094670 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.094704 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.094738 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.094773 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.094807 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.094841 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.094883 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.094918 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.094967 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.095002 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.095036 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.095071 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.095105 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.095139 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.095174 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.095209 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.095243 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.095277 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.095311 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.095345 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.095380 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.095413 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.095450 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.095485 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.095520 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.095554 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.095599 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.095635 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.095669 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.095703 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.095738 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.095772 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.095807 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.095840 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.095880 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.095915 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.095949 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.095982 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.096016 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.096050 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.096084 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.096118 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.096151 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.096187 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.096222 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.096255 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.096289 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.096323 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.096357 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.096390 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.096424 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.096457 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.096491 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.096531 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.096565 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.096602 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.096636 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.096670 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.096704 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.096738 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.096772 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.096805 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.096839 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.096879 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.096913 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.096947 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.096981 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.097015 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.097048 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.097083 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.097117 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.097151 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.097185 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.097220 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.097254 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.097287 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.097321 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.097355 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.097388 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.097422 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.097470 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.097518 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.097554 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.097589 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.097623 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.097657 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.097691 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.097725 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.097759 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.097794 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.097828 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.097868 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.097903 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.097937 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.097970 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.098004 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.098037 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.098071 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.098105 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.098138 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.098172 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.098206 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.098240 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.098273 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.098307 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.098340 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.098374 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.098407 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.098441 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.098486 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.098522 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.098556 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.098593 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.098648 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.098689 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.098729 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.098769 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.098812 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.098863 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.098904 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.098957 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.098999 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.099039 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.099079 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.099119 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.099159 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.099200 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.099240 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.099280 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.099320 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.099360 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.099399 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.099439 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.099478 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.099518 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.099558 139849920552000 utils.py:769] config.schedule: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.099608 139849920552000 utils.py:769] config.schedule: img/cls - matched by .*
+I0128 06:58:33.099649 139849920552000 utils.py:769] config.schedule: img/embedding/bias - matched by .*
+I0128 06:58:33.099690 139849920552000 utils.py:769] config.schedule: img/embedding/kernel - matched by .*
+I0128 06:58:33.099730 139849920552000 utils.py:769] config.schedule: img/head/bias - matched by .*
+I0128 06:58:33.099771 139849920552000 utils.py:769] config.schedule: img/head/kernel - matched by .*
+I0128 06:58:33.099811 139849920552000 utils.py:769] config.schedule: img/pos_embedding - matched by .*
+I0128 06:58:33.099858 139849920552000 utils.py:769] config.schedule: t - matched by .*
+I0128 06:58:33.099899 139849920552000 utils.py:769] config.schedule: txt/Embed_0/embedding - matched by .*
+I0128 06:58:33.099940 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.099980 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.100020 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.100060 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.100100 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.100140 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.100180 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.100219 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.100259 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.100299 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.100339 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.100379 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.100419 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.100462 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.100503 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.100543 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.100582 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.100622 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.100662 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.100702 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.100753 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.100787 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.100820 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.100864 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.100900 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.100934 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.100968 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.101001 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.101035 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.101068 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.101102 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.101135 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.101169 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.101202 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.101236 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.101270 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.101304 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.101337 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.101371 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.101404 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.101438 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.101471 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.101505 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.101539 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.101572 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.101606 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.101639 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.101672 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.101706 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.101739 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.101773 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.101814 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.101853 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.101888 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.101922 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.101956 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.101990 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.102023 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.102057 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.102091 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.102124 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.102158 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.102192 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.102226 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.102259 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.102293 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.102327 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.102360 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.102393 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.102427 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.102460 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.102494 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.102527 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.102561 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.102595 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.102628 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.102661 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.102694 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.102734 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.102769 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.102803 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.102837 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.102877 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.102911 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.102963 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.102998 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.103032 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.103066 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.103100 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.103136 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.103170 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.103204 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.103237 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.103272 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.103305 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.103339 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.103373 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.103407 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.103440 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.103474 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.103508 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.103542 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.103575 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.103609 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.103643 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.103676 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.103716 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.103750 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.103785 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.103818 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.103858 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.103893 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.103928 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.103961 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.103995 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.104029 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.104063 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.104097 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.104131 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.104165 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.104199 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.104233 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.104266 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.104300 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.104334 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.104368 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.104401 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.104435 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.104471 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.104505 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.104539 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.104573 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.104607 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.104640 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.104679 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.104714 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.104747 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.104781 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.104815 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.104854 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.104890 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.104924 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.104958 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.104991 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.105025 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.105058 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.105091 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.105125 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.105158 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.105191 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.105225 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.105258 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.105292 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.105326 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.105359 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.105392 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.105425 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.105459 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.105492 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.105525 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.105558 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.105596 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.105630 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.105664 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.105697 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.105731 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.105764 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.105798 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.105831 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.105872 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.105911 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.105945 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.105979 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.106013 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.106046 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.106080 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.106114 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/LayerNorm_0/bias - matched by .*
+I0128 06:58:33.106148 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/LayerNorm_0/scale - matched by .*
+I0128 06:58:33.106181 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/LayerNorm_1/bias - matched by .*
+I0128 06:58:33.106215 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/LayerNorm_1/scale - matched by .*
+I0128 06:58:33.106248 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MlpBlock_0/Dense_0/bias - matched by .*
+I0128 06:58:33.106282 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MlpBlock_0/Dense_0/kernel - matched by .*
+I0128 06:58:33.106316 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MlpBlock_0/Dense_1/bias - matched by .*
+I0128 06:58:33.106349 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MlpBlock_0/Dense_1/kernel - matched by .*
+I0128 06:58:33.106383 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/bias - matched by .*
+I0128 06:58:33.106417 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/kernel - matched by .*
+I0128 06:58:33.106450 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/bias - matched by .*
+I0128 06:58:33.106483 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/kernel - matched by .*
+I0128 06:58:33.106517 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/bias - matched by .*
+I0128 06:58:33.106556 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/kernel - matched by .*
+I0128 06:58:33.106590 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/bias - matched by .*
+I0128 06:58:33.106624 139849920552000 utils.py:769] config.schedule: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/kernel - matched by .*
+I0128 06:58:33.106657 139849920552000 utils.py:769] config.schedule: txt/encoder_norm/bias - matched by .*
+I0128 06:58:33.106691 139849920552000 utils.py:769] config.schedule: txt/encoder_norm/scale - matched by .*
+I0128 06:58:33.106725 139849920552000 utils.py:769] config.schedule: txt/head/kernel - matched by .*
+I0128 06:58:33.106759 139849920552000 utils.py:769] config.schedule: txt/pos_embedding - matched by .*
+/home/jyang347/CLIPA/clipa_jax/optim/build_optax.py:292: FutureWarning: jax.tree_flatten is deprecated, and will be removed in a future release. Use jax.tree_util.tree_flatten instead.
+  assert not any(jax.tree_flatten(all_false)[0]), (
+I0128 06:58:33.112660 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_0/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.112768 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_0/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.112821 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.112871 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.112913 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.112952 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.112993 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_1/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.113032 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_1/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.113069 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.113105 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.113141 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.113177 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.113218 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_10/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.113253 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_10/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.113289 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.113325 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.113362 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.113397 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.113437 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_11/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.113481 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_11/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.113519 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.113555 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.113590 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.113626 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.113667 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_2/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.113703 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_2/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.113738 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.113773 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.113809 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.113844 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.113896 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_3/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.113932 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_3/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.113968 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.114003 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.114038 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.114074 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.114113 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_4/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.114148 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_4/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.114184 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.114219 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.114255 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.114290 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.114330 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_5/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.114369 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_5/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.114411 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.114452 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.114490 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.114526 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.114572 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_6/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.114608 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_6/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.114645 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.114681 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.114716 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.114752 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.114792 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_7/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.114828 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_7/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.114869 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.114905 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.114956 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.114994 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.115034 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_8/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.115070 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_8/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.115106 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.115141 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.115177 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.115212 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.115252 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_9/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.115287 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_9/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.115323 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.115368 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.115405 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.115441 139849920552000 utils.py:769] config.wd_mults: img/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.115478 139849920552000 utils.py:769] config.wd_mults: img/embedding/kernel - matched by .*/kernel$
+I0128 06:58:33.115515 139849920552000 utils.py:769] config.wd_mults: img/head/kernel - matched by .*/kernel$
+I0128 06:58:33.115558 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_0/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.115609 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_0/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.115645 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.115681 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.115718 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.115753 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_0/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.115793 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_1/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.115829 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_1/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.115871 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.115907 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.115942 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.115978 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_1/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.116019 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_10/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.116055 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_10/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.116091 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.116127 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.116164 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.116200 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_10/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.116239 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_11/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.116280 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_11/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.116316 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.116358 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.116394 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.116430 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_11/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.116471 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_2/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.116511 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_2/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.116547 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.116583 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.116619 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.116655 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_2/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.116695 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_3/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.116731 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_3/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.116767 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.116803 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.116838 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.116880 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_3/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.116921 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_4/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.116957 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_4/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.116992 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.117028 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.117064 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.117100 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_4/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.117140 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_5/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.117176 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_5/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.117212 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.117248 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.117284 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.117326 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_5/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.117367 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_6/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.117402 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_6/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.117456 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.117494 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.117530 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.117566 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_6/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.117606 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_7/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.117641 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_7/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.117677 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.117713 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.117748 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.117784 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_7/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.117823 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_8/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.117868 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_8/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.117906 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.117947 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.117983 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.118019 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_8/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.118059 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_9/MlpBlock_0/Dense_0/kernel - matched by .*/kernel$
+I0128 06:58:33.118095 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_9/MlpBlock_0/Dense_1/kernel - matched by .*/kernel$
+I0128 06:58:33.118130 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/key/kernel - matched by .*/kernel$
+I0128 06:58:33.118165 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/out/kernel - matched by .*/kernel$
+I0128 06:58:33.118201 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/query/kernel - matched by .*/kernel$
+I0128 06:58:33.118236 139849920552000 utils.py:769] config.wd_mults: txt/Transformer/encoderblock_9/MultiHeadDotProductAttention_0/value/kernel - matched by .*/kernel$
+I0128 06:58:33.118281 139849920552000 utils.py:769] config.wd_mults: txt/head/kernel - matched by .*/kernel$
+I0128 06:58:36.561829 139849920552000 flexi_main.py:120] [33mNOTE[0m: Resume training from checkpoint...
+tcmalloc: large alloc 1401651200 bytes == 0xfb0a0000 @  0x7f3159382680 0x7f31593a3824 0x7f314df549ec 0x7f3142ea5adb 0x7f3142e9e4b1 0x5d5499 0x5d6066 0x4e22b3 0x54c8a9 0x54552a 0x5d5a23 0x547447 0x5d5846 0x547265 0x5d5846 0x547265 0x54552a 0x5d5a23 0x547265 0x5d5846 0x547265 0x54552a 0x5d5a23 0x54c8a9 0x54552a 0x684327 0x5e1514 0x5a27d0 0x547265 0x54552a 0x5d5a23
+tcmalloc: large alloc 1401651200 bytes == 0x15295a000 @  0x7f3159382680 0x7f31593a2ff4 0x7f3142e8d01e 0x7f3142ea5b44 0x7f3142e9e4b1 0x5d5499 0x5d6066 0x4e22b3 0x54c8a9 0x54552a 0x5d5a23 0x547447 0x5d5846 0x547265 0x5d5846 0x547265 0x54552a 0x5d5a23 0x547265 0x5d5846 0x547265 0x54552a 0x5d5a23 0x54c8a9 0x54552a 0x684327 0x5e1514 0x5a27d0 0x547265 0x54552a 0x5d5a23
+tcmalloc: large alloc 1401651200 bytes == 0x1a6212000 @  0x7f3159382680 0x7f31593a3824 0x5d93d1 0x7f3142ea5b51 0x7f3142e9e4b1 0x5d5499 0x5d6066 0x4e22b3 0x54c8a9 0x54552a 0x5d5a23 0x547447 0x5d5846 0x547265 0x5d5846 0x547265 0x54552a 0x5d5a23 0x547265 0x5d5846 0x547265 0x54552a 0x5d5a23 0x54c8a9 0x54552a 0x684327 0x5e1514 0x5a27d0 0x547265 0x54552a 0x5d5a23
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:474: FutureWarning: jax.tree_structure is deprecated, and will be removed in a future release. Use jax.tree_util.tree_structure instead.
+  checkpoint_tree = jax.tree_structure(checkpoint)
+I0128 06:58:51.487939 139849920552000 flexi_main.py:120] [33mNOTE[0m: Kicking off misc stuff...
+I0128 06:58:51.489326 139849920552000 flexi_main.py:120] [33mNOTE[0m: Replicating...
+Steps:1/114716000 [0.0%]
+I0128 06:58:54.294177 139849920552000 flexi_main.py:120] [33mNOTE[0m: First step compilations...
+Steps:1/114716000 [0.0%]
+I0128 06:59:08.258829 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (16, 16)
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:351: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  gs = jax.tree_leaves(
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:394: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  gs = jax.tree_leaves(
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:403: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  gs = jax.tree_leaves(
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:417: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  gs = jax.tree_leaves(
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:428: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  gs = jax.tree_leaves(optim.replace_frozen(config.schedule, grads, 0.))
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:430: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  ps = jax.tree_leaves(params)
+/home/jyang347/CLIPA/clipa_jax/flexi_main.py:432: FutureWarning: jax.tree_leaves is deprecated, and will be removed in a future release. Use jax.tree_util.tree_leaves instead.
+  us = jax.tree_leaves(updates)
+I0128 07:00:17.066228 139849920552000 utils.py:844] [35m[2][0m z/secs/update0 = 69.84885644802125
+I0128 07:00:17.067022 139849920552000 utils.py:427] TIMING[z/secs/update0]: 69.84885644802125
+I0128 07:00:17.104316 139849920552000 utils.py:844] [35m[2][0m global_schedule = 3.0517577442878974e-07
+I0128 07:00:17.126976 139849920552000 utils.py:844] [35m[2][0m training_loss = 2.760221004486084
+I0128 07:00:17.127653 139849920552000 utils.py:844] [35m[2][0m l2_grad_cls = 83.76158142089844
+I0128 07:00:17.128334 139849920552000 utils.py:844] [35m[2][0m l2_grad_embeding = 3.271486759185791
+I0128 07:00:17.128898 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_0 = 2.115633964538574
+I0128 07:00:17.129454 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_1 = 1.4199726581573486
+I0128 07:00:17.129908 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_10 = 0.46362194418907166
+I0128 07:00:17.130379 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_11 = 0.43233150243759155
+I0128 07:00:17.130798 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_2 = 1.0596885681152344
+I0128 07:00:17.131374 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_3 = 0.8927452564239502
+I0128 07:00:17.131823 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_4 = 0.7529842257499695
+I0128 07:00:17.132290 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_5 = 0.6820544600486755
+I0128 07:00:17.132700 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_6 = 0.6045933365821838
+I0128 07:00:17.133128 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_7 = 0.569985032081604
+I0128 07:00:17.133544 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_8 = 0.5376769304275513
+I0128 07:00:17.134010 139849920552000 utils.py:844] [35m[2][0m l2_grad_encoderblock_9 = 0.49640774726867676
+I0128 07:00:17.134414 139849920552000 utils.py:844] [35m[2][0m l2_grad_head = 1.9356772899627686
+I0128 07:00:17.134810 139849920552000 utils.py:844] [35m[2][0m l2_grads = 86.60411834716797
+I0128 07:00:17.135217 139849920552000 utils.py:844] [35m[2][0m l2_params = 371.71875
+I0128 07:00:17.135705 139849920552000 utils.py:844] [35m[2][0m l2_updates = 0.0
+I0128 07:00:17.136130 139849920552000 utils.py:844] [35m[2][0m ncorrect = 0.0
+I0128 07:00:17.136563 139849920552000 utils.py:844] [35m[2][0m nimg = 22.37579345703125
+I0128 07:00:17.136987 139849920552000 utils.py:844] [35m[2][0m ntxt = 22.22744369506836
+I0128 07:00:17.137520 139849920552000 utils.py:844] [35m[2][0m t = 14.285693168640137
+I0128 07:00:17.137968 139849920552000 utils.py:844] [35m[2][0m t/parameter = 2.6592600345611572
+I0128 07:00:17.138105 139849920552000 utils.py:844] [35m[2][0m uptime = 164.15986567304935
+I0128 07:00:17.138219 139849920552000 utils.py:844] [35m[2][0m examples_seen = 32.0
+I0128 07:00:17.138294 139849920552000 utils.py:844] [35m[2][0m progress = 1.7434359635970572e-08
+I0128 07:00:17.138363 139849920552000 utils.py:844] [35m[2][0m epoch = 1.22040517917228e-07
+I0128 07:00:17.138425 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:1/114716000 [0.0%]
+I0128 07:00:17.138658 139849920552000 flexi_main.py:120] [33mNOTE[0m: Init evaluator: disclf…
+Steps:1/114716000 [0.0%]
+I0128 07:00:17.141858 139849920552000 prompt_engineering.py:92] Using 81 prompts_templates: ['a bad photo of a {}', 'a photo of many {}', 'a sculpture of a {}', 'a photo of the hard to see {}', 'a low resolution photo of the {}', 'a rendering of a {}', 'graffiti of a {}', 'a bad photo of the {}', 'a cropped photo of the {}', 'a tattoo of a {}', 'the embroidered {}', 'a photo of a hard to see {}', 'a bright photo of a {}', 'a photo of a clean {}', 'a photo of a dirty {}', 'a dark photo of the {}', 'a drawing of a {}', 'a photo of my {}', 'the plastic {}', 'a photo of the cool {}', 'a closeup photo of a {}', 'a black and white photo of the {}', 'a painting of the {}', 'a painting of a {}', 'a pixelated photo of the {}', 'a sculpture of the {}', 'a bright photo of the {}', 'a cropped photo of a {}', 'a plastic {}', 'a photo of the dirty {}', 'a jpeg corrupted photo of a {}', 'a blurry photo of the {}', 'a photo of the {}', 'a good photo of the {}', 'a rendering of the {}', 'a {} in a video game', 'a photo of one {}', 'a doodle of a {}', 'a closeup photo of the {}', 'a photo of a {}', 'the origami {}', 'the {} in a video game', 'a sketch of a {}', 'a doodle of the {}', 'a origami {}', 'a low resolution photo of a {}', 'the toy {}', 'a rendition of the {}', 'a photo of the clean {}', 'a photo of a large {}', 'a rendition of a {}', 'a photo of a nice {}', 'a photo of a weird {}', 'a blurry photo of a {}', 'a cartoon {}', 'art of a {}', 'a sketch of the {}', 'a embroidered {}', 'a pixelated photo of a {}', 'itap of the {}', 'a jpeg corrupted photo of the {}', 'a good photo of a {}', 'a plushie {}', 'a photo of the nice {}', 'a photo of the small {}', 'a photo of the weird {}', 'the cartoon {}', 'art of the {}', 'a drawing of the {}', 'a photo of the large {}', 'a black and white photo of a {}', 'the plushie {}', 'a dark photo of a {}', 'itap of a {}', 'graffiti of the {}', 'a toy {}', 'itap of my {}', 'a photo of a cool {}', 'a photo of a small {}', 'a tattoo of the {}', '{}']
+I0128 07:00:17.146590 139849920552000 prompt_engineering.py:78] Using 1000 class_names: ['tench', 'goldfish', 'great white shark', 'tiger shark', 'hammerhead shark', 'electric ray', 'stingray', 'rooster', 'hen', 'ostrich', 'brambling', 'goldfinch', 'house finch', 'junco', 'indigo bunting', 'american robin', 'bulbul', 'jay', 'magpie', 'chickadee', 'american dipper', 'kite bird of prey', 'bald eagle', 'vulture', 'great grey owl', 'fire salamander', 'smooth newt', 'newt', 'spotted salamander', 'axolotl', 'american bullfrog', 'tree frog', 'tailed frog', 'loggerhead sea turtle', 'leatherback sea turtle', 'mud turtle', 'terrapin', 'box turtle', 'banded gecko', 'green iguana', 'carolina anole', 'desert grassland whiptail lizard', 'agama', 'frillednecked lizard', 'alligator lizard', 'gila monster', 'european green lizard', 'chameleon', 'komodo dragon', 'nile crocodile', 'american alligator', 'triceratops', 'worm snake', 'ringnecked snake', 'eastern hognosed snake', 'smooth green snake', 'kingsnake', 'garter snake', 'water snake', 'vine snake', 'night snake', 'boa constrictor', 'african rock python', 'indian cobra', 'green mamba', 'sea snake', 'saharan horned viper', 'eastern diamondback rattlesnake', 'sidewinder rattlesnake', 'trilobite', 'harvestman', 'scorpion', 'yellow garden spider', 'barn spider', 'european garden spider', 'southern black widow', 'tarantula', 'wolf spider', 'tick', 'centipede', 'black grouse', 'ptarmigan', 'ruffed grouse', 'prairie grouse', 'peafowl', 'quail', 'partridge', 'african grey parrot', 'macaw', 'sulphurcrested cockatoo', 'lorikeet', 'coucal', 'bee eater', 'hornbill', 'hummingbird', 'jacamar', 'toucan', 'duck', 'redbreasted merganser', 'goose', 'black swan', 'tusker', 'echidna', 'platypus', 'wallaby', 'koala', 'wombat', 'jellyfish', 'sea anemone', 'brain coral', 'flatworm', 'nematode', 'conch', 'snail', 'slug', 'sea slug', 'chiton', 'chambered nautilus', 'dungeness crab', 'rock crab', 'fiddler crab', 'red king crab', 'american lobster', 'spiny lobster', 'crayfish', 'hermit crab', 'isopod', 'white stork', 'black stork', 'spoonbill', 'flamingo', 'little blue heron', 'great egret', 'bittern bird', 'crane bird', 'limpkin', 'common gallinule', 'american coot', 'bustard', 'ruddy turnstone', 'dunlin', 'common redshank', 'dowitcher', 'oystercatcher', 'pelican', 'king penguin', 'albatross', 'grey whale', 'killer whale', 'dugong', 'sea lion', 'chihuahua', 'japanese chin', 'maltese', 'pekingese', 'shih tzu', 'king charles spaniel', 'papillon', 'toy terrier', 'rhodesian ridgeback', 'afghan hound', 'basset hound', 'beagle', 'bloodhound', 'bluetick coonhound', 'black and tan coonhound', 'treeing walker coonhound', 'english foxhound', 'redbone coonhound', 'borzoi', 'irish wolfhound', 'italian greyhound', 'whippet', 'ibizan hound', 'norwegian elkhound', 'otterhound', 'saluki', 'scottish deerhound', 'weimaraner', 'staffordshire bull terrier', 'american staffordshire terrier', 'bedlington terrier', 'border terrier', 'kerry blue terrier', 'irish terrier', 'norfolk terrier', 'norwich terrier', 'yorkshire terrier', 'wire fox terrier', 'lakeland terrier', 'sealyham terrier', 'airedale terrier', 'cairn terrier', 'australian terrier', 'dandie dinmont terrier', 'boston terrier', 'miniature schnauzer', 'giant schnauzer', 'standard schnauzer', 'scottish terrier', 'tibetan terrier', 'australian silky terrier', 'softcoated wheaten terrier', 'west highland white terrier', 'lhasa apso', 'flatcoated retriever', 'curlycoated retriever', 'golden retriever', 'labrador retriever', 'chesapeake bay retriever', 'german shorthaired pointer', 'vizsla', 'english setter', 'irish setter', 'gordon setter', 'brittany dog', 'clumber spaniel', 'english springer spaniel', 'welsh springer spaniel', 'cocker spaniel', 'sussex spaniel', 'irish water spaniel', 'kuvasz', 'schipperke', 'groenendael dog', 'malinois', 'briard', 'australian kelpie', 'komondor', 'old english sheepdog', 'shetland sheepdog', 'collie', 'border collie', 'bouvier des flandres dog', 'rottweiler', 'german shepherd dog', 'dobermann', 'miniature pinscher', 'greater swiss mountain dog', 'bernese mountain dog', 'appenzeller sennenhund', 'entlebucher sennenhund', 'boxer', 'bullmastiff', 'tibetan mastiff', 'french bulldog', 'great dane', 'st bernard', 'husky', 'alaskan malamute', 'siberian husky', 'dalmatian', 'affenpinscher', 'basenji', 'pug', 'leonberger', 'newfoundland dog', 'great pyrenees dog', 'samoyed', 'pomeranian', 'chow chow', 'keeshond', 'brussels griffon', 'pembroke welsh corgi', 'cardigan welsh corgi', 'toy poodle', 'miniature poodle', 'standard poodle', 'mexican hairless dog xoloitzcuintli', 'grey wolf', 'alaskan tundra wolf', 'red wolf or maned wolf', 'coyote', 'dingo', 'dhole', 'african wild dog', 'hyena', 'red fox', 'kit fox', 'arctic fox', 'grey fox', 'tabby cat', 'tiger cat', 'persian cat', 'siamese cat', 'egyptian mau', 'cougar', 'lynx', 'leopard', 'snow leopard', 'jaguar', 'lion', 'tiger', 'cheetah', 'brown bear', 'american black bear', 'polar bear', 'sloth bear', 'mongoose', 'meerkat', 'tiger beetle', 'ladybug', 'ground beetle', 'longhorn beetle', 'leaf beetle', 'dung beetle', 'rhinoceros beetle', 'weevil', 'fly', 'bee', 'ant', 'grasshopper', 'cricket insect', 'stick insect', 'cockroach', 'praying mantis', 'cicada', 'leafhopper', 'lacewing', 'dragonfly', 'damselfly', 'red admiral butterfly', 'ringlet butterfly', 'monarch butterfly', 'small white butterfly', 'sulphur butterfly', 'gossamerwinged butterfly', 'starfish', 'sea urchin', 'sea cucumber', 'cottontail rabbit', 'hare', 'angora rabbit', 'hamster', 'porcupine', 'fox squirrel', 'marmot', 'beaver', 'guinea pig', 'common sorrel horse', 'zebra', 'pig', 'wild boar', 'warthog', 'hippopotamus', 'ox', 'water buffalo', 'bison', 'ram adult male sheep', 'bighorn sheep', 'alpine ibex', 'hartebeest', 'impala antelope', 'gazelle', 'arabian camel', 'llama', 'weasel', 'mink', 'european polecat', 'blackfooted ferret', 'otter', 'skunk', 'badger', 'armadillo', 'threetoed sloth', 'orangutan', 'gorilla', 'chimpanzee', 'gibbon', 'siamang', 'guenon', 'patas monkey', 'baboon', 'macaque', 'langur', 'blackandwhite colobus', 'proboscis monkey', 'marmoset', 'whiteheaded capuchin', 'howler monkey', 'titi monkey', 'geoffroys spider monkey', 'common squirrel monkey', 'ringtailed lemur', 'indri', 'asian elephant', 'african bush elephant', 'red panda', 'giant panda', 'snoek fish', 'eel', 'silver salmon', 'rock beauty fish', 'clownfish', 'sturgeon', 'gar fish', 'lionfish', 'pufferfish', 'abacus', 'abaya', 'academic gown', 'accordion', 'acoustic guitar', 'aircraft carrier', 'airliner', 'airship', 'altar', 'ambulance', 'amphibious vehicle', 'analog clock', 'apiary', 'apron', 'trash can', 'assault rifle', 'backpack', 'bakery', 'balance beam', 'balloon', 'ballpoint pen', 'bandaid', 'banjo', 'baluster handrail', 'barbell', 'barber chair', 'barbershop', 'barn', 'barometer', 'barrel', 'wheelbarrow', 'baseball', 'basketball', 'bassinet', 'bassoon', 'swimming cap', 'bath towel', 'bathtub', 'station wagon', 'lighthouse', 'beaker', 'military hat bearskin or shako', 'beer bottle', 'beer glass', 'bell tower', 'baby bib', 'tandem bicycle', 'bikini', 'ring binder', 'binoculars', 'birdhouse', 'boathouse', 'bobsleigh', 'bolo tie', 'poke bonnet', 'bookcase', 'bookstore', 'bottle cap', 'hunting bow', 'bow tie', 'brass memorial plaque', 'bra', 'breakwater', 'breastplate', 'broom', 'bucket', 'buckle', 'bulletproof vest', 'highspeed train', 'butcher shop', 'taxicab', 'cauldron', 'candle', 'cannon', 'canoe', 'can opener', 'cardigan', 'car mirror', 'carousel', 'tool kit', 'cardboard box carton', 'car wheel', 'automated teller machine', 'cassette', 'cassette player', 'castle', 'catamaran', 'cd player', 'cello', 'mobile phone', 'chain', 'chainlink fence', 'chain mail', 'chainsaw', 'storage chest', 'chiffonier', 'bell or wind chime', 'china cabinet', 'christmas stocking', 'church', 'movie theater', 'cleaver', 'cliff dwelling', 'cloak', 'clogs', 'cocktail shaker', 'coffee mug', 'coffeemaker', 'spiral or coil', 'combination lock', 'computer keyboard', 'candy store', 'container ship', 'convertible', 'corkscrew', 'cornet', 'cowboy boot', 'cowboy hat', 'cradle', 'construction crane', 'crash helmet', 'crate', 'infant bed', 'crock pot', 'croquet ball', 'crutch', 'cuirass', 'dam', 'desk', 'desktop computer', 'rotary dial telephone', 'diaper', 'digital clock', 'digital watch', 'dining table', 'dishcloth', 'dishwasher', 'disc brake', 'dock', 'dog sled', 'dome', 'doormat', 'drilling rig', 'drum', 'drumstick', 'dumbbell', 'dutch oven', 'electric fan', 'electric guitar', 'electric locomotive', 'entertainment center', 'envelope', 'espresso machine', 'face powder', 'feather boa', 'filing cabinet', 'fireboat', 'fire truck', 'fire screen', 'flagpole', 'flute', 'folding chair', 'football helmet', 'forklift', 'fountain', 'fountain pen', 'fourposter bed', 'freight car', 'french horn', 'frying pan', 'fur coat', 'garbage truck', 'gas mask or respirator', 'gas pump', 'goblet', 'gokart', 'golf ball', 'golf cart', 'gondola', 'gong', 'gown', 'grand piano', 'greenhouse', 'radiator grille', 'grocery store', 'guillotine', 'hair clip', 'hair spray', 'halftrack', 'hammer', 'hamper', 'hair dryer', 'handheld computer', 'handkerchief', 'hard disk drive', 'harmonica', 'harp', 'combine harvester', 'hatchet', 'holster', 'home theater', 'honeycomb', 'hook', 'hoop skirt', 'gymnastic horizontal bar', 'horsedrawn vehicle', 'hourglass', 'ipod', 'clothes iron', 'carved pumpkin', 'jeans', 'jeep', 'tshirt', 'jigsaw puzzle', 'rickshaw', 'joystick', 'kimono', 'knee pad', 'knot', 'lab coat', 'ladle', 'lampshade', 'laptop computer', 'lawn mower', 'lens cap', 'letter opener', 'library', 'lifeboat', 'lighter', 'limousine', 'ocean liner', 'lipstick', 'slipon shoe', 'lotion', 'music speaker', 'loupe magnifying glass', 'sawmill', 'magnetic compass', 'messenger bag', 'mailbox', 'tights', 'onepiece bathing suit', 'manhole cover', 'maraca', 'marimba', 'mask', 'matchstick', 'maypole', 'maze', 'measuring cup', 'medicine cabinet', 'megalith', 'microphone', 'microwave oven', 'military uniform', 'milk can', 'minibus', 'miniskirt', 'minivan', 'missile', 'mitten', 'mixing bowl', 'mobile home', 'ford model t', 'modem', 'monastery', 'monitor', 'moped', 'mortar and pestle', 'graduation cap', 'mosque', 'mosquito net', 'vespa', 'mountain bike', 'tent', 'computer mouse', 'mousetrap', 'moving van', 'muzzle', 'metal nail', 'neck brace', 'necklace', 'baby pacifier', 'notebook computer', 'obelisk', 'oboe', 'ocarina', 'odometer', 'oil filter', 'pipe organ', 'oscilloscope', 'overskirt', 'bullock cart', 'oxygen mask', 'product packet packaging', 'paddle', 'paddle wheel', 'padlock', 'paintbrush', 'pajamas', 'palace', 'pan flute', 'paper towel', 'parachute', 'parallel bars', 'park bench', 'parking meter', 'railroad car', 'patio', 'payphone', 'pedestal', 'pencil case', 'pencil sharpener', 'perfume', 'petri dish', 'photocopier', 'plectrum', 'pickelhaube', 'picket fence', 'pickup truck', 'pier', 'piggy bank', 'pill bottle', 'pillow', 'pingpong ball', 'pinwheel', 'pirate ship', 'drink pitcher', 'block plane', 'planetarium', 'plastic bag', 'plate rack', 'farm plow', 'plunger', 'polaroid camera', 'pole', 'police van', 'poncho', 'pool table', 'soda bottle', 'plant pot', 'potters wheel', 'power drill', 'prayer rug', 'printer', 'prison', 'missile', 'projector', 'hockey puck', 'punching bag', 'purse', 'quill', 'quilt', 'race car', 'racket', 'radiator', 'radio', 'radio telescope', 'rain barrel', 'recreational vehicle', 'fishing casting reel', 'reflex camera', 'refrigerator', 'remote control', 'restaurant', 'revolver', 'rifle', 'rocking chair', 'rotisserie', 'eraser', 'rugby ball', 'ruler measuring stick', 'sneaker', 'safe', 'safety pin', 'salt shaker', 'sandal', 'sarong', 'saxophone', 'scabbard', 'weighing scale', 'school bus', 'schooner', 'scoreboard', 'crt monitor', 'screw', 'screwdriver', 'seat belt', 'sewing machine', 'shield', 'shoe store', 'shoji screen room divider', 'shopping basket', 'shopping cart', 'shovel', 'shower cap', 'shower curtain', 'ski', 'balaclava ski mask', 'sleeping bag', 'slide rule', 'sliding door', 'slot machine', 'snorkel', 'snowmobile', 'snowplow', 'soap dispenser', 'soccer ball', 'sock', 'solar thermal collector', 'sombrero', 'soup bowl', 'keyboard space bar', 'space heater', 'space shuttle', 'spatula', 'motorboat', 'spider web', 'spindle', 'sports car', 'spotlight', 'stage', 'steam locomotive', 'through arch bridge', 'steel drum', 'stethoscope', 'scarf', 'stone wall', 'stopwatch', 'stove', 'strainer', 'tram', 'stretcher', 'couch', 'stupa', 'submarine', 'suit', 'sundial', 'sunglasses', 'sunglasses', 'sunscreen', 'suspension bridge', 'mop', 'sweatshirt', 'swim trunks shorts', 'swing', 'electrical switch', 'syringe', 'table lamp', 'tank', 'tape player', 'teapot', 'teddy bear', 'television', 'tennis ball', 'thatched roof', 'front curtain', 'thimble', 'threshing machine', 'throne', 'tile roof', 'toaster', 'tobacco shop', 'toilet seat', 'torch', 'totem pole', 'tow truck', 'toy store', 'tractor', 'semitrailer truck', 'tray', 'trench coat', 'tricycle', 'trimaran', 'tripod', 'triumphal arch', 'trolleybus', 'trombone', 'hot tub', 'turnstile', 'typewriter keyboard', 'umbrella', 'unicycle', 'upright piano', 'vacuum cleaner', 'vase', 'vaulted or arched ceiling', 'velvet fabric', 'vending machine', 'vestment', 'viaduct', 'violin', 'volleyball', 'waffle iron', 'wall clock', 'wallet', 'wardrobe', 'military aircraft', 'sink', 'washing machine', 'water bottle', 'water jug', 'water tower', 'whiskey jug', 'whistle', 'hair wig', 'window screen', 'window shade', 'windsor tie', 'wine bottle', 'airplane wing', 'wok', 'wooden spoon', 'wool', 'splitrail fence', 'shipwreck', 'sailboat', 'yurt', 'website', 'comic book', 'crossword', 'traffic or street sign', 'traffic light', 'dust jacket', 'menu', 'plate', 'guacamole', 'consomme', 'hot pot', 'trifle', 'ice cream', 'popsicle', 'baguette', 'bagel', 'pretzel', 'cheeseburger', 'hot dog', 'mashed potatoes', 'cabbage', 'broccoli', 'cauliflower', 'zucchini', 'spaghetti squash', 'acorn squash', 'butternut squash', 'cucumber', 'artichoke', 'bell pepper', 'cardoon', 'mushroom', 'granny smith apple', 'strawberry', 'orange', 'lemon', 'fig', 'pineapple', 'banana', 'jackfruit', 'cherimoya custard apple', 'pomegranate', 'hay', 'carbonara', 'chocolate syrup', 'dough', 'meatloaf', 'pizza', 'pot pie', 'burrito', 'red wine', 'espresso', 'tea cup', 'eggnog', 'mountain', 'bubble', 'cliff', 'coral reef', 'geyser', 'lakeshore', 'promontory', 'sandbar', 'beach', 'valley', 'volcano', 'baseball player', 'bridegroom', 'scuba diver', 'rapeseed', 'daisy', 'yellow ladys slipper', 'corn', 'acorn', 'rose hip', 'horse chestnut seed', 'coral fungus', 'agaric', 'gyromitra', 'stinkhorn mushroom', 'earth star fungus', 'hen of the woods mushroom', 'bolete', 'corn cob', 'toilet paper']
+I0128 07:00:17.291041 139849920552000 dataset_info.py:566] Load dataset info from gs://jaxtpu-tfds-imagenet-eu-west4-a/imagenet2012/5.1.0
+I0128 07:00:17.534892 139849920552000 dataset_info.py:642] Field info.description from disk and from code do not match. Keeping the one from code.
+I0128 07:00:17.535377 139849920552000 dataset_info.py:642] Field info.module_name from disk and from code do not match. Keeping the one from code.
+I0128 07:00:17.606834 139849920552000 logging_logger.py:49] Constructing tf.data.Dataset imagenet2012 for split _EvenSplit(split='validation', index=0, count=1, drop_remainder=False), from gs://jaxtpu-tfds-imagenet-eu-west4-a/imagenet2012/5.1.0
+I0128 07:00:17.610600 139849920552000 api.py:459] Data before pre-processing:
+{'file_name': <tf.Tensor 'args_0:0' shape=() dtype=string>, 'image': <tf.Tensor 'args_1:0' shape=(None, None, 3) dtype=uint8>, 'label': <tf.Tensor 'args_2:0' shape=() dtype=int64>}
+I0128 07:00:17.817712 139849920552000 api.py:459] Data after pre-processing:
+{'image': <tf.Tensor 'truediv_1:0' shape=(240, 240, 3) dtype=float32>, 'label': <tf.Tensor 'args_2:0' shape=() dtype=int64>}
+I0128 07:00:18.381073 139849920552000 api.py:459] Data before pre-processing:
+{'label': <tf.Tensor 'args_0:0' shape=() dtype=int64>, 'texts': <tf.Tensor 'args_1:0' shape=() dtype=string>}
+I0128 07:00:18.740501 139849920552000 api.py:459] Data after pre-processing:
+{'label': <tf.Tensor 'args_0:0' shape=() dtype=int64>, 'labels': <tf.Tensor 'strided_slice_4:0' shape=(16,) dtype=int32>}
+I0128 07:00:18.856193 139849920552000 discriminative_classifier.py:341] Initialized evaluator in 1.7 seconds
+I0128 07:01:32.912563 139849920552000 utils.py:844] [35m[3][0m global_schedule = 6.103515488575795e-07
+I0128 07:01:33.052411 139849920552000 utils.py:844] [35m[3][0m training_loss = 2.877147674560547
+I0128 07:01:33.053653 139849920552000 utils.py:844] [35m[3][0m l2_grad_cls = 80.79561614990234
+I0128 07:01:33.054277 139849920552000 utils.py:844] [35m[3][0m l2_grad_embeding = 3.6827123165130615
+I0128 07:01:33.054915 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_0 = 2.512354850769043
+I0128 07:01:33.055415 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_1 = 1.6807754039764404
+I0128 07:01:33.055914 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_10 = 0.5503695607185364
+I0128 07:01:33.056405 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_11 = 0.5150572657585144
+I0128 07:01:33.056948 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_2 = 1.2671393156051636
+I0128 07:01:33.057365 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_3 = 1.0738525390625
+I0128 07:01:33.057890 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_4 = 0.8896636366844177
+I0128 07:01:33.058340 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_5 = 0.8070108294487
+I0128 07:01:33.058834 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_6 = 0.7241427898406982
+I0128 07:01:33.059292 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_7 = 0.6776456832885742
+I0128 07:01:33.059762 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_8 = 0.6351087093353271
+I0128 07:01:33.060166 139849920552000 utils.py:844] [35m[3][0m l2_grad_encoderblock_9 = 0.5944923758506775
+I0128 07:01:33.060747 139849920552000 utils.py:844] [35m[3][0m l2_grad_head = 2.3552210330963135
+I0128 07:01:33.061211 139849920552000 utils.py:844] [35m[3][0m l2_grads = 84.94816589355469
+I0128 07:01:33.061731 139849920552000 utils.py:844] [35m[3][0m l2_params = 371.71875
+I0128 07:01:33.062178 139849920552000 utils.py:844] [35m[3][0m l2_updates = 0.0
+I0128 07:01:33.062642 139849920552000 utils.py:844] [35m[3][0m ncorrect = 0.0
+I0128 07:01:33.063105 139849920552000 utils.py:844] [35m[3][0m nimg = 22.333477020263672
+I0128 07:01:33.063590 139849920552000 utils.py:844] [35m[3][0m ntxt = 22.600074768066406
+I0128 07:01:33.064088 139849920552000 utils.py:844] [35m[3][0m t = 14.285693168640137
+I0128 07:01:33.064660 139849920552000 utils.py:844] [35m[3][0m t/parameter = 2.6592600345611572
+I0128 07:01:33.064795 139849920552000 utils.py:844] [35m[3][0m uptime = 240.08655640704092
+I0128 07:01:33.064913 139849920552000 utils.py:844] [35m[3][0m examples_seen = 48.0
+I0128 07:01:33.064983 139849920552000 utils.py:844] [35m[3][0m progress = 2.6151539453955857e-08
+I0128 07:01:33.065042 139849920552000 utils.py:844] [35m[3][0m epoch = 1.83060776875842e-07
+I0128 07:01:33.065155 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:1/114716000 [0.0%]
+I0128 07:01:34.310224 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (12, 12)
+I0128 07:02:49.141790 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (48, 48)
+I0128 07:04:03.263111 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (30, 30)
+I0128 07:05:16.359405 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (15, 15)
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=1/0)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=1/0)>
+flexi_args: [15]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e06abafa0>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e069b69a0; to 'JaxprTracer' at 0x7f2e069b64a0>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e069b49f0>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [30]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e05edeb10>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e066004f0; to 'JaxprTracer' at 0x7f2e066004a0>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e50d25830>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [20]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e0609b150>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e060aa540; to 'JaxprTracer' at 0x7f2e060aa4f0>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e06a657b0>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [5]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e05f89630>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e047290e0; to 'JaxprTracer' at 0x7f2e04729090>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e2893d070>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [8]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e03f1ab50>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e01ff3c70; to 'JaxprTracer' at 0x7f2e01ff3c20>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e03e92430>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [16]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: I0128 07:06:31.820453 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (40, 40)
+I0128 07:07:45.483379 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (10, 10)
+I0128 07:09:01.268234 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (20, 20)
+I0128 07:10:16.021179 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (24, 24)

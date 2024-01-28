@@ -119,16 +119,20 @@ class _Model(nn.Module):
   num_heads: int = 12
   posemb: str = "learn"  # Can also be "sincos2d"
   pool_type: str = "gap"  # Can also be "map" or "tok"
-  head_zeroinit: bool = True
-
+  head_zeroinit: bool = False
+  
   seqhw: Optional[int] = None
 
   @nn.compact
   def __call__(self, image, *, seqhw=None, train=False):
     out = {}
 
+    
+    # print("image input Patchify:",image)
     x = out["stem"] = Patchify(
         self.patch_size, self.width, self.seqhw, name="embedding")(image, seqhw)
+    
+    # print("x after Patchify:",x)
 
     # == Flattening + posemb
     n, h, w, c = x.shape
@@ -179,6 +183,8 @@ class _Model(nn.Module):
       head = nn.Dense(self.num_classes, name="head", **kw)
       x_2d = out["logits_2d"] = head(x_2d)
       x = out["logits"] = head(x)
+
+    print("x in flexi_model:",x)
 
     return x, out
 
