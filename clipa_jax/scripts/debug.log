@@ -1169,3 +1169,1864 @@ x in flexi_model: I0128 07:06:31.820453 139849920552000 flexi_model.py:50] Flexi
 I0128 07:07:45.483379 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (10, 10)
 I0128 07:09:01.268234 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (20, 20)
 I0128 07:10:16.021179 139849920552000 flexi_model.py:50] FlexiViT: resize embedding (8, 8, 3, 768) to (24, 24)
+I0128 07:11:32.046602 139849920552000 utils.py:844] [35m[50][0m global_schedule = 1.4953612662793603e-05
+I0128 07:11:32.685937 139849920552000 utils.py:844] [35m[50][0m training_loss = 2.977175712585449
+I0128 07:11:32.687398 139849920552000 utils.py:844] [35m[50][0m l2_grad_cls = 76.41688537597656
+I0128 07:11:32.688058 139849920552000 utils.py:844] [35m[50][0m l2_grad_embeding = 4.381145477294922
+I0128 07:11:32.688582 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_0 = 3.028024911880493
+I0128 07:11:32.689141 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_1 = 2.1369338035583496
+I0128 07:11:32.689586 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_10 = 0.7331666946411133
+I0128 07:11:32.690038 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_11 = 0.689694344997406
+I0128 07:11:32.690473 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_2 = 1.6564619541168213
+I0128 07:11:32.691033 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_3 = 1.4109220504760742
+I0128 07:11:32.691499 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_4 = 1.1992398500442505
+I0128 07:11:32.692039 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_5 = 1.0824719667434692
+I0128 07:11:32.692545 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_6 = 0.9643662571907043
+I0128 07:11:32.693108 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_7 = 0.8751175999641418
+I0128 07:11:32.693532 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_8 = 0.8243455290794373
+I0128 07:11:32.693956 139849920552000 utils.py:844] [35m[50][0m l2_grad_encoderblock_9 = 0.768883466720581
+I0128 07:11:32.694397 139849920552000 utils.py:844] [35m[50][0m l2_grad_head = 3.328853130340576
+I0128 07:11:32.694968 139849920552000 utils.py:844] [35m[50][0m l2_grads = 83.41990661621094
+I0128 07:11:32.695391 139849920552000 utils.py:844] [35m[50][0m l2_params = 371.71875
+I0128 07:11:32.695795 139849920552000 utils.py:844] [35m[50][0m l2_updates = 0.0
+I0128 07:11:32.696182 139849920552000 utils.py:844] [35m[50][0m ncorrect = 0.0
+I0128 07:11:32.696705 139849920552000 utils.py:844] [35m[50][0m nimg = 22.40152359008789
+I0128 07:11:32.697120 139849920552000 utils.py:844] [35m[50][0m ntxt = 22.451702117919922
+I0128 07:11:32.697574 139849920552000 utils.py:844] [35m[50][0m t = 14.285693168640137
+I0128 07:11:32.698022 139849920552000 utils.py:844] [35m[50][0m t/parameter = 2.6592600345611572
+I0128 07:11:32.698158 139849920552000 utils.py:844] [35m[50][0m uptime = 839.7199157370487
+I0128 07:11:32.698264 139849920552000 utils.py:844] [35m[50][0m examples_seen = 800.0
+I0128 07:11:32.698340 139849920552000 utils.py:844] [35m[50][0m progress = 4.3585899089926426e-07
+I0128 07:11:32.698404 139849920552000 utils.py:844] [35m[50][0m epoch = 3.0510129479307e-06
+I0128 07:11:32.698473 139849920552000 utils.py:844] [35m[50][0m img/sec/core = 0.1567624591550904
+I0128 07:11:32.698628 139849920552000 utils.py:844] [35m[50][0m core_hours_TPU v3 = 1.3325185762889062
+I0128 07:11:32.698704 139849920552000 utils.py:844] [35m[50][0m core_hours = 1.3325185762889062
+I0128 07:11:32.698879 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:50/114716000 [0.0%]
+Walltime:13m60s (0s eval)
+ETA:406545h34m
+Total train time:406545h44m
+Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e044ee0c0>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e04510e00; to 'JaxprTracer' at 0x7f2e04510db0>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e064beb70>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [6]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e027d6490>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e01c5c950; to 'JaxprTracer' at 0x7f2e01c5c900>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e01c8ed70>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [24]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e02b088f0>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e032ee7c0; to 'JaxprTracer' at 0x7f2e032ee770>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e043256f0>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [12]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e0050cd90>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e020d9130; to 'JaxprTracer' at 0x7f2e020d90e0>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e02c222f0>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [5]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [10]
+image loss_fn: Traced<ShapedArray(float32[2,240,240,3])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+x in flexi_model: Traced<ShapedArray(float32[2,512])>with<JVPTrace(level=2/1)> with
+  primal = Traced<ShapedArray(float32[2,512])>with<DynamicJaxprTrace(level=0/1)>
+  tangent = Traced<ShapedArray(float32[2,512])>with<JaxprTrace(level=1/1)> with
+    pval = (ShapedArray(float32[2,512]), None)
+    recipe = JaxprEqnRecipe(eqn_id=<object object at 0x7f2e020f5300>, in_tracers=(Traced<ShapedArray(float32[2,512]):JaxprTrace(level=1/1)>, Traced<ShapedArray(float32[1,512]):JaxprTrace(level=1/1)>), out_tracer_refs=[<weakref at 0x7f2e020e9d10; to 'JaxprTracer' at 0x7f2e020e9cc0>], out_avals=[ShapedArray(float32[2,512])], primitive=pjit, params={'jaxpr': { lambda ; a:f32[2,512] b:f32[1,512]. let c:f32[2,512] = add a b in (c,) }, 'in_shardings': (UnspecifiedValue, UnspecifiedValue), 'out_shardings': (UnspecifiedValue,), 'resource_env': None, 'donated_invars': (False, False), 'name': 'fn', 'in_positional_semantics': (<_PositionalSemantics.GLOBAL: 1>, <_PositionalSemantics.GLOBAL: 1>), 'out_positional_semantics': <_PositionalSemantics.GLOBAL: 1>, 'keep_unused': False, 'inline': True}, effects=set(), source_info=SourceInfo(traceback=<jaxlib.xla_extension.Traceback object at 0x7f2e005ce130>, name_stack=NameStack(stack=(Transform(name='jvp'), Scope(name='Model'), Scope(name='img'), Scope(name='head')))))
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [8]
+I0128 07:11:34.465257 139849920552000 utils.py:844] [35m[100][0m global_schedule = 3.02124008157989e-05
+I0128 07:11:35.177845 139849920552000 utils.py:844] [35m[100][0m training_loss = 2.7856857776641846
+I0128 07:11:35.178775 139849920552000 utils.py:844] [35m[100][0m l2_grad_cls = 43.72789764404297
+I0128 07:11:35.179505 139849920552000 utils.py:844] [35m[100][0m l2_grad_embeding = 3.8444225788116455
+I0128 07:11:35.180027 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_0 = 2.5930349826812744
+I0128 07:11:35.180490 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_1 = 1.8946068286895752
+I0128 07:11:35.180948 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_10 = 0.653182327747345
+I0128 07:11:35.181427 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_11 = 0.6270188093185425
+I0128 07:11:35.181913 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_2 = 1.4698296785354614
+I0128 07:11:35.182405 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_3 = 1.2522550821304321
+I0128 07:11:35.182823 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_4 = 1.0645205974578857
+I0128 07:11:35.183385 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_5 = 0.958002507686615
+I0128 07:11:35.183806 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_6 = 0.8546881079673767
+I0128 07:11:35.184245 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_7 = 0.8003447651863098
+I0128 07:11:35.184651 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_8 = 0.7431613802909851
+I0128 07:11:35.185193 139849920552000 utils.py:844] [35m[100][0m l2_grad_encoderblock_9 = 0.6993329524993896
+I0128 07:11:35.185610 139849920552000 utils.py:844] [35m[100][0m l2_grad_head = 3.0473718643188477
+I0128 07:11:35.186056 139849920552000 utils.py:844] [35m[100][0m l2_grads = 54.80961608886719
+I0128 07:11:35.186434 139849920552000 utils.py:844] [35m[100][0m l2_params = 371.71875
+I0128 07:11:35.186952 139849920552000 utils.py:844] [35m[100][0m l2_updates = 0.0
+I0128 07:11:35.187374 139849920552000 utils.py:844] [35m[100][0m ncorrect = 0.0625
+I0128 07:11:35.187787 139849920552000 utils.py:844] [35m[100][0m nimg = 22.237895965576172
+I0128 07:11:35.188203 139849920552000 utils.py:844] [35m[100][0m ntxt = 22.349870681762695
+I0128 07:11:35.188791 139849920552000 utils.py:844] [35m[100][0m t = 14.285693168640137
+I0128 07:11:35.189239 139849920552000 utils.py:844] [35m[100][0m t/parameter = 2.6592600345611572
+I0128 07:11:35.189348 139849920552000 utils.py:844] [35m[100][0m uptime = 842.2111148399999
+I0128 07:11:35.189440 139849920552000 utils.py:844] [35m[100][0m examples_seen = 1600.0
+I0128 07:11:35.189505 139849920552000 utils.py:844] [35m[100][0m progress = 8.717179817985285e-07
+I0128 07:11:35.189568 139849920552000 utils.py:844] [35m[100][0m epoch = 6.1020258958614e-06
+I0128 07:11:35.189641 139849920552000 utils.py:844] [35m[100][0m img/sec/core = 40.14131182109628
+I0128 07:11:35.189736 139849920552000 utils.py:844] [35m[100][0m core_hours_TPU v3 = 1.3380545742954646
+I0128 07:11:35.189793 139849920552000 utils.py:844] [35m[100][0m core_hours = 1.3380545742954646
+I0128 07:11:35.189894 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:100/114716000 [0.0%]
+Walltime:14m2s (0s eval)
+ETA:197804h17m
+Total train time:197804h28m
+I0128 07:11:36.970730 139849920552000 utils.py:844] [35m[150][0m global_schedule = 4.5471191697288305e-05
+I0128 07:11:37.613502 139849920552000 utils.py:844] [35m[150][0m training_loss = 2.823680877685547
+I0128 07:11:37.614596 139849920552000 utils.py:844] [35m[150][0m l2_grad_cls = 36.73423767089844
+I0128 07:11:37.615293 139849920552000 utils.py:844] [35m[150][0m l2_grad_embeding = 2.742345094680786
+I0128 07:11:37.615818 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_0 = 1.837392807006836
+I0128 07:11:37.616283 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_1 = 1.2853940725326538
+I0128 07:11:37.616778 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_10 = 0.45123007893562317
+I0128 07:11:37.617360 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_11 = 0.4246779978275299
+I0128 07:11:37.617842 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_2 = 0.9968268275260925
+I0128 07:11:37.618289 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_3 = 0.8402271866798401
+I0128 07:11:37.618817 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_4 = 0.7141215801239014
+I0128 07:11:37.619429 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_5 = 0.6563082933425903
+I0128 07:11:37.619827 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_6 = 0.5879940390586853
+I0128 07:11:37.620259 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_7 = 0.5476345419883728
+I0128 07:11:37.620692 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_8 = 0.5220301747322083
+I0128 07:11:37.621217 139849920552000 utils.py:844] [35m[150][0m l2_grad_encoderblock_9 = 0.4844955801963806
+I0128 07:11:37.621639 139849920552000 utils.py:844] [35m[150][0m l2_grad_head = 1.9479767084121704
+I0128 07:11:37.622083 139849920552000 utils.py:844] [35m[150][0m l2_grads = 42.68534469604492
+I0128 07:11:37.622518 139849920552000 utils.py:844] [35m[150][0m l2_params = 371.71875
+I0128 07:11:37.622962 139849920552000 utils.py:844] [35m[150][0m l2_updates = 0.0
+I0128 07:11:37.623371 139849920552000 utils.py:844] [35m[150][0m ncorrect = 0.1875
+I0128 07:11:37.623765 139849920552000 utils.py:844] [35m[150][0m nimg = 22.351091384887695
+I0128 07:11:37.624168 139849920552000 utils.py:844] [35m[150][0m ntxt = 22.612375259399414
+I0128 07:11:37.624590 139849920552000 utils.py:844] [35m[150][0m t = 14.285693168640137
+I0128 07:11:37.624986 139849920552000 utils.py:844] [35m[150][0m t/parameter = 2.6592600345611572
+I0128 07:11:37.625084 139849920552000 utils.py:844] [35m[150][0m uptime = 844.6468527530087
+I0128 07:11:37.625173 139849920552000 utils.py:844] [35m[150][0m examples_seen = 2400.0
+I0128 07:11:37.625234 139849920552000 utils.py:844] [35m[150][0m progress = 1.3075769726977928e-06
+I0128 07:11:37.625278 139849920552000 utils.py:844] [35m[150][0m epoch = 9.1530388437921e-06
+I0128 07:11:37.625327 139849920552000 utils.py:844] [35m[150][0m img/sec/core = 41.05532022387154
+I0128 07:11:37.625423 139849920552000 utils.py:844] [35m[150][0m core_hours_TPU v3 = 1.3434673252132618
+I0128 07:11:37.625476 139849920552000 utils.py:844] [35m[150][0m core_hours = 1.3434673252132618
+I0128 07:11:37.625557 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:150/114716000 [0.0%]
+Walltime:14m5s (0s eval)
+ETA:131051h52m
+Total train time:131052h2m
+I0128 07:11:39.413281 139849920552000 utils.py:844] [35m[200][0m global_schedule = 6.0729980759788305e-05
+I0128 07:11:40.323693 139849920552000 utils.py:844] [35m[200][0m training_loss = 2.820991039276123
+I0128 07:11:40.324835 139849920552000 utils.py:844] [35m[200][0m l2_grad_cls = 89.66168212890625
+I0128 07:11:40.325465 139849920552000 utils.py:844] [35m[200][0m l2_grad_embeding = 3.7852835655212402
+I0128 07:11:40.325945 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_0 = 2.6727890968322754
+I0128 07:11:40.326397 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_1 = 1.6763880252838135
+I0128 07:11:40.326798 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_10 = 0.5332444310188293
+I0128 07:11:40.327351 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_11 = 0.49957767128944397
+I0128 07:11:40.327757 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_2 = 1.2474944591522217
+I0128 07:11:40.328160 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_3 = 1.0631120204925537
+I0128 07:11:40.328524 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_4 = 0.8942607641220093
+I0128 07:11:40.329039 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_5 = 0.8046367168426514
+I0128 07:11:40.329436 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_6 = 0.7066158056259155
+I0128 07:11:40.329845 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_7 = 0.6634886264801025
+I0128 07:11:40.330253 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_8 = 0.6184630990028381
+I0128 07:11:40.330742 139849920552000 utils.py:844] [35m[200][0m l2_grad_encoderblock_9 = 0.5742112398147583
+I0128 07:11:40.331209 139849920552000 utils.py:844] [35m[200][0m l2_grad_head = 2.2366943359375
+I0128 07:11:40.331681 139849920552000 utils.py:844] [35m[200][0m l2_grads = 93.03656005859375
+I0128 07:11:40.332123 139849920552000 utils.py:844] [35m[200][0m l2_params = 371.71875
+I0128 07:11:40.332545 139849920552000 utils.py:844] [35m[200][0m l2_updates = 0.0
+I0128 07:11:40.332975 139849920552000 utils.py:844] [35m[200][0m ncorrect = 0.0
+I0128 07:11:40.333419 139849920552000 utils.py:844] [35m[200][0m nimg = 22.30337142944336
+I0128 07:11:40.333808 139849920552000 utils.py:844] [35m[200][0m ntxt = 22.702049255371094
+I0128 07:11:40.334238 139849920552000 utils.py:844] [35m[200][0m t = 14.285693168640137
+I0128 07:11:40.334661 139849920552000 utils.py:844] [35m[200][0m t/parameter = 2.6592600345611572
+I0128 07:11:40.334764 139849920552000 utils.py:844] [35m[200][0m uptime = 847.3565306340461
+I0128 07:11:40.334862 139849920552000 utils.py:844] [35m[200][0m examples_seen = 3200.0
+I0128 07:11:40.334945 139849920552000 utils.py:844] [35m[200][0m progress = 1.743435963597057e-06
+I0128 07:11:40.335011 139849920552000 utils.py:844] [35m[200][0m epoch = 1.22040517917228e-05
+I0128 07:11:40.335058 139849920552000 utils.py:844] [35m[200][0m img/sec/core = 36.904755616825135
+I0128 07:11:40.335150 139849920552000 utils.py:844] [35m[200][0m core_hours_TPU v3 = 1.3494888316155669
+I0128 07:11:40.335202 139849920552000 utils.py:844] [35m[200][0m core_hours = 1.3494888316155669
+I0128 07:11:40.335290 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:200/114716000 [0.0%]
+Walltime:14m7s (0s eval)
+ETA:98228h13m
+Total train time:98228h24m
+I0128 07:11:42.132533 139849920552000 utils.py:844] [35m[250][0m global_schedule = 7.59887698222883e-05
+I0128 07:11:42.938416 139849920552000 utils.py:844] [35m[250][0m training_loss = 2.8919601440429688
+I0128 07:11:42.939584 139849920552000 utils.py:844] [35m[250][0m l2_grad_cls = 139.1043243408203
+I0128 07:11:42.940202 139849920552000 utils.py:844] [35m[250][0m l2_grad_embeding = 4.389039516448975
+I0128 07:11:42.940667 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_0 = 2.8312647342681885
+I0128 07:11:42.941208 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_1 = 1.8971484899520874
+I0128 07:11:42.941674 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_10 = 0.6098876595497131
+I0128 07:11:42.942135 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_11 = 0.5751340985298157
+I0128 07:11:42.942560 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_2 = 1.4094244241714478
+I0128 07:11:42.943016 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_3 = 1.200069546699524
+I0128 07:11:42.943481 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_4 = 1.0292302370071411
+I0128 07:11:42.943993 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_5 = 0.9176063537597656
+I0128 07:11:42.944355 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_6 = 0.8180113434791565
+I0128 07:11:42.944856 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_7 = 0.7423892617225647
+I0128 07:11:42.945243 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_8 = 0.6959190964698792
+I0128 07:11:42.945679 139849920552000 utils.py:844] [35m[250][0m l2_grad_encoderblock_9 = 0.6491823792457581
+I0128 07:11:42.946071 139849920552000 utils.py:844] [35m[250][0m l2_grad_head = 2.825019121170044
+I0128 07:11:42.946565 139849920552000 utils.py:844] [35m[250][0m l2_grads = 141.99038696289062
+I0128 07:11:42.947027 139849920552000 utils.py:844] [35m[250][0m l2_params = 371.71875
+I0128 07:11:42.947588 139849920552000 utils.py:844] [35m[250][0m l2_updates = 0.0
+I0128 07:11:42.947976 139849920552000 utils.py:844] [35m[250][0m ncorrect = 0.0
+I0128 07:11:42.948464 139849920552000 utils.py:844] [35m[250][0m nimg = 22.172603607177734
+I0128 07:11:42.948883 139849920552000 utils.py:844] [35m[250][0m ntxt = 22.334300994873047
+I0128 07:11:42.949311 139849920552000 utils.py:844] [35m[250][0m t = 14.285693168640137
+I0128 07:11:42.949721 139849920552000 utils.py:844] [35m[250][0m t/parameter = 2.6592600345611572
+I0128 07:11:42.949826 139849920552000 utils.py:844] [35m[250][0m uptime = 849.9715940810274
+I0128 07:11:42.949916 139849920552000 utils.py:844] [35m[250][0m examples_seen = 4000.0
+I0128 07:11:42.949977 139849920552000 utils.py:844] [35m[250][0m progress = 2.1792949544963212e-06
+I0128 07:11:42.950026 139849920552000 utils.py:844] [35m[250][0m epoch = 1.5255064739653499e-05
+I0128 07:11:42.950077 139849920552000 utils.py:844] [35m[250][0m img/sec/core = 38.23998997631683
+I0128 07:11:42.950166 139849920552000 utils.py:844] [35m[250][0m core_hours_TPU v3 = 1.35530008371997
+I0128 07:11:42.950217 139849920552000 utils.py:844] [35m[250][0m core_hours = 1.35530008371997
+I0128 07:11:42.950300 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:250/114716000 [0.0%]
+Walltime:14m10s (0s eval)
+ETA:78681h18m
+Total train time:78681h28m
+I0128 07:11:44.761061 139849920552000 utils.py:844] [35m[300][0m global_schedule = 9.12475588847883e-05
+I0128 07:11:45.434647 139849920552000 utils.py:844] [35m[300][0m training_loss = 2.7894091606140137
+I0128 07:11:45.436044 139849920552000 utils.py:844] [35m[300][0m l2_grad_cls = 33.986019134521484
+I0128 07:11:45.436736 139849920552000 utils.py:844] [35m[300][0m l2_grad_embeding = 2.8923518657684326
+I0128 07:11:45.437259 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_0 = 2.0852789878845215
+I0128 07:11:45.437734 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_1 = 1.46853506565094
+I0128 07:11:45.438160 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_10 = 0.4913690686225891
+I0128 07:11:45.438588 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_11 = 0.46227583289146423
+I0128 07:11:45.439054 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_2 = 1.125293254852295
+I0128 07:11:45.439456 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_3 = 0.960446834564209
+I0128 07:11:45.439835 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_4 = 0.7985830903053284
+I0128 07:11:45.440344 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_5 = 0.7165953516960144
+I0128 07:11:45.440731 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_6 = 0.648157000541687
+I0128 07:11:45.441118 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_7 = 0.5944698452949524
+I0128 07:11:45.441528 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_8 = 0.5547996163368225
+I0128 07:11:45.441964 139849920552000 utils.py:844] [35m[300][0m l2_grad_encoderblock_9 = 0.5323672294616699
+I0128 07:11:45.442376 139849920552000 utils.py:844] [35m[300][0m l2_grad_head = 2.105664014816284
+I0128 07:11:45.442784 139849920552000 utils.py:844] [35m[300][0m l2_grads = 40.93853759765625
+I0128 07:11:45.443195 139849920552000 utils.py:844] [35m[300][0m l2_params = 371.71875
+I0128 07:11:45.443599 139849920552000 utils.py:844] [35m[300][0m l2_updates = 0.0
+I0128 07:11:45.443978 139849920552000 utils.py:844] [35m[300][0m ncorrect = 0.0625
+I0128 07:11:45.444344 139849920552000 utils.py:844] [35m[300][0m nimg = 22.29012680053711
+I0128 07:11:45.444752 139849920552000 utils.py:844] [35m[300][0m ntxt = 22.30712890625
+I0128 07:11:45.445332 139849920552000 utils.py:844] [35m[300][0m t = 14.285693168640137
+I0128 07:11:45.445735 139849920552000 utils.py:844] [35m[300][0m t/parameter = 2.6592600345611572
+I0128 07:11:45.445839 139849920552000 utils.py:844] [35m[300][0m uptime = 852.4676061110222
+I0128 07:11:45.445935 139849920552000 utils.py:844] [35m[300][0m examples_seen = 4800.0
+I0128 07:11:45.446000 139849920552000 utils.py:844] [35m[300][0m progress = 2.6151539453955856e-06
+I0128 07:11:45.446052 139849920552000 utils.py:844] [35m[300][0m epoch = 1.83060776875842e-05
+I0128 07:11:45.446105 139849920552000 utils.py:844] [35m[300][0m img/sec/core = 40.06390946770018
+I0128 07:11:45.446200 139849920552000 utils.py:844] [35m[300][0m core_hours_TPU v3 = 1.3608467771199584
+I0128 07:11:45.446272 139849920552000 utils.py:844] [35m[300][0m core_hours = 1.3608467771199584
+I0128 07:11:45.446359 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:300/114716000 [0.0%]
+Walltime:14m12s (0s eval)
+ETA:65703h4m
+Total train time:65703h14m
+I0128 07:11:47.281643 139849920552000 utils.py:844] [35m[350][0m global_schedule = 0.0001065063479472883
+I0128 07:11:48.157818 139849920552000 utils.py:844] [35m[350][0m training_loss = 2.8920063972473145
+I0128 07:11:48.159008 139849920552000 utils.py:844] [35m[350][0m l2_grad_cls = 100.77310180664062
+I0128 07:11:48.159694 139849920552000 utils.py:844] [35m[350][0m l2_grad_embeding = 3.747096538543701
+I0128 07:11:48.160178 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_0 = 2.5084309577941895
+I0128 07:11:48.160703 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_1 = 1.6746915578842163
+I0128 07:11:48.161127 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_10 = 0.5771352052688599
+I0128 07:11:48.161546 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_11 = 0.5452855825424194
+I0128 07:11:48.162020 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_2 = 1.3140816688537598
+I0128 07:11:48.162461 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_3 = 1.1147122383117676
+I0128 07:11:48.162909 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_4 = 0.9508393406867981
+I0128 07:11:48.163344 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_5 = 0.8535112142562866
+I0128 07:11:48.163770 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_6 = 0.7537612318992615
+I0128 07:11:48.164277 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_7 = 0.703118085861206
+I0128 07:11:48.164678 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_8 = 0.6471167206764221
+I0128 07:11:48.165193 139849920552000 utils.py:844] [35m[350][0m l2_grad_encoderblock_9 = 0.6117864847183228
+I0128 07:11:48.165569 139849920552000 utils.py:844] [35m[350][0m l2_grad_head = 2.4592061042785645
+I0128 07:11:48.166102 139849920552000 utils.py:844] [35m[350][0m l2_grads = 104.27092742919922
+I0128 07:11:48.166507 139849920552000 utils.py:844] [35m[350][0m l2_params = 371.71875
+I0128 07:11:48.167006 139849920552000 utils.py:844] [35m[350][0m l2_updates = 0.0
+I0128 07:11:48.167385 139849920552000 utils.py:844] [35m[350][0m ncorrect = 0.1875
+I0128 07:11:48.167889 139849920552000 utils.py:844] [35m[350][0m nimg = 22.24635887145996
+I0128 07:11:48.168311 139849920552000 utils.py:844] [35m[350][0m ntxt = 22.454233169555664
+I0128 07:11:48.168747 139849920552000 utils.py:844] [35m[350][0m t = 14.285693168640137
+I0128 07:11:48.169124 139849920552000 utils.py:844] [35m[350][0m t/parameter = 2.6592600345611572
+I0128 07:11:48.169228 139849920552000 utils.py:844] [35m[350][0m uptime = 855.190993797034
+I0128 07:11:48.169318 139849920552000 utils.py:844] [35m[350][0m examples_seen = 5600.0
+I0128 07:11:48.169382 139849920552000 utils.py:844] [35m[350][0m progress = 3.05101293629485e-06
+I0128 07:11:48.169433 139849920552000 utils.py:844] [35m[350][0m epoch = 2.13570906355149e-05
+I0128 07:11:48.169486 139849920552000 utils.py:844] [35m[350][0m img/sec/core = 36.71897339979564
+I0128 07:11:48.169586 139849920552000 utils.py:844] [35m[350][0m core_hours_TPU v3 = 1.36689874975554
+I0128 07:11:48.169640 139849920552000 utils.py:844] [35m[350][0m core_hours = 1.36689874975554
+I0128 07:11:48.169736 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:350/114716000 [0.0%]
+Walltime:14m15s (0s eval)
+ETA:56485h50m
+Total train time:56486h0m
+I0128 07:11:50.024390 139849920552000 utils.py:844] [35m[400][0m global_schedule = 0.0001217651370097883
+I0128 07:11:50.706838 139849920552000 utils.py:844] [35m[400][0m training_loss = 2.7559075355529785
+I0128 07:11:50.707779 139849920552000 utils.py:844] [35m[400][0m l2_grad_cls = 43.7204475402832
+I0128 07:11:50.708482 139849920552000 utils.py:844] [35m[400][0m l2_grad_embeding = 3.417769193649292
+I0128 07:11:50.709016 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_0 = 2.1586594581604004
+I0128 07:11:50.709595 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_1 = 1.5716389417648315
+I0128 07:11:50.710044 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_10 = 0.5907543897628784
+I0128 07:11:50.710689 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_11 = 0.5643148422241211
+I0128 07:11:50.711205 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_2 = 1.2547460794448853
+I0128 07:11:50.711654 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_3 = 1.0737130641937256
+I0128 07:11:50.712131 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_4 = 0.924704372882843
+I0128 07:11:50.712601 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_5 = 0.8466178774833679
+I0128 07:11:50.713078 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_6 = 0.7575109004974365
+I0128 07:11:50.713519 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_7 = 0.6918375492095947
+I0128 07:11:50.713970 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_8 = 0.6743146181106567
+I0128 07:11:50.714540 139849920552000 utils.py:844] [35m[400][0m l2_grad_encoderblock_9 = 0.6277515292167664
+I0128 07:11:50.714984 139849920552000 utils.py:844] [35m[400][0m l2_grad_head = 2.8001527786254883
+I0128 07:11:50.715432 139849920552000 utils.py:844] [35m[400][0m l2_grads = 52.48955535888672
+I0128 07:11:50.715845 139849920552000 utils.py:844] [35m[400][0m l2_params = 371.71875
+I0128 07:11:50.716389 139849920552000 utils.py:844] [35m[400][0m l2_updates = 0.0
+I0128 07:11:50.716797 139849920552000 utils.py:844] [35m[400][0m ncorrect = 0.0
+I0128 07:11:50.717195 139849920552000 utils.py:844] [35m[400][0m nimg = 22.107025146484375
+I0128 07:11:50.717629 139849920552000 utils.py:844] [35m[400][0m ntxt = 22.3265323638916
+I0128 07:11:50.718096 139849920552000 utils.py:844] [35m[400][0m t = 14.285693168640137
+I0128 07:11:50.718605 139849920552000 utils.py:844] [35m[400][0m t/parameter = 2.6592600345611572
+I0128 07:11:50.718735 139849920552000 utils.py:844] [35m[400][0m uptime = 857.740493105026
+I0128 07:11:50.718840 139849920552000 utils.py:844] [35m[400][0m examples_seen = 6400.0
+I0128 07:11:50.718900 139849920552000 utils.py:844] [35m[400][0m progress = 3.486871927194114e-06
+I0128 07:11:50.718961 139849920552000 utils.py:844] [35m[400][0m epoch = 2.44081035834456e-05
+I0128 07:11:50.719013 139849920552000 utils.py:844] [35m[400][0m img/sec/core = 39.223387779133404
+I0128 07:11:50.719105 139849920552000 utils.py:844] [35m[400][0m core_hours_TPU v3 = 1.3725643037733
+I0128 07:11:50.719158 139849920552000 utils.py:844] [35m[400][0m core_hours = 1.3725643037733
+I0128 07:11:50.719240 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:400/114716000 [0.0%]
+Walltime:14m18s (0s eval)
+ETA:49576h21m
+Total train time:49576h32m
+I0128 07:11:52.951974 139849920552000 utils.py:844] [35m[450][0m global_schedule = 0.0001370239187963307
+I0128 07:11:53.345197 139849920552000 utils.py:844] [35m[450][0m training_loss = 2.9531078338623047
+I0128 07:11:53.346553 139849920552000 utils.py:844] [35m[450][0m l2_grad_cls = 107.12299346923828
+I0128 07:11:53.347254 139849920552000 utils.py:844] [35m[450][0m l2_grad_embeding = 4.150561332702637
+I0128 07:11:53.347772 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_0 = 2.9885308742523193
+I0128 07:11:53.348331 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_1 = 1.9922668933868408
+I0128 07:11:53.348777 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_10 = 0.6484769582748413
+I0128 07:11:53.349227 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_11 = 0.6102973222732544
+I0128 07:11:53.349654 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_2 = 1.4806878566741943
+I0128 07:11:53.350204 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_3 = 1.2748501300811768
+I0128 07:11:53.350659 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_4 = 1.094555139541626
+I0128 07:11:53.351205 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_5 = 0.9731783866882324
+I0128 07:11:53.351641 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_6 = 0.8569758534431458
+I0128 07:11:53.352262 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_7 = 0.7950119376182556
+I0128 07:11:53.352729 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_8 = 0.7414471507072449
+I0128 07:11:53.353219 139849920552000 utils.py:844] [35m[450][0m l2_grad_encoderblock_9 = 0.7030655741691589
+I0128 07:11:53.353665 139849920552000 utils.py:844] [35m[450][0m l2_grad_head = 2.8070666790008545
+I0128 07:11:53.354134 139849920552000 utils.py:844] [35m[450][0m l2_grads = 111.46913146972656
+I0128 07:11:53.354576 139849920552000 utils.py:844] [35m[450][0m l2_params = 371.71875
+I0128 07:11:53.354996 139849920552000 utils.py:844] [35m[450][0m l2_updates = 0.0
+I0128 07:11:53.355380 139849920552000 utils.py:844] [35m[450][0m ncorrect = 0.0625
+I0128 07:11:53.355916 139849920552000 utils.py:844] [35m[450][0m nimg = 22.436046600341797
+I0128 07:11:53.356335 139849920552000 utils.py:844] [35m[450][0m ntxt = 22.33349609375
+I0128 07:11:53.356776 139849920552000 utils.py:844] [35m[450][0m t = 14.285693168640137
+I0128 07:11:53.357192 139849920552000 utils.py:844] [35m[450][0m t/parameter = 2.6592600345611572
+I0128 07:11:53.357306 139849920552000 utils.py:844] [35m[450][0m uptime = 860.3790716990479
+I0128 07:11:53.357399 139849920552000 utils.py:844] [35m[450][0m examples_seen = 7200.0
+I0128 07:11:53.357479 139849920552000 utils.py:844] [35m[450][0m progress = 3.922730918093378e-06
+I0128 07:11:53.357553 139849920552000 utils.py:844] [35m[450][0m epoch = 2.7459116531376297e-05
+I0128 07:11:53.357612 139849920552000 utils.py:844] [35m[450][0m img/sec/core = 37.899193234782814
+I0128 07:11:53.357715 139849920552000 utils.py:844] [35m[450][0m core_hours_TPU v3 = 1.3784278117600155
+I0128 07:11:53.357776 139849920552000 utils.py:844] [35m[450][0m core_hours = 1.3784278117600155
+I0128 07:11:53.357868 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:450/114716000 [0.0%]
+Walltime:14m20s (0s eval)
+ETA:44218h59m
+Total train time:44219h9m
+I0128 07:11:55.209648 139849920552000 utils.py:844] [35m[500][0m global_schedule = 0.0001522827078588307
+I0128 07:11:55.926552 139849920552000 utils.py:844] [35m[500][0m training_loss = 2.890796661376953
+I0128 07:11:55.927584 139849920552000 utils.py:844] [35m[500][0m l2_grad_cls = 31.28554344177246
+I0128 07:11:55.928230 139849920552000 utils.py:844] [35m[500][0m l2_grad_embeding = 2.808631420135498
+I0128 07:11:55.928784 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_0 = 1.8502930402755737
+I0128 07:11:55.929260 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_1 = 1.2951641082763672
+I0128 07:11:55.929670 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_10 = 0.47355663776397705
+I0128 07:11:55.930220 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_11 = 0.4492041766643524
+I0128 07:11:55.930642 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_2 = 1.0162529945373535
+I0128 07:11:55.931095 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_3 = 0.8646194338798523
+I0128 07:11:55.931507 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_4 = 0.7499435544013977
+I0128 07:11:55.932036 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_5 = 0.6774545311927795
+I0128 07:11:55.932548 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_6 = 0.6029883027076721
+I0128 07:11:55.932989 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_7 = 0.5583257079124451
+I0128 07:11:55.933427 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_8 = 0.5363632440567017
+I0128 07:11:55.933890 139849920552000 utils.py:844] [35m[500][0m l2_grad_encoderblock_9 = 0.501246988773346
+I0128 07:11:55.934379 139849920552000 utils.py:844] [35m[500][0m l2_grad_head = 2.1941707134246826
+I0128 07:11:55.934795 139849920552000 utils.py:844] [35m[500][0m l2_grads = 39.85414505004883
+I0128 07:11:55.935186 139849920552000 utils.py:844] [35m[500][0m l2_params = 371.71875
+I0128 07:11:55.935707 139849920552000 utils.py:844] [35m[500][0m l2_updates = 0.0
+I0128 07:11:55.936142 139849920552000 utils.py:844] [35m[500][0m ncorrect = 0.0
+I0128 07:11:55.936558 139849920552000 utils.py:844] [35m[500][0m nimg = 22.18828010559082
+I0128 07:11:55.936965 139849920552000 utils.py:844] [35m[500][0m ntxt = 22.346317291259766
+I0128 07:11:55.937417 139849920552000 utils.py:844] [35m[500][0m t = 14.285693168640137
+I0128 07:11:55.937927 139849920552000 utils.py:844] [35m[500][0m t/parameter = 2.6592600345611572
+I0128 07:11:55.938040 139849920552000 utils.py:844] [35m[500][0m uptime = 862.9598052640213
+I0128 07:11:55.938138 139849920552000 utils.py:844] [35m[500][0m examples_seen = 8000.0
+I0128 07:11:55.938206 139849920552000 utils.py:844] [35m[500][0m progress = 4.3585899089926425e-06
+I0128 07:11:55.938267 139849920552000 utils.py:844] [35m[500][0m epoch = 3.0510129479306997e-05
+I0128 07:11:55.938320 139849920552000 utils.py:844] [35m[500][0m img/sec/core = 38.74867260891882
+I0128 07:11:55.938417 139849920552000 utils.py:844] [35m[500][0m core_hours_TPU v3 = 1.3841627752377341
+I0128 07:11:55.938476 139849920552000 utils.py:844] [35m[500][0m core_hours = 1.3841627752377341
+I0128 07:11:55.938564 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:500/114716000 [0.0%]
+Walltime:14m23s (0s eval)
+ETA:39935h50m
+Total train time:39936h1m
+I0128 07:11:57.798800 139849920552000 utils.py:844] [35m[550][0m global_schedule = 0.0001675414969213307
+I0128 07:11:58.442306 139849920552000 utils.py:844] [35m[550][0m training_loss = 2.735543727874756
+I0128 07:11:58.443280 139849920552000 utils.py:844] [35m[550][0m l2_grad_cls = 42.652801513671875
+I0128 07:11:58.443942 139849920552000 utils.py:844] [35m[550][0m l2_grad_embeding = 2.9991133213043213
+I0128 07:11:58.444483 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_0 = 2.017672538757324
+I0128 07:11:58.445030 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_1 = 1.456618070602417
+I0128 07:11:58.445453 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_10 = 0.5025801062583923
+I0128 07:11:58.445944 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_11 = 0.4693745970726013
+I0128 07:11:58.446363 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_2 = 1.1178430318832397
+I0128 07:11:58.446889 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_3 = 0.9544892907142639
+I0128 07:11:58.447331 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_4 = 0.8052675127983093
+I0128 07:11:58.447801 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_5 = 0.7318409085273743
+I0128 07:11:58.448189 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_6 = 0.647354781627655
+I0128 07:11:58.448724 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_7 = 0.5932137966156006
+I0128 07:11:58.449145 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_8 = 0.5621258616447449
+I0128 07:11:58.449586 139849920552000 utils.py:844] [35m[550][0m l2_grad_encoderblock_9 = 0.5342047214508057
+I0128 07:11:58.449978 139849920552000 utils.py:844] [35m[550][0m l2_grad_head = 2.0830371379852295
+I0128 07:11:58.450503 139849920552000 utils.py:844] [35m[550][0m l2_grads = 48.198585510253906
+I0128 07:11:58.450909 139849920552000 utils.py:844] [35m[550][0m l2_params = 371.71875
+I0128 07:11:58.451334 139849920552000 utils.py:844] [35m[550][0m l2_updates = 0.0
+I0128 07:11:58.451705 139849920552000 utils.py:844] [35m[550][0m ncorrect = 0.125
+I0128 07:11:58.452105 139849920552000 utils.py:844] [35m[550][0m nimg = 22.134422302246094
+I0128 07:11:58.452545 139849920552000 utils.py:844] [35m[550][0m ntxt = 22.39141082763672
+I0128 07:11:58.453025 139849920552000 utils.py:844] [35m[550][0m t = 14.285693168640137
+I0128 07:11:58.453423 139849920552000 utils.py:844] [35m[550][0m t/parameter = 2.6592600345611572
+I0128 07:11:58.453534 139849920552000 utils.py:844] [35m[550][0m uptime = 865.4752991750138
+I0128 07:11:58.453630 139849920552000 utils.py:844] [35m[550][0m examples_seen = 8800.0
+I0128 07:11:58.453701 139849920552000 utils.py:844] [35m[550][0m progress = 4.794448899891907e-06
+I0128 07:11:58.453752 139849920552000 utils.py:844] [35m[550][0m epoch = 3.35611424272377e-05
+I0128 07:11:58.453817 139849920552000 utils.py:844] [35m[550][0m img/sec/core = 39.75362435305749
+I0128 07:11:58.453920 139849920552000 utils.py:844] [35m[550][0m core_hours_TPU v3 = 1.3897527617066063
+I0128 07:11:58.453981 139849920552000 utils.py:844] [35m[550][0m core_hours = 1.3897527617066063
+I0128 07:11:58.454073 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:550/114716000 [0.0%]
+Walltime:14m25s (0s eval)
+ETA:36431h55m
+Total train time:36432h6m
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [5]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [5]
+flexi_args: [5]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [5]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [16]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [5]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [8]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [20]
+I0128 07:12:00.342802 139849920552000 utils.py:844] [35m[600][0m global_schedule = 0.0001828002859838307
+I0128 07:12:00.991178 139849920552000 utils.py:844] [35m[600][0m training_loss = 2.774677276611328
+I0128 07:12:00.992521 139849920552000 utils.py:844] [35m[600][0m l2_grad_cls = 76.21371459960938
+I0128 07:12:00.993208 139849920552000 utils.py:844] [35m[600][0m l2_grad_embeding = 3.6461689472198486
+I0128 07:12:00.993800 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_0 = 2.309011220932007
+I0128 07:12:00.994287 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_1 = 1.5459884405136108
+I0128 07:12:00.994727 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_10 = 0.5295290350914001
+I0128 07:12:00.995221 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_11 = 0.5014140009880066
+I0128 07:12:00.995682 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_2 = 1.1793042421340942
+I0128 07:12:00.996099 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_3 = 0.9719637036323547
+I0128 07:12:00.996471 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_4 = 0.8432905077934265
+I0128 07:12:00.997046 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_5 = 0.7608077526092529
+I0128 07:12:00.997507 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_6 = 0.6796982288360596
+I0128 07:12:00.997973 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_7 = 0.6306204199790955
+I0128 07:12:00.998394 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_8 = 0.594018280506134
+I0128 07:12:00.998895 139849920552000 utils.py:844] [35m[600][0m l2_grad_encoderblock_9 = 0.5505291223526001
+I0128 07:12:00.999322 139849920552000 utils.py:844] [35m[600][0m l2_grad_head = 2.328611135482788
+I0128 07:12:00.999835 139849920552000 utils.py:844] [35m[600][0m l2_grads = 80.1750259399414
+I0128 07:12:01.000245 139849920552000 utils.py:844] [35m[600][0m l2_params = 371.71875
+I0128 07:12:01.000657 139849920552000 utils.py:844] [35m[600][0m l2_updates = 0.0
+I0128 07:12:01.001054 139849920552000 utils.py:844] [35m[600][0m ncorrect = 0.0625
+I0128 07:12:01.001447 139849920552000 utils.py:844] [35m[600][0m nimg = 22.2895450592041
+I0128 07:12:01.001822 139849920552000 utils.py:844] [35m[600][0m ntxt = 22.22056770324707
+I0128 07:12:01.002211 139849920552000 utils.py:844] [35m[600][0m t = 14.285693168640137
+I0128 07:12:01.002642 139849920552000 utils.py:844] [35m[600][0m t/parameter = 2.6592600345611572
+I0128 07:12:01.002754 139849920552000 utils.py:844] [35m[600][0m uptime = 868.0245190220303
+I0128 07:12:01.002851 139849920552000 utils.py:844] [35m[600][0m examples_seen = 9600.0
+I0128 07:12:01.002950 139849920552000 utils.py:844] [35m[600][0m progress = 5.230307890791171e-06
+I0128 07:12:01.003012 139849920552000 utils.py:844] [35m[600][0m epoch = 3.66121553751684e-05
+I0128 07:12:01.003069 139849920552000 utils.py:844] [35m[600][0m img/sec/core = 39.227687685326835
+I0128 07:12:01.003190 139849920552000 utils.py:844] [35m[600][0m core_hours_TPU v3 = 1.3954176946999763
+I0128 07:12:01.003252 139849920552000 utils.py:844] [35m[600][0m core_hours = 1.3954176946999763
+I0128 07:12:01.003343 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:600/114716000 [0.0%]
+Walltime:14m28s (0s eval)
+ETA:33516h43m
+Total train time:33516h54m
+I0128 07:12:02.884037 139849920552000 utils.py:844] [35m[650][0m global_schedule = 0.0001980590750463307
+I0128 07:12:03.540672 139849920552000 utils.py:844] [35m[650][0m training_loss = 2.826028347015381
+I0128 07:12:03.541838 139849920552000 utils.py:844] [35m[650][0m l2_grad_cls = 47.739383697509766
+I0128 07:12:03.542439 139849920552000 utils.py:844] [35m[650][0m l2_grad_embeding = 2.6940066814422607
+I0128 07:12:03.542972 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_0 = 1.731616497039795
+I0128 07:12:03.543483 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_1 = 1.237872838973999
+I0128 07:12:03.543964 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_10 = 0.4513792097568512
+I0128 07:12:03.544425 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_11 = 0.42242133617401123
+I0128 07:12:03.544859 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_2 = 0.9611485600471497
+I0128 07:12:03.545379 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_3 = 0.825738251209259
+I0128 07:12:03.545796 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_4 = 0.7131919860839844
+I0128 07:12:03.546292 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_5 = 0.6465979814529419
+I0128 07:12:03.546656 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_6 = 0.5590516924858093
+I0128 07:12:03.547193 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_7 = 0.5293682813644409
+I0128 07:12:03.547744 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_8 = 0.508506178855896
+I0128 07:12:03.548317 139849920552000 utils.py:844] [35m[650][0m l2_grad_encoderblock_9 = 0.4747171401977539
+I0128 07:12:03.548763 139849920552000 utils.py:844] [35m[650][0m l2_grad_head = 1.960295557975769
+I0128 07:12:03.549309 139849920552000 utils.py:844] [35m[650][0m l2_grads = 51.82969284057617
+I0128 07:12:03.549843 139849920552000 utils.py:844] [35m[650][0m l2_params = 371.71875
+I0128 07:12:03.550258 139849920552000 utils.py:844] [35m[650][0m l2_updates = 0.0
+I0128 07:12:03.550642 139849920552000 utils.py:844] [35m[650][0m ncorrect = 0.0625
+I0128 07:12:03.551157 139849920552000 utils.py:844] [35m[650][0m nimg = 22.230955123901367
+I0128 07:12:03.551693 139849920552000 utils.py:844] [35m[650][0m ntxt = 22.595638275146484
+I0128 07:12:03.552122 139849920552000 utils.py:844] [35m[650][0m t = 14.285693168640137
+I0128 07:12:03.552527 139849920552000 utils.py:844] [35m[650][0m t/parameter = 2.6592600345611572
+I0128 07:12:03.552655 139849920552000 utils.py:844] [35m[650][0m uptime = 870.5744194810395
+I0128 07:12:03.552753 139849920552000 utils.py:844] [35m[650][0m examples_seen = 10400.0
+I0128 07:12:03.552823 139849920552000 utils.py:844] [35m[650][0m progress = 5.666166881690436e-06
+I0128 07:12:03.552886 139849920552000 utils.py:844] [35m[650][0m epoch = 3.96631683230991e-05
+I0128 07:12:03.552945 139849920552000 utils.py:844] [35m[650][0m img/sec/core = 39.21721714535301
+I0128 07:12:03.553040 139849920552000 utils.py:844] [35m[650][0m core_hours_TPU v3 = 1.4010841401644414
+I0128 07:12:03.553098 139849920552000 utils.py:844] [35m[650][0m core_hours = 1.4010841401644414
+I0128 07:12:03.553189 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:650/114716000 [0.0%]
+Walltime:14m31s (0s eval)
+ETA:31052h8m
+Total train time:31052h18m
+I0128 07:12:05.424984 139849920552000 utils.py:844] [35m[700][0m global_schedule = 0.0002133178641088307
+I0128 07:12:06.187207 139849920552000 utils.py:844] [35m[700][0m training_loss = 2.863002061843872
+I0128 07:12:06.188249 139849920552000 utils.py:844] [35m[700][0m l2_grad_cls = 133.83262634277344
+I0128 07:12:06.188963 139849920552000 utils.py:844] [35m[700][0m l2_grad_embeding = 4.286238193511963
+I0128 07:12:06.189491 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_0 = 2.840949058532715
+I0128 07:12:06.189943 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_1 = 1.8768121004104614
+I0128 07:12:06.190332 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_10 = 0.6055521965026855
+I0128 07:12:06.190753 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_11 = 0.5709973573684692
+I0128 07:12:06.191265 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_2 = 1.4547665119171143
+I0128 07:12:06.191747 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_3 = 1.2174193859100342
+I0128 07:12:06.192140 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_4 = 1.0156502723693848
+I0128 07:12:06.192568 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_5 = 0.8899592161178589
+I0128 07:12:06.192995 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_6 = 0.7890251874923706
+I0128 07:12:06.193426 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_7 = 0.728495717048645
+I0128 07:12:06.193821 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_8 = 0.6889305710792542
+I0128 07:12:06.194249 139849920552000 utils.py:844] [35m[700][0m l2_grad_encoderblock_9 = 0.6530001759529114
+I0128 07:12:06.194658 139849920552000 utils.py:844] [35m[700][0m l2_grad_head = 2.5458855628967285
+I0128 07:12:06.195120 139849920552000 utils.py:844] [35m[700][0m l2_grads = 136.7632293701172
+I0128 07:12:06.195511 139849920552000 utils.py:844] [35m[700][0m l2_params = 371.71875
+I0128 07:12:06.195895 139849920552000 utils.py:844] [35m[700][0m l2_updates = 0.0
+I0128 07:12:06.196289 139849920552000 utils.py:844] [35m[700][0m ncorrect = 0.0625
+I0128 07:12:06.196680 139849920552000 utils.py:844] [35m[700][0m nimg = 22.453144073486328
+I0128 07:12:06.197029 139849920552000 utils.py:844] [35m[700][0m ntxt = 22.543346405029297
+I0128 07:12:06.197418 139849920552000 utils.py:844] [35m[700][0m t = 14.285693168640137
+I0128 07:12:06.197879 139849920552000 utils.py:844] [35m[700][0m t/parameter = 2.6592600345611572
+I0128 07:12:06.197992 139849920552000 utils.py:844] [35m[700][0m uptime = 873.2197569910204
+I0128 07:12:06.198092 139849920552000 utils.py:844] [35m[700][0m examples_seen = 11200.0
+I0128 07:12:06.198160 139849920552000 utils.py:844] [35m[700][0m progress = 6.1020258725897e-06
+I0128 07:12:06.198212 139849920552000 utils.py:844] [35m[700][0m epoch = 4.27141812710298e-05
+I0128 07:12:06.198269 139849920552000 utils.py:844] [35m[700][0m img/sec/core = 37.80235966968252
+I0128 07:12:06.198363 139849920552000 utils.py:844] [35m[700][0m core_hours_TPU v3 = 1.406962667964399
+I0128 07:12:06.198421 139849920552000 utils.py:844] [35m[700][0m core_hours = 1.406962667964399
+I0128 07:12:06.198513 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:700/114716000 [0.0%]
+Walltime:14m33s (0s eval)
+ETA:28945h30m
+Total train time:28945h40m
+I0128 07:12:08.076933 139849920552000 utils.py:844] [35m[750][0m global_schedule = 0.0002285766531713307
+I0128 07:12:08.924212 139849920552000 utils.py:844] [35m[750][0m training_loss = 2.6883935928344727
+I0128 07:12:08.925233 139849920552000 utils.py:844] [35m[750][0m l2_grad_cls = 142.34457397460938
+I0128 07:12:08.925963 139849920552000 utils.py:844] [35m[750][0m l2_grad_embeding = 4.025557518005371
+I0128 07:12:08.926469 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_0 = 2.756072521209717
+I0128 07:12:08.927057 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_1 = 1.851801872253418
+I0128 07:12:08.927599 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_10 = 0.6081729531288147
+I0128 07:12:08.928218 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_11 = 0.5749663710594177
+I0128 07:12:08.928651 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_2 = 1.4530686140060425
+I0128 07:12:08.929342 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_3 = 1.2155086994171143
+I0128 07:12:08.929821 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_4 = 1.013922929763794
+I0128 07:12:08.930353 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_5 = 0.8961962461471558
+I0128 07:12:08.930752 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_6 = 0.8044590353965759
+I0128 07:12:08.931293 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_7 = 0.7393836379051208
+I0128 07:12:08.931728 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_8 = 0.6986632943153381
+I0128 07:12:08.932275 139849920552000 utils.py:844] [35m[750][0m l2_grad_encoderblock_9 = 0.6452474594116211
+I0128 07:12:08.932680 139849920552000 utils.py:844] [35m[750][0m l2_grad_head = 2.520270347595215
+I0128 07:12:08.933161 139849920552000 utils.py:844] [35m[750][0m l2_grads = 144.72494506835938
+I0128 07:12:08.933623 139849920552000 utils.py:844] [35m[750][0m l2_params = 371.71875
+I0128 07:12:08.934086 139849920552000 utils.py:844] [35m[750][0m l2_updates = 0.0
+I0128 07:12:08.934559 139849920552000 utils.py:844] [35m[750][0m ncorrect = 0.0
+I0128 07:12:08.935004 139849920552000 utils.py:844] [35m[750][0m nimg = 22.41002655029297
+I0128 07:12:08.935426 139849920552000 utils.py:844] [35m[750][0m ntxt = 22.34270668029785
+I0128 07:12:08.935836 139849920552000 utils.py:844] [35m[750][0m t = 14.285693168640137
+I0128 07:12:08.936264 139849920552000 utils.py:844] [35m[750][0m t/parameter = 2.6592600345611572
+I0128 07:12:08.936367 139849920552000 utils.py:844] [35m[750][0m uptime = 875.9581339890137
+I0128 07:12:08.936457 139849920552000 utils.py:844] [35m[750][0m examples_seen = 12000.0
+I0128 07:12:08.936522 139849920552000 utils.py:844] [35m[750][0m progress = 6.537884863488964e-06
+I0128 07:12:08.936573 139849920552000 utils.py:844] [35m[750][0m epoch = 4.57651942189605e-05
+I0128 07:12:08.936626 139849920552000 utils.py:844] [35m[750][0m img/sec/core = 36.517981298148364
+I0128 07:12:08.936722 139849920552000 utils.py:844] [35m[750][0m core_hours_TPU v3 = 1.4130479501821618
+I0128 07:12:08.936775 139849920552000 utils.py:844] [35m[750][0m core_hours = 1.4130479501821618
+I0128 07:12:08.936858 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:750/114716000 [0.0%]
+Walltime:14m36s (0s eval)
+ETA:27124h51m
+Total train time:27125h2m
+I0128 07:12:11.202897 139849920552000 utils.py:844] [35m[800][0m global_schedule = 0.0002438354422338307
+I0128 07:12:11.326231 139849920552000 utils.py:844] [35m[800][0m training_loss = 2.782468318939209
+I0128 07:12:11.327123 139849920552000 utils.py:844] [35m[800][0m l2_grad_cls = 116.24127197265625
+I0128 07:12:11.327839 139849920552000 utils.py:844] [35m[800][0m l2_grad_embeding = 3.807621717453003
+I0128 07:12:11.328350 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_0 = 2.7171974182128906
+I0128 07:12:11.328943 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_1 = 1.9303488731384277
+I0128 07:12:11.329348 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_10 = 0.6441450715065002
+I0128 07:12:11.329799 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_11 = 0.6017059683799744
+I0128 07:12:11.330285 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_2 = 1.4753170013427734
+I0128 07:12:11.330718 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_3 = 1.268189549446106
+I0128 07:12:11.331131 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_4 = 1.0684020519256592
+I0128 07:12:11.331624 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_5 = 0.9455042481422424
+I0128 07:12:11.332061 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_6 = 0.8411766886711121
+I0128 07:12:11.332615 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_7 = 0.7918844223022461
+I0128 07:12:11.333093 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_8 = 0.7325267791748047
+I0128 07:12:11.333669 139849920552000 utils.py:844] [35m[800][0m l2_grad_encoderblock_9 = 0.6968494057655334
+I0128 07:12:11.334148 139849920552000 utils.py:844] [35m[800][0m l2_grad_head = 2.7416739463806152
+I0128 07:12:11.334614 139849920552000 utils.py:844] [35m[800][0m l2_grads = 119.53748321533203
+I0128 07:12:11.335045 139849920552000 utils.py:844] [35m[800][0m l2_params = 371.71875
+I0128 07:12:11.335497 139849920552000 utils.py:844] [35m[800][0m l2_updates = 0.0
+I0128 07:12:11.335916 139849920552000 utils.py:844] [35m[800][0m ncorrect = 0.0625
+I0128 07:12:11.336313 139849920552000 utils.py:844] [35m[800][0m nimg = 22.302597045898438
+I0128 07:12:11.336688 139849920552000 utils.py:844] [35m[800][0m ntxt = 22.881671905517578
+I0128 07:12:11.337084 139849920552000 utils.py:844] [35m[800][0m t = 14.285693168640137
+I0128 07:12:11.337505 139849920552000 utils.py:844] [35m[800][0m t/parameter = 2.6592600345611572
+I0128 07:12:11.337638 139849920552000 utils.py:844] [35m[800][0m uptime = 878.359404376999
+I0128 07:12:11.337744 139849920552000 utils.py:844] [35m[800][0m examples_seen = 12800.0
+I0128 07:12:11.337816 139849920552000 utils.py:844] [35m[800][0m progress = 6.973743854388228e-06
+I0128 07:12:11.337874 139849920552000 utils.py:844] [35m[800][0m epoch = 4.88162071668912e-05
+I0128 07:12:11.337932 139849920552000 utils.py:844] [35m[800][0m img/sec/core = 41.644622988043565
+I0128 07:12:11.338035 139849920552000 utils.py:844] [35m[800][0m core_hours_TPU v3 = 1.4183841065999068
+I0128 07:12:11.338096 139849920552000 utils.py:844] [35m[800][0m core_hours = 1.4183841065999068
+I0128 07:12:11.338191 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:800/114716000 [0.0%]
+Walltime:14m38s (0s eval)
+ETA:25519h10m
+Total train time:25519h20m
+I0128 07:12:13.214769 139849920552000 utils.py:844] [35m[850][0m global_schedule = 0.0002590942312963307
+I0128 07:12:14.040992 139849920552000 utils.py:844] [35m[850][0m training_loss = 2.8332901000976562
+I0128 07:12:14.042235 139849920552000 utils.py:844] [35m[850][0m l2_grad_cls = 78.91609191894531
+I0128 07:12:14.042823 139849920552000 utils.py:844] [35m[850][0m l2_grad_embeding = 3.6050572395324707
+I0128 07:12:14.043373 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_0 = 2.608224868774414
+I0128 07:12:14.043886 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_1 = 1.7907541990280151
+I0128 07:12:14.044349 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_10 = 0.6173762083053589
+I0128 07:12:14.044829 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_11 = 0.5883368253707886
+I0128 07:12:14.045280 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_2 = 1.3989518880844116
+I0128 07:12:14.045758 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_3 = 1.1791003942489624
+I0128 07:12:14.046168 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_4 = 0.9949535131454468
+I0128 07:12:14.046686 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_5 = 0.897769033908844
+I0128 07:12:14.047065 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_6 = 0.796485424041748
+I0128 07:12:14.047516 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_7 = 0.7434070706367493
+I0128 07:12:14.047939 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_8 = 0.6957290768623352
+I0128 07:12:14.048466 139849920552000 utils.py:844] [35m[850][0m l2_grad_encoderblock_9 = 0.6577420234680176
+I0128 07:12:14.048856 139849920552000 utils.py:844] [35m[850][0m l2_grad_head = 2.7488443851470947
+I0128 07:12:14.049305 139849920552000 utils.py:844] [35m[850][0m l2_grads = 84.39563751220703
+I0128 07:12:14.049732 139849920552000 utils.py:844] [35m[850][0m l2_params = 371.71875
+I0128 07:12:14.050243 139849920552000 utils.py:844] [35m[850][0m l2_updates = 0.0
+I0128 07:12:14.050632 139849920552000 utils.py:844] [35m[850][0m ncorrect = 0.0625
+I0128 07:12:14.051080 139849920552000 utils.py:844] [35m[850][0m nimg = 22.397682189941406
+I0128 07:12:14.051556 139849920552000 utils.py:844] [35m[850][0m ntxt = 22.63030242919922
+I0128 07:12:14.052091 139849920552000 utils.py:844] [35m[850][0m t = 14.285693168640137
+I0128 07:12:14.052487 139849920552000 utils.py:844] [35m[850][0m t/parameter = 2.6592600345611572
+I0128 07:12:14.052589 139849920552000 utils.py:844] [35m[850][0m uptime = 881.074356503028
+I0128 07:12:14.052696 139849920552000 utils.py:844] [35m[850][0m examples_seen = 13600.0
+I0128 07:12:14.052773 139849920552000 utils.py:844] [35m[850][0m progress = 7.4096028452874925e-06
+I0128 07:12:14.052822 139849920552000 utils.py:844] [35m[850][0m epoch = 5.18672201148219e-05
+I0128 07:12:14.052871 139849920552000 utils.py:844] [35m[850][0m img/sec/core = 36.83306200550432
+I0128 07:12:14.052968 139849920552000 utils.py:844] [35m[850][0m core_hours_TPU v3 = 1.424417333546638
+I0128 07:12:14.053023 139849920552000 utils.py:844] [35m[850][0m core_hours = 1.424417333546638
+I0128 07:12:14.053107 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:850/114716000 [0.0%]
+Walltime:14m41s (0s eval)
+ETA:24114h51m
+Total train time:24115h1m
+I0128 07:12:15.936949 139849920552000 utils.py:844] [35m[900][0m global_schedule = 0.0002743530203588307
+I0128 07:12:16.719780 139849920552000 utils.py:844] [35m[900][0m training_loss = 2.8587255477905273
+I0128 07:12:16.721060 139849920552000 utils.py:844] [35m[900][0m l2_grad_cls = 36.04519271850586
+I0128 07:12:16.721769 139849920552000 utils.py:844] [35m[900][0m l2_grad_embeding = 3.9028677940368652
+I0128 07:12:16.722354 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_0 = 2.581247329711914
+I0128 07:12:16.722971 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_1 = 1.832256555557251
+I0128 07:12:16.723468 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_10 = 0.6230213642120361
+I0128 07:12:16.724092 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_11 = 0.5848354697227478
+I0128 07:12:16.724635 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_2 = 1.4261330366134644
+I0128 07:12:16.725210 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_3 = 1.186915636062622
+I0128 07:12:16.725728 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_4 = 1.020284652709961
+I0128 07:12:16.726275 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_5 = 0.9205155372619629
+I0128 07:12:16.726694 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_6 = 0.811851441860199
+I0128 07:12:16.727348 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_7 = 0.7669004797935486
+I0128 07:12:16.727838 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_8 = 0.71469646692276
+I0128 07:12:16.728319 139849920552000 utils.py:844] [35m[900][0m l2_grad_encoderblock_9 = 0.6539029479026794
+I0128 07:12:16.728784 139849920552000 utils.py:844] [35m[900][0m l2_grad_head = 2.729182720184326
+I0128 07:12:16.729229 139849920552000 utils.py:844] [35m[900][0m l2_grads = 45.1988525390625
+I0128 07:12:16.729661 139849920552000 utils.py:844] [35m[900][0m l2_params = 371.71875
+I0128 07:12:16.730205 139849920552000 utils.py:844] [35m[900][0m l2_updates = 0.0
+I0128 07:12:16.730637 139849920552000 utils.py:844] [35m[900][0m ncorrect = 0.0
+I0128 07:12:16.731039 139849920552000 utils.py:844] [35m[900][0m nimg = 22.229503631591797
+I0128 07:12:16.731437 139849920552000 utils.py:844] [35m[900][0m ntxt = 22.440017700195312
+I0128 07:12:16.732033 139849920552000 utils.py:844] [35m[900][0m t = 14.285693168640137
+I0128 07:12:16.732466 139849920552000 utils.py:844] [35m[900][0m t/parameter = 2.6592600345611572
+I0128 07:12:16.732574 139849920552000 utils.py:844] [35m[900][0m uptime = 883.7543397429981
+I0128 07:12:16.732664 139849920552000 utils.py:844] [35m[900][0m examples_seen = 14400.0
+I0128 07:12:16.732730 139849920552000 utils.py:844] [35m[900][0m progress = 7.845461836186756e-06
+I0128 07:12:16.732780 139849920552000 utils.py:844] [35m[900][0m epoch = 5.4918233062752594e-05
+I0128 07:12:16.732846 139849920552000 utils.py:844] [35m[900][0m img/sec/core = 37.31366618587998
+I0128 07:12:16.732948 139849920552000 utils.py:844] [35m[900][0m core_hours_TPU v3 = 1.4303728518576828
+I0128 07:12:16.733006 139849920552000 utils.py:844] [35m[900][0m core_hours = 1.4303728518576828
+I0128 07:12:16.733091 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:900/114716000 [0.0%]
+Walltime:14m44s (0s eval)
+ETA:22865h51m
+Total train time:22866h1m
+I0128 07:12:18.616146 139849920552000 utils.py:844] [35m[950][0m global_schedule = 0.0002896118094213307
+I0128 07:12:19.289618 139849920552000 utils.py:844] [35m[950][0m training_loss = 2.767882823944092
+I0128 07:12:19.291324 139849920552000 utils.py:844] [35m[950][0m l2_grad_cls = 44.463077545166016
+I0128 07:12:19.292036 139849920552000 utils.py:844] [35m[950][0m l2_grad_embeding = 3.38102650642395
+I0128 07:12:19.292535 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_0 = 2.1558480262756348
+I0128 07:12:19.292999 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_1 = 1.4792673587799072
+I0128 07:12:19.293483 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_10 = 0.5266214609146118
+I0128 07:12:19.294008 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_11 = 0.497740238904953
+I0128 07:12:19.294464 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_2 = 1.1270700693130493
+I0128 07:12:19.294919 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_3 = 0.9565801024436951
+I0128 07:12:19.295422 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_4 = 0.8246084451675415
+I0128 07:12:19.295890 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_5 = 0.7366271615028381
+I0128 07:12:19.296252 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_6 = 0.6704179048538208
+I0128 07:12:19.296768 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_7 = 0.6248456835746765
+I0128 07:12:19.297214 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_8 = 0.5886318683624268
+I0128 07:12:19.297662 139849920552000 utils.py:844] [35m[950][0m l2_grad_encoderblock_9 = 0.5622085332870483
+I0128 07:12:19.298073 139849920552000 utils.py:844] [35m[950][0m l2_grad_head = 2.4888253211975098
+I0128 07:12:19.298497 139849920552000 utils.py:844] [35m[950][0m l2_grads = 51.70957565307617
+I0128 07:12:19.298968 139849920552000 utils.py:844] [35m[950][0m l2_params = 371.71875
+I0128 07:12:19.299355 139849920552000 utils.py:844] [35m[950][0m l2_updates = 0.0
+I0128 07:12:19.299717 139849920552000 utils.py:844] [35m[950][0m ncorrect = 0.0
+I0128 07:12:19.300093 139849920552000 utils.py:844] [35m[950][0m nimg = 22.420621871948242
+I0128 07:12:19.300623 139849920552000 utils.py:844] [35m[950][0m ntxt = 22.193408966064453
+I0128 07:12:19.301049 139849920552000 utils.py:844] [35m[950][0m t = 14.285693168640137
+I0128 07:12:19.301428 139849920552000 utils.py:844] [35m[950][0m t/parameter = 2.6592600345611572
+I0128 07:12:19.301541 139849920552000 utils.py:844] [35m[950][0m uptime = 886.3233089550049
+I0128 07:12:19.301627 139849920552000 utils.py:844] [35m[950][0m examples_seen = 15200.0
+I0128 07:12:19.301689 139849920552000 utils.py:844] [35m[950][0m progress = 8.28132082708602e-06
+I0128 07:12:19.301733 139849920552000 utils.py:844] [35m[950][0m epoch = 5.7969246010683294e-05
+I0128 07:12:19.301777 139849920552000 utils.py:844] [35m[950][0m img/sec/core = 38.92611851190071
+I0128 07:12:19.301874 139849920552000 utils.py:844] [35m[950][0m core_hours_TPU v3 = 1.4360816723288088
+I0128 07:12:19.301929 139849920552000 utils.py:844] [35m[950][0m core_hours = 1.4360816723288088
+I0128 07:12:19.302010 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:950/114716000 [0.0%]
+Walltime:14m46s (0s eval)
+ETA:21745h0m
+Total train time:21745h11m
+I0128 07:12:21.192168 139849920552000 utils.py:844] [35m[1000][0m global_schedule = 0.0003048705984838307
+I0128 07:12:21.838559 139849920552000 utils.py:844] [35m[1000][0m training_loss = 2.7804160118103027
+I0128 07:12:21.839671 139849920552000 utils.py:844] [35m[1000][0m l2_grad_cls = 41.20121383666992
+I0128 07:12:21.840322 139849920552000 utils.py:844] [35m[1000][0m l2_grad_embeding = 2.6944050788879395
+I0128 07:12:21.840898 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_0 = 1.69856858253479
+I0128 07:12:21.841322 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_1 = 1.1465833187103271
+I0128 07:12:21.841721 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_10 = 0.4134193956851959
+I0128 07:12:21.842281 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_11 = 0.3892713487148285
+I0128 07:12:21.842818 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_2 = 0.8757309913635254
+I0128 07:12:21.843286 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_3 = 0.7648152709007263
+I0128 07:12:21.843689 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_4 = 0.6525629758834839
+I0128 07:12:21.844137 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_5 = 0.5963806509971619
+I0128 07:12:21.844557 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_6 = 0.5325294137001038
+I0128 07:12:21.844974 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_7 = 0.488779217004776
+I0128 07:12:21.845376 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_8 = 0.45490381121635437
+I0128 07:12:21.845764 139849920552000 utils.py:844] [35m[1000][0m l2_grad_encoderblock_9 = 0.4350269138813019
+I0128 07:12:21.846143 139849920552000 utils.py:844] [35m[1000][0m l2_grad_head = 1.781343698501587
+I0128 07:12:21.846515 139849920552000 utils.py:844] [35m[1000][0m l2_grads = 45.48244857788086
+I0128 07:12:21.846880 139849920552000 utils.py:844] [35m[1000][0m l2_params = 371.71875
+I0128 07:12:21.847425 139849920552000 utils.py:844] [35m[1000][0m l2_updates = 0.0
+I0128 07:12:21.847824 139849920552000 utils.py:844] [35m[1000][0m ncorrect = 0.0
+I0128 07:12:21.848213 139849920552000 utils.py:844] [35m[1000][0m nimg = 22.243595123291016
+I0128 07:12:21.848589 139849920552000 utils.py:844] [35m[1000][0m ntxt = 22.407007217407227
+I0128 07:12:21.849101 139849920552000 utils.py:844] [35m[1000][0m t = 14.285693168640137
+I0128 07:12:21.849620 139849920552000 utils.py:844] [35m[1000][0m t/parameter = 2.6592600345611572
+I0128 07:12:21.849723 139849920552000 utils.py:844] [35m[1000][0m uptime = 888.8714903450455
+I0128 07:12:21.849817 139849920552000 utils.py:844] [35m[1000][0m examples_seen = 16000.0
+I0128 07:12:21.849882 139849920552000 utils.py:844] [35m[1000][0m progress = 8.717179817985285e-06
+I0128 07:12:21.849930 139849920552000 utils.py:844] [35m[1000][0m epoch = 6.1020258958613994e-05
+I0128 07:12:21.849978 139849920552000 utils.py:844] [35m[1000][0m img/sec/core = 39.24367409276484
+I0128 07:12:21.850070 139849920552000 utils.py:844] [35m[1000][0m core_hours_TPU v3 = 1.44174429764001
+I0128 07:12:21.850124 139849920552000 utils.py:844] [35m[1000][0m core_hours = 1.44174429764001
+I0128 07:12:21.850208 139849920552000 flexi_main.py:120] [33mNOTE[0m: Steps:1000/114716000 [0.0%]
+Walltime:14m49s (0s eval)
+ETA:20735h55m
+Total train time:20736h6m
+I0128 07:12:23.373503 139849920552000 flexi_main.py:120] [33mNOTE[0m: disclf evaluation...
+Steps:1000/114716000 [0.0%]
+Walltime:14m49s (0s eval)
+ETA:20735h55m
+Total train time:20736h6m
+I0128 07:12:23.373709 139849920552000 discriminative_classifier.py:348] Starting text embedding...
+I0128 07:12:26.814446 139849920552000 discriminative_classifier.py:365] Compiled text embeddings in 3.4s
+tcmalloc: large alloc 1642618880 bytes == 0xf86936000 @  0x7f3159382680 0x7f31593a2da2 0x5d6aec 0x63908c 0x4fe616 0x4daf8a 0x547447 0x5d5846 0x547447 0x54552a 0x5d5a23 0x5483b6 0x54552a 0x5d5a23 0x547265 0x54552a 0x5d5a23 0x5d4c12 0x7f315136ccf3 0x5d553a 0x5d6066 0x54ca58 0x54552a 0x5d5a23 0x5d4c12 0x548a66 0x54552a 0x5d5a23 0x5d4c12 0x548a66 0x54552a
+I0128 07:13:11.333433 139849920552000 discriminative_classifier.py:383] Embedded imagenet2012 text in 5064 steps - ...[16 16 16 16 16 16 16 16  8  0]
+I0128 07:13:11.334235 139849920552000 discriminative_classifier.py:385] Totalling 81000 text in 44.5s
+I0128 07:13:11.334320 139849920552000 discriminative_classifier.py:386] Total texts embeddings size 165.9M
+I0128 07:13:11.441235 139849920552000 discriminative_classifier.py:400] Starting image embedding...
+Traceback (most recent call last):
+  File "/home/jyang347/CLIPA/clipa_jax/flexi_main.py", line 649, in <module>
+    app.run(main)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/home/jyang347/CLIPA/clipa_jax/flexi_main.py", line 610, in main
+    for key, value in evaluator.run(params_repl):
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 470, in run
+    return [(f"{dataset_name}_accuracy",
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 471, in <listcomp>
+    self.evaluate(params, dataset_name)["accuracy"])
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 423, in evaluate
+    correct_p, embs_p = self._count_correct_p(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/traceback_util.py", line 166, in reraise_with_filtered_traceback
+    return fun(*args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/api.py", line 2395, in cache_miss
+    execute = pxla.xla_pmap_impl_lazy(fun_, *tracers, **params)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/interpreters/pxla.py", line 1021, in xla_pmap_impl_lazy
+    compiled_fun, fingerprint = parallel_callable(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/linear_util.py", line 301, in memoized_fun
+    ans = call(fun, *args)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/interpreters/pxla.py", line 1297, in parallel_callable
+    pmap_computation = lower_parallel_callable(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/profiler.py", line 314, in wrapper
+    return func(*args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/interpreters/pxla.py", line 1461, in lower_parallel_callable
+    jaxpr, consts, replicas, parts, shards = stage_parallel_callable(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/interpreters/pxla.py", line 1374, in stage_parallel_callable
+    jaxpr, out_sharded_avals, consts = pe.trace_to_jaxpr_final(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/profiler.py", line 314, in wrapper
+    return func(*args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/interpreters/partial_eval.py", line 2099, in trace_to_jaxpr_final
+    jaxpr, out_avals, consts = trace_to_subjaxpr_dynamic(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/interpreters/partial_eval.py", line 2046, in trace_to_subjaxpr_dynamic
+    ans = fun.call_wrapped(*in_tracers_)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/linear_util.py", line 165, in call_wrapped
+    ans = self.f(*args, **dict(self.params, **kwargs))
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 302, in count_correct
+    zimg, _, _ = predict_fn(params, image, None)
+  File "/home/jyang347/CLIPA/clipa_jax/flexi_main.py", line 445, in predict_fn
+    zimg, ztxt, out = model.apply({"params": params}, image, text)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/jax/_src/traceback_util.py", line 166, in reraise_with_filtered_traceback
+    return fun(*args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 1511, in apply
+    return apply(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/core/scope.py", line 934, in wrapper
+    y = fn(root, *args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 2082, in scope_fn
+    return fn(module.clone(parent=scope, _deep_clone=True), *args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 418, in wrapped_module_method
+    return self._call_wrapped_method(fun, args, kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 854, in _call_wrapped_method
+    y = fun(self, *args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/models/two_towers.py", line 98, in __call__
+    zimg, out_img = image_model(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 418, in wrapped_module_method
+    return self._call_wrapped_method(fun, args, kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 854, in _call_wrapped_method
+    y = fun(self, *args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/models/flexi_model.py", line 132, in __call__
+    x = out["stem"] = Patchify(
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 418, in wrapped_module_method
+    return self._call_wrapped_method(fun, args, kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/flax/linen/module.py", line 854, in _call_wrapped_method
+    y = fun(self, *args, **kwargs)
+  File "/home/jyang347/CLIPA/clipa_jax/models/flexi_model.py", line 99, in __call__
+    patch_size = tuple(np.array((h, w)) // np.array((seqhw, seqhw)))
+jax._src.traceback_util.UnfilteredStackTrace: TypeError: unsupported operand type(s) for //: 'int' and 'NoneType'
+
+The stack trace below excludes JAX-internal frames.
+The preceding is the original exception that occurred, unmodified.
+
+--------------------
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/jyang347/CLIPA/clipa_jax/flexi_main.py", line 649, in <module>
+    app.run(main)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/absl/app.py", line 308, in run
+    _run_main(main, args)
+  File "/home/jyang347/CLIPA/clipa_jax/bv_venv/lib/python3.8/site-packages/absl/app.py", line 254, in _run_main
+    sys.exit(main(argv))
+  File "/home/jyang347/CLIPA/clipa_jax/flexi_main.py", line 610, in main
+    for key, value in evaluator.run(params_repl):
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 470, in run
+    return [(f"{dataset_name}_accuracy",
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 471, in <listcomp>
+    self.evaluate(params, dataset_name)["accuracy"])
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 423, in evaluate
+    correct_p, embs_p = self._count_correct_p(
+  File "/home/jyang347/CLIPA/clipa_jax/evaluators/proj/image_text/discriminative_classifier.py", line 302, in count_correct
+    zimg, _, _ = predict_fn(params, image, None)
+  File "/home/jyang347/CLIPA/clipa_jax/flexi_main.py", line 445, in predict_fn
+    zimg, ztxt, out = model.apply({"params": params}, image, text)
+  File "/home/jyang347/CLIPA/clipa_jax/models/two_towers.py", line 98, in __call__
+    zimg, out_img = image_model(
+  File "/home/jyang347/CLIPA/clipa_jax/models/flexi_model.py", line 132, in __call__
+    x = out["stem"] = Patchify(
+  File "/home/jyang347/CLIPA/clipa_jax/models/flexi_model.py", line 99, in __call__
+    patch_size = tuple(np.array((h, w)) // np.array((seqhw, seqhw)))
+TypeError: unsupported operand type(s) for //: 'int' and 'NoneType'
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [8]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [8]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [30]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [8]
+flexi_args: [12]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [6]
+flexi_args: [8]
+flexi_args: [15]
+flexi_args: [10]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [15]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [16]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [16]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [30]
+flexi_args: [30]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [12]
+flexi_args: [10]
+flexi_args: [5]
+flexi_args: [12]
+flexi_args: [12]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [15]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [30]
+flexi_args: [10]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [16]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [8]
+flexi_args: [6]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [5]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [6]
+flexi_args: [16]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [10]
+flexi_args: [8]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [30]
+flexi_args: [8]
+flexi_args: [30]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [30]
+flexi_args: [12]
+flexi_args: [8]
+flexi_args: [16]
+flexi_args: [24]
+flexi_args: [24]
+flexi_args: [8]
+flexi_args: [6]
+flexi_args: [5]
+flexi_args: [15]
+flexi_args: [15]
+flexi_args: [5]
+flexi_args: [24]
+flexi_args: [5]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [24]
+flexi_args: [6]
+flexi_args: [6]
+flexi_args: [30]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [10]
+flexi_args: [6]
+flexi_args: [24]
+flexi_args: [20]
+flexi_args: [10]
+flexi_args: [20]
+flexi_args: [5]
+flexi_args: [16]
+flexi_args: [5]
+flexi_args: [10]
+text in two towers: Traced<ShapedArray(int32[2,16])>with<DynamicJaxprTrace(level=0/1)>
+text in two towers: None
