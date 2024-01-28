@@ -45,3 +45,30 @@ def mkpredictfns(predict_fn, config, template="predict_{x}"):
       template.format(x="_".join(f"{k}={v}" for k, v in kw.items())):
           functools.partial(predict_fn, **kw)
       for kw in all_combinations}
+
+
+if __name__ == "__main__":
+   
+  def predict_fn(params, image, **flexi_kw):
+    logits, out = 1,1
+    return logits, out
+  
+  from ml_collections import ConfigDict
+
+  config = ConfigDict()
+  config.flexi = dict()
+  config.flexi.seqhw = dict(
+      # The settings to sample from. Corresponding patch-sizes at 240px:
+      # 48, 40, 30, 24, 20, 16, 15, 12, 10, 8
+      v=(5, 6, 8, 10, 12, 15, 16, 20, 24, 30),
+      # The probabilities/weights of them. Default uniform.
+      p=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+  )
+ 
+
+  results = mkpredictfns(predict_fn, config.flexi, "predict_{x}")
+  print(type(results))
+
+
+  for k,v in results.items():
+    print("k: {} v: {}".format(k,v))

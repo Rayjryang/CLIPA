@@ -440,9 +440,9 @@ def main(argv):
     # does it later. We output as many intermediate tensors as possible for
     # maximal flexibility. Later `jit` will prune out things that are not
     # needed.
-    def predict_fn(params, image=None, text=None, **unused_kwargs):
+    def predict_fn(params, image=None, text=None, seqhw=16, **unused_kwargs):
         del unused_kwargs  # `unused_kwargs` is to be compatible with few-shot
-        zimg, ztxt, out = model.apply({"params": params}, image, text)
+        zimg, ztxt, out = model.apply({"params": params}, image, text, seqhw = seqhw)
         return zimg, ztxt, out
 
     # Only initialize evaluators when they are first needed.
@@ -450,6 +450,7 @@ def main(argv):
     def evaluators():
         return eval_common.from_config(
             config, {"predict": predict_fn},
+            # config, flexi.mkpredictfns(predict_fn, config.flexi, "predict_{x}"),
             lambda s: write_note(f"Init evaluator: {s}…\n{chrono.note}"),
             lambda key, cfg: get_steps(key, default=None, cfg=cfg),
         )
@@ -533,7 +534,7 @@ def main(argv):
     # on TPU during replication.
     for step, batch in zip(range(first_step + 1, total_steps + 1), train_iter):
         metric.step_start(step)
-
+        
         # np_rng = flexi.mkrng(xm_xp.id, xm_wu.id, step)
         np_rng = flexi.mkrng(10, 20, step)
         flexi_args = [
@@ -634,7 +635,7 @@ def main(argv):
 
     # Last note needs to happen before the pool's closed =)
     write_note(f"Done!\n{chrono.note}")
-
+    
     pool.close()
     pool.join()
     metric.close()
