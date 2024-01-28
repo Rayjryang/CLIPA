@@ -211,17 +211,12 @@ def main(argv):
     def init(rng, text_size):
         bs = batch_size // jax.device_count()
         image_size = tuple(train_ds.element_spec["image"].shape[1:])
-        # no_image = jnp.zeros((bs,) + image_size, jnp.float32)
         no_image = jnp.ones((bs,) + image_size, jnp.float32)
-        # key = jax.random.PRNGKey(0)  # 示例种子
-        # no_image = jax.random.uniform(key, (bs,) + image_size, dtype=jnp.float32)
         no_text = jnp.zeros((bs,) + text_size, jnp.int32)
         
         params = flax.core.unfreeze(
             model.init(rng, no_image, no_text))["params"]
-        # print("params init:",params)
-        # jax.debug.print("jax.debug.print params init {x}",x=params)
-
+      
         return params
 
     if config.get('noun_sample', False):
@@ -234,18 +229,6 @@ def main(argv):
     with chrono.log_timing("z/secs/init"):
         params_cpu = init(rng_init, text_size)
 
-    # print("params_cpu:",params_cpu)
-
-    # def contains_nan(x):
-    #     return jnp.any(jnp.isnan(x))
-
-    # # 使用 tree_map 应用这个函数到整个 params 结构
-    # nan_check = jax.tree_util.tree_map(contains_nan, params_cpu)
-
-    # # 使用 tree_reduce 或任何其他方法来合并结果
-    # has_nan = jax.tree_util.tree_reduce(lambda x, y: x or y, nan_check, False)
-
-    # print("Contains NaN:", has_nan)
 
 
     if jax.process_index() == 0:
@@ -265,19 +248,14 @@ def main(argv):
 
     flexi_argnames = sorted(config.flexi)
     
-    # print("flexi_argnames:",flexi_argnames)
-
-    # @functools.partial(jax.pmap, axis_name="batch", donate_argnums=(0, 1),
-    #                    static_broadcasted_argnums=tuple(range(4, 4 + len(flexi_argnames))))
+  
     @functools.partial(jax.pmap, axis_name="batch", donate_argnums=(0, 1),static_broadcasted_argnums=tuple(range(4, 4 + len(flexi_argnames))))
     def update_fn(params, opt, rng, batch, *args):
         """Update step."""
-        #assert "mixup" not in config, "We still have to figure out mixup."
-        # print("args in update_fn:",args)
-        # print("flexi_argnames in update_fn",flexi_argnames)
+    
         images = batch["image"]
         labels = batch["labels"]
-        # print("image update_fn:",images)
+      
 
         if config.get("cpu_unit8", True):
             mean = jnp.asarray(
@@ -286,30 +264,19 @@ def main(argv):
                 [0.229 * 255, 0.224 * 255, 0.225 * 255])[None, None, None, :]
             images = (jnp.asarray(images, dtype=jnp.float32) - mean) / std
 
-        # print("image after cpu_unit8:",images)
-        # jax.debug.print("jax.debug.printimage after cpu_unit8 {x}",x=images)
-
+     
+        
         # Get device-specific loss rng.
         rng, rng_model = jax.random.split(rng, 2)
         rng_model_local = jax.random.fold_in(rng_model, jax.lax.axis_index("batch"))
-        # rng_model_local = jax.random.fold_in(
-        #     rng_model)
+       
         
         def loss_fn(params, images, labels):
-            print("image loss_fn:",images)
             
             zimg, ztxt, extras = model.apply({"params": params}, image=images, text=labels, train=True, mask_ratio=config.mask_ratio, **dict(zip(flexi_argnames, args)),rngs={
                 "dropout": rng_model_local, 'drop_path': rng_model_local, 'random_mask': rng_model_local}
                 )
-            # logging.info("zip(flexi_argnames, args):", zip(flexi_argnames, args))
-            
-            # print("zip(flexi_argnames, args):",zip(flexi_argnames, args))
-            # zimg, ztxt, extras = model.apply({"params": params}, image=images, text=labels, train=True, mask_ratio=config.mask_ratio, rngs={
-            #     "dropout": rng_model, 'drop_path': rng_model, 'random_mask': rng_model}, **dict(zip(flexi_argnames, args))
-            #     )
-            
-            # jax.debug.print("jax.debug.printimage zimg, ztxt in loss fn {x} {y}",x=zimg,y=ztxt)
-
+          
 
             if config.get("local_loss", False):
                 local_img, local_txt = zimg, ztxt
@@ -325,7 +292,7 @@ def main(argv):
             l, l_extras = losses.bidirectional_contrastive_loss(
                 zimg, ztxt, extras["t"], reduction=True, local_loss=config.local_loss, local_img_logits=local_img, local_txt_logits=local_txt)
 
-            # jax.debug.print("jax.debug.printimage img/norm in loss fn {x}",x=jnp.mean(extras["img/norm"]))
+        
 
             return l, {
                 "t": extras["t"],
@@ -440,7 +407,7 @@ def main(argv):
     # does it later. We output as many intermediate tensors as possible for
     # maximal flexibility. Later `jit` will prune out things that are not
     # needed.
-    def predict_fn(params, image=None, text=None, seqhw=16, **unused_kwargs):
+    def predict_fn(params, image=None, text=None, seqhw=12, **unused_kwargs):
         del unused_kwargs  # `unused_kwargs` is to be compatible with few-shot
         zimg, ztxt, out = model.apply({"params": params}, image, text, seqhw = seqhw)
         return zimg, ztxt, out
@@ -541,7 +508,7 @@ def main(argv):
             flexi.choice(config.flexi[n].v, config.flexi[n].p, np_rng)
             for n in flexi_argnames
         ]
-        print("flexi_args:",flexi_args)
+        # print("flexi_args:",flexi_args)
 
         with jax.profiler.StepTraceAnnotation("train_step", step_num=step):
             with chrono.log_timing("z/secs/update0", noop=step > first_step + 1):

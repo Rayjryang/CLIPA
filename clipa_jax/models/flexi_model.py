@@ -128,11 +128,9 @@ class _Model(nn.Module):
     out = {}
 
     
-    # print("image input Patchify:",image)
     x = out["stem"] = Patchify(
         self.patch_size, self.width, self.seqhw, name="embedding")(image, seqhw)
     
-    # print("x after Patchify:",x)
 
     # == Flattening + posemb
     n, h, w, c = x.shape
@@ -184,7 +182,6 @@ class _Model(nn.Module):
       x_2d = out["logits_2d"] = head(x_2d)
       x = out["logits"] = head(x)
 
-    print("x in flexi_model:",x)
 
     return x, out
 

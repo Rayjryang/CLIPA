@@ -60,7 +60,7 @@ class Model(nn.Module):
         if isinstance(out_dims, int):
             out_dims = (out_dims, out_dims)
 
-        print("text in two towers:",text)
+     
         
         # Embed the text:
         if text is not None:
@@ -77,15 +77,7 @@ class Model(nn.Module):
             out["txt/norm"] = jnp.linalg.norm(ztxt, axis=1, keepdims=True)
             out["txt/normalized"] = ztxt = ztxt / (out["txt/norm"] + 1e-8)
         
-       
-        # print("seqhw in two towers:",seqhw)
-        
-        # print("image in two towers:",image)
-
-        # jax.debug.print("jax.debug.print seqhw in two towers {x}",x=seqhw)
-        # jax.debug.print("jax.debug.print image in two towers {x}",x=image)
-
-
+    
         if image is not None:
             image_model = importlib.import_module(f"models.{self.image_model}").Model(
                 **{"num_classes": out_dims[0], **(self.image or {})}, name="img", **kw)  # pylint: disable=not-a-mapping
@@ -110,8 +102,7 @@ class Model(nn.Module):
         out["t"] = jnp.exp(t)
         out["t/parameter"] = t
 
-        # print("zimg in two towers:",zimg)
-        # print("ztxt in two towers:",ztxt)
+      
 
         return zimg, ztxt, out
 
