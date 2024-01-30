@@ -24,7 +24,7 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=240, runlocal=False, batchsize=16,  token_len=16, txt='bert_base', img='B/16',
+      arg,  res=60, runlocal=False, batchsize=1024,  token_len=16, txt='bert_base', img='B/16',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
@@ -67,8 +67,8 @@ def get_config(arg=None):
       'variant': 'B',
       'pool_type': 'tok',
       'posemb': 'learn',
-      'patch_size': (8, 8),
-      'posemb_size': (7, 7),
+      'patch_size': (12,12),
+      'posemb_size': (5, 5),
       'seqhw': None,  # Dynamic!
   })
 
@@ -82,17 +82,22 @@ def get_config(arg=None):
   dim = {'T': 192, 'S':384, 'B': 512, 'L': 768, 'H': 1024}[arg.img[0]]
  # dim = 768
   config.model.out_dim = (dim if arg.img_head else None, dim)  # (image_out_dim, text_out_dim)
-
+    
     ## flexi vit 
-
+    
     # Define the model parameters which are flexible:
   config.flexi = dict()
   config.flexi.seqhw = dict(
         # The settings to sample from. Corresponding patch-sizes at 240px:
         # 48, 40, 30, 24, 20, 16, 15, 12, 10, 8
-        v=(5, 6, 8, 10, 12, 15, 16, 20, 24, 30),
+        # v=(5, 6, 8, 10, 12, 15, 16, 20, 24, 30),
         # The probabilities/weights of them. Default uniform.
-        p=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        # p=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        v=(5, 6, 10, 12, 15),
+        p=(1, 1, 1, 1, 1),
+        # v=(2,)*5,
+        # p=(1,)*5
+
     )
 
 

@@ -52,6 +52,9 @@ tf.compat.v1.enable_eager_execution()
 
 import flexi_common as flexi
 
+from jax_smi import initialise_tracking
+initialise_tracking()
+
 try:
     import wandb
     has_wandb = True
@@ -296,7 +299,7 @@ def main(argv):
         #     rng_model)
         
         def loss_fn(params, images, labels):
-            print("image loss_fn:",images)
+            # print("image loss_fn:",images)
             
             zimg, ztxt, extras = model.apply({"params": params}, image=images, text=labels, train=True, mask_ratio=config.mask_ratio, **dict(zip(flexi_argnames, args)),rngs={
                 "dropout": rng_model_local, 'drop_path': rng_model_local, 'random_mask': rng_model_local}
@@ -440,7 +443,7 @@ def main(argv):
     # does it later. We output as many intermediate tensors as possible for
     # maximal flexibility. Later `jit` will prune out things that are not
     # needed.
-    def predict_fn(params, image=None, text=None, seqhw=16, **unused_kwargs):
+    def predict_fn(params, image=None, text=None, seqhw=12, **unused_kwargs):
         del unused_kwargs  # `unused_kwargs` is to be compatible with few-shot
         zimg, ztxt, out = model.apply({"params": params}, image, text, seqhw = seqhw)
         return zimg, ztxt, out
@@ -534,7 +537,7 @@ def main(argv):
     # on TPU during replication.
     for step, batch in zip(range(first_step + 1, total_steps + 1), train_iter):
         metric.step_start(step)
-        
+
         # np_rng = flexi.mkrng(xm_xp.id, xm_wu.id, step)
         np_rng = flexi.mkrng(10, 20, step)
         flexi_args = [
@@ -547,7 +550,7 @@ def main(argv):
             with chrono.log_timing("z/secs/update0", noop=step > first_step + 1):
                 params_repl, opt_repl, rngs_loop, loss_value, measurements = update_fn(
                     params_repl, opt_repl, rngs_loop, batch, *flexi_args)
-
+        
         # On the first host, let's always profile a handful of early steps.
         if jax.process_index() == 0:
             prof = startstop_prof(

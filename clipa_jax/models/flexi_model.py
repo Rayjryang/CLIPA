@@ -78,7 +78,7 @@ def resample_patchemb(old, new_hw):
 class Patchify(nn.Module):
   """As a class just to match param names with original ViT."""
 
-  patch_size: Sequence[int] = (32, 32)
+  patch_size: Sequence[int] = (12, 12)
   width: int = 768
   seqhw: Optional[int] = None
 
@@ -90,7 +90,7 @@ class Patchify(nn.Module):
         "kernel", nn.initializers.normal(stddev=1/np.sqrt(self.width)),
         (*self.patch_size, c, self.width), image.dtype)
     b_emb = self.param("bias", nn.initializers.zeros, self.width, image.dtype)
-
+  
     # Compute required patch-size to reach `seqhw` given `image` size.
     seqhw = seqhw or self.seqhw
     if seqhw is None and self.is_initializing():
@@ -111,8 +111,8 @@ class _Model(nn.Module):
   """ViT model."""
 
   num_classes: int
-  patch_size: Sequence[int] = (32, 32)
-  posemb_size: Sequence[int] = (7, 7)
+  patch_size: Sequence[int] = (12, 12)
+  posemb_size: Sequence[int] = (5, 5)
   width: int = 768
   depth: int = 12
   mlp_dim: Optional[int] = None  # Defaults to 4x input dim
@@ -120,7 +120,7 @@ class _Model(nn.Module):
   posemb: str = "learn"  # Can also be "sincos2d"
   pool_type: str = "gap"  # Can also be "map" or "tok"
   head_zeroinit: bool = False
-  
+
   seqhw: Optional[int] = None
 
   @nn.compact
@@ -184,7 +184,7 @@ class _Model(nn.Module):
       x_2d = out["logits_2d"] = head(x_2d)
       x = out["logits"] = head(x)
 
-    print("x in flexi_model:",x)
+    # print("x in flexi_model:",x)
 
     return x, out
 
