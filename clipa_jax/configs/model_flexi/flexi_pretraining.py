@@ -24,17 +24,19 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=60, runlocal=False, batchsize=16384,  token_len=16, txt='bert_base', img='B/16',
+      arg,  res=60, runlocal=False, batchsize=8192,  token_len=16, txt='bert_base', img='B/16',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
   config = ConfigDict()
-  
+
 
  # input section include augmentation
   config.input = {}
   #config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
-  config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='[your data(laion-400m) location]')
+#   config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='[your data(laion-400m) location]')
+  config.input.data = dict(name='dfn2b', split='subset', data_dir='[your data(laion-400m) location]')
+
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
   config.init_shapes = [(1, arg.res, arg.res, 3), (1, arg.token_len,)]
@@ -67,7 +69,7 @@ def get_config(arg=None):
       'variant': 'B',
       'pool_type': 'tok',
       'posemb': 'learn',
-      'patch_size': (6, 6),
+      'patch_size': (12, 12),
       'posemb_size': (5, 5),
       'seqhw': None,  # Dynamic!
   })
@@ -93,8 +95,8 @@ def get_config(arg=None):
         # v=(5, 6, 8, 10, 12, 15, 16, 20, 24, 30),
         # The probabilities/weights of them. Default uniform.
         # p=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-        v=(5, 6, 10, 12, 15, 20, 30),
-        p=(1, 1, 1, 1, 1, 1, 1),
+        v=(4, 5, 6, 10, 12, 15),
+        p=(1, 1, 1, 1, 1, 1),
     )
 
 
@@ -117,7 +119,7 @@ def get_config(arg=None):
 
   config.optax = dict(mu_dtype='bfloat16',  b1=0.9,  b2=0.95)
 
-
+    
   config.loss_use_global_batch = True
   config.local_loss = True
 
@@ -139,6 +141,7 @@ def get_config(arg=None):
 
   # Eval section (Both few-shot and zero-shot)
   config.eval_only = False
+#   config.eval_only = True
   eval_common = dict(
       type='proj.image_text.contrastive',
       use_global_batch=config.loss_use_global_batch,

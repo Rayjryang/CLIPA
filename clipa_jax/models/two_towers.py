@@ -60,7 +60,7 @@ class Model(nn.Module):
         if isinstance(out_dims, int):
             out_dims = (out_dims, out_dims)
 
-     
+        
         
         # Embed the text:
         if text is not None:

@@ -305,9 +305,9 @@ def main(argv):
         # print("images input loss_fn:",images)
         (l, measurements), grads = jax.value_and_grad(
             loss_fn, has_aux=True)(params, images, labels)
-        # loss_fn(params, images, labels)
+     
         l, measurements, grads = jax.lax.pmean((l, measurements, grads), axis_name="batch")
-        # l, measurements, grads = jnp.mean((l, measurements, grads))
+        
         updates, opt = tx.update(grads, opt, params)
         params = optax.apply_updates(params, updates)
         
@@ -411,7 +411,7 @@ def main(argv):
         del unused_kwargs  # `unused_kwargs` is to be compatible with few-shot
         zimg, ztxt, out = model.apply({"params": params}, image, text, seqhw = seqhw)
         return zimg, ztxt, out
-
+    
     # Only initialize evaluators when they are first needed.
     @functools.lru_cache(maxsize=None)
     def evaluators():

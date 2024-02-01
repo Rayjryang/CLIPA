@@ -47,6 +47,7 @@ def resample_patchemb(old, new_hw):
   if tuple(old.shape[:2]) == tuple(new_hw):
     return old
 
+  #(6, 6, 3, 768) to (2, 2)
   logging.info("FlexiViT: resize embedding %s to %s", old.shape, new_hw)
 
   def resize(x_np, new_shape):
@@ -78,7 +79,7 @@ def resample_patchemb(old, new_hw):
 class Patchify(nn.Module):
   """As a class just to match param names with original ViT."""
 
-  patch_size: Sequence[int] = (32, 32)
+  patch_size: Sequence[int] = (12, 12)
   width: int = 768
   seqhw: Optional[int] = None
 
@@ -90,7 +91,7 @@ class Patchify(nn.Module):
         "kernel", nn.initializers.normal(stddev=1/np.sqrt(self.width)),
         (*self.patch_size, c, self.width), image.dtype)
     b_emb = self.param("bias", nn.initializers.zeros, self.width, image.dtype)
-
+    
     # Compute required patch-size to reach `seqhw` given `image` size.
     seqhw = seqhw or self.seqhw
     if seqhw is None and self.is_initializing():
@@ -111,8 +112,8 @@ class _Model(nn.Module):
   """ViT model."""
 
   num_classes: int
-  patch_size: Sequence[int] = (32, 32)
-  posemb_size: Sequence[int] = (7, 7)
+  patch_size: Sequence[int] = (12, 12)
+  posemb_size: Sequence[int] = (5, 5)
   width: int = 768
   depth: int = 12
   mlp_dim: Optional[int] = None  # Defaults to 4x input dim
@@ -159,7 +160,7 @@ class _Model(nn.Module):
         num_heads=self.num_heads,
         name="Transformer")(x)
     encoded = out["encoded"] = x
-
+    
     if self.pool_type == "map":
       x = out["head_input"] = vit.MAPHead(
           num_heads=self.num_heads, mlp_dim=self.mlp_dim)(x)
@@ -194,7 +195,8 @@ def Model(num_classes, *, variant=None, **kw):  # pylint: disable=invalid-name
 def load(init_params, init_file, model_cfg, dont_load=()):  # pylint: disable=invalid-name because we had to CamelCase above.
   """Load init from checkpoint, both old model and this one. +Hi-res posemb."""
   init_file = {**vit.VANITY_NAMES, **VANITY_NAMES}.get(init_file, init_file)
-  restored_params = utils.load_params(None, init_file)
+  # restored_params = utils.load_params(None, init_file)
+  restored_params = utils.load_params(init_file)
 
   restored_params = vit.fix_old_checkpoints(restored_params)
 
@@ -206,7 +208,7 @@ def load(init_params, init_file, model_cfg, dont_load=()):  # pylint: disable=in
   # Potentially resize the patch embedding kernel.
   old_patchemb = restored_params["embedding"]["kernel"]
   restored_params["embedding"]["kernel"] = resample_patchemb(
-      old=old_patchemb, new_hw=model_cfg.patch_size)
+      old=old_patchemb, new_hw=model_cfg.get("patch_size"))
 
   # possibly use the random init for some of the params (such as, the head).
   restored_params = common.merge_params(restored_params, init_params, dont_load)
