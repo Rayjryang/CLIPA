@@ -9,7 +9,7 @@ LAION_PATH="gs://jaxtpu-data-eu-west4/laion400m_blip_filtered"
 WORK_DIR='gs://lxh_jaxtpu_eu_ckpt/jinruiyang_ckpt/clipa/tpu-v3-128-pod-vm-spot-flexivit-b16-debug'
 WANDB_log=b6b4e923d9e742d710ad470384368394b14a1df2 # only if you set wandb.log_wandb=True then you can revise the project name and experiment name
 
-
+gsutil rm -r gs://lxh_jaxtpu_eu_ckpt/jinruiyang_ckpt/clipa/tpu-v3-128-pod-vm-spot-flexivit-b16-debug/**
 
 
 cd ~/CLIPA/clipa_jax/ && \
