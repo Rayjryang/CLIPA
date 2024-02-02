@@ -52,9 +52,6 @@ tf.compat.v1.enable_eager_execution()
 
 import flexi_common as flexi
 
-from jax_smi import initialise_tracking
-initialise_tracking()
-
 try:
     import wandb
     has_wandb = True

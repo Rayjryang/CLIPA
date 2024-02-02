@@ -30,7 +30,7 @@ def get_config(arg=None):
   txt_name, txt_init = common.inits[arg.txt]
   config = ConfigDict()
 
-
+  
  # input section include augmentation
   config.input = {}
   #config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')

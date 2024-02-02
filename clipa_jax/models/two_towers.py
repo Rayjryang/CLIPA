@@ -85,10 +85,10 @@ class Model(nn.Module):
                 zimg, out_img = image_model(
                     image, mask_ratio=mask_ratio, mae_layer=mae_layer, rng_mask=rng_mask, **kw)
             else:
-                # zimg, out_img = image_model(
-                #     image, mask_ratio=mask_ratio, train=train, **kw)
                 zimg, out_img = image_model(
-                    image, seqhw = seqhw, train=train, **kw)
+                    image, mask_ratio=mask_ratio, train=train, **kw)
+                #zimg, out_img = image_model(
+                #    image, seqhw = seqhw, train=train, **kw)
             for k, v in out_img.items():
                 out[f"img/{k}"] = v
 

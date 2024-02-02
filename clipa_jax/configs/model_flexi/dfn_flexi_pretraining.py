@@ -24,17 +24,19 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=60, runlocal=False, batchsize=8192,  token_len=16, txt='bert_base', img='So150m/14',
+      arg,  res=60, runlocal=False, batchsize=8192,  token_len=16, txt='bert_base', img='B/16',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
   config = ConfigDict()
-  
 
+  
  # input section include augmentation
   config.input = {}
-#   config.input.data = dict(name='liaon-400m', split='full', data_dir='gs://jaxtpu-data-eu-west4/laion-400m-cv2resize-356m')
-  config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='[your data(laion-400m) location]')
+  #config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
+#   config.input.data = dict(name='liaon-400m', split='full-filter', data_dir='[your data(laion-400m) location]')
+  config.input.data = dict(name='dfn2b', split='subset', data_dir='[your data(laion-400m) location]')
+
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
   config.init_shapes = [(1, arg.res, arg.res, 3), (1, arg.token_len,)]
@@ -61,47 +63,64 @@ def get_config(arg=None):
   config.model_name = 'two_towers'
   config.model_load = {}
   config.model = ConfigDict()
-  config.model.image_model = 'vit'
+  config.model.image_model = 'flexi_model'
   config.model.text_model = 'text_transformer'
   config.model.image = ConfigDict({
-      'variant': img_name,
-      'pool_type': 'gap',
-      'posemb': 'sincos2d',
-      'remat_policy': 'actcp',
-      'head_zeroinit': False,
+      'variant': 'B',
+      'pool_type': 'tok',
+      'posemb': 'learn',
+      'patch_size': (12, 12),
+      'posemb_size': (5, 5),
+      'seqhw': None,  # Dynamic!
   })
+  
   config.model.text = ConfigDict({
-      'variant': 'B/16',
+      'variant': img_name,
       'pool_type': 'last',
       'head_zeroinit': False,
   })
   config.model.temperature_init = 1/0.07
 
-#   dim = {'T': 192, 'S':384, 'B': 512, 'L': 768, 'H': 1024}[arg.img[0]]
-  dim = {'T': 192, 'S':384, 'B': 512, "So150m": 512, 'L': 768, 'H': 1024}[arg.img.split("/")[0]]
+  dim = {'T': 192, 'S':384, 'B': 512, 'L': 768, 'H': 1024}[arg.img[0]]
  # dim = 768
   config.model.out_dim = (dim if arg.img_head else None, dim)  # (image_out_dim, text_out_dim)
-#   config.model.out_dim = (768,768)
+
+    ## flexi vit 
+
+    # Define the model parameters which are flexible:
+  config.flexi = dict()
+  config.flexi.seqhw = dict(
+        # The settings to sample from. Corresponding patch-sizes at 240px:
+        # 48, 40, 30, 24, 20, 16, 15, 12, 10, 8
+        # v=(5, 6, 8, 10, 12, 15, 16, 20, 24, 30),
+        # The probabilities/weights of them. Default uniform.
+        # p=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        v=(4, 5, 6, 10, 12, 15),
+        p=(1, 1, 1, 1, 1, 1),
+    )
+
+
 
   # optimizer config
 
-  imagenet_samples = 1281167
+  imagenet_samples = 12800
   vitual_imagenet_epoch = 10000
   total_seen_samples = imagenet_samples * vitual_imagenet_epoch
 
   config.optax_name = 'scale_by_adam'
-  #config.total_steps = int(total_seen_samples // arg.batchsize)  # seen_samples // batchsize to get the number of steps
-  config.total_epochs = 7.0
-  config.lr = 8e-6 * (arg.batchsize // 256)
+  config.total_steps = int(total_seen_samples // arg.batchsize)  # seen_samples // batchsize to get the number of steps
+  config.lr = 5e-4 
   config.wd = 0.2
-  warmup_steps = int(52428800 // arg.batchsize) # seen_samples // batchsize to get the number of steps
+  warmup_steps = 500 # seen_samples // batchsize to get the number of steps
   config.schedule = [
-      ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=8e-6 * (arg.batchsize // 256))),
+      # ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=8e-6 * (arg.batchsize // 256))),
+     ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=5e-4)),
   ]
+
 
   config.optax = dict(mu_dtype='bfloat16',  b1=0.9,  b2=0.95)
 
-
+    
   config.loss_use_global_batch = True
   config.local_loss = True
 
@@ -116,13 +135,14 @@ def get_config(arg=None):
       debug_data=False,
       project='clip_image_scaling',
       experiment=f'H14_32k_{arg.res}_{arg.token_len}_tok_sin2d_lr8e',
-      entity='xianhangli'
+      entity='jinruiyang'
   )
   config.save_ckpt = True
 
 
   # Eval section (Both few-shot and zero-shot)
   config.eval_only = False
+#   config.eval_only = True
   eval_common = dict(
       type='proj.image_text.contrastive',
       use_global_batch=config.loss_use_global_batch,
