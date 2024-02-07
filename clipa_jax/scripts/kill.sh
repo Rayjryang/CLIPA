@@ -1,7 +1,6 @@
 export PROJECT_ID=focus-album-323718
-export ZONE=europe-west4-a
-export TPU_NAME=tpu-v3-128-pod-vm-spot
-
+export ZONE=us-central2-b
+export TPU_NAME=tpu-pod-v4-64
 
 gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command "killall -9 python python3"
 gcloud alpha compute tpus tpu-vm ssh $TPU_NAME  --project=$PROJECT_ID --zone=$ZONE --worker=all --command "sudo pkill -f python python3"

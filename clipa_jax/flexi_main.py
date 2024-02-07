@@ -440,7 +440,7 @@ def main(argv):
     # does it later. We output as many intermediate tensors as possible for
     # maximal flexibility. Later `jit` will prune out things that are not
     # needed.
-    def predict_fn(params, image=None, text=None, seqhw=12, **unused_kwargs):
+    def predict_fn(params, image=None, text=None, seqhw=config.test_seqhw, **unused_kwargs):
         del unused_kwargs  # `unused_kwargs` is to be compatible with few-shot
         zimg, ztxt, out = model.apply({"params": params}, image, text, seqhw = seqhw)
         return zimg, ztxt, out
@@ -541,7 +541,7 @@ def main(argv):
             flexi.choice(config.flexi[n].v, config.flexi[n].p, np_rng)
             for n in flexi_argnames
         ]
-        print("flexi_args:",flexi_args)
+        # print("flexi_args:",flexi_args)
 
         with jax.profiler.StepTraceAnnotation("train_step", step_num=step):
             with chrono.log_timing("z/secs/update0", noop=step > first_step + 1):

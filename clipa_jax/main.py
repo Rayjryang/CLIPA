@@ -245,7 +245,7 @@ def main(argv):
 
         images = batch["image"]
         labels = batch["labels"]
-
+        
         if config.get("cpu_unit8", True):
             mean = jnp.asarray(
                 [0.485 * 255, 0.456 * 255, 0.406 * 255])[None, None, None, :]

@@ -61,7 +61,6 @@ class Model(nn.Module):
             out_dims = (out_dims, out_dims)
 
         
-        
         # Embed the text:
         if text is not None:
             text_model = importlib.import_module(
@@ -77,7 +76,7 @@ class Model(nn.Module):
             out["txt/norm"] = jnp.linalg.norm(ztxt, axis=1, keepdims=True)
             out["txt/normalized"] = ztxt = ztxt / (out["txt/norm"] + 1e-8)
         
-    
+        
         if image is not None:
             image_model = importlib.import_module(f"models.{self.image_model}").Model(
                 **{"num_classes": out_dims[0], **(self.image or {})}, name="img", **kw)  # pylint: disable=not-a-mapping
@@ -85,13 +84,15 @@ class Model(nn.Module):
                 zimg, out_img = image_model(
                     image, mask_ratio=mask_ratio, mae_layer=mae_layer, rng_mask=rng_mask, **kw)
             else:
-                zimg, out_img = image_model(
-                    image, mask_ratio=mask_ratio, train=train, **kw)
-                #zimg, out_img = image_model(
-                #    image, seqhw = seqhw, train=train, **kw)
+                if self.image_model in ['vit', 'convnext']:
+                    zimg, out_img = image_model(
+                        image, mask_ratio=mask_ratio, train=train, **kw)
+                else:
+                    zimg, out_img = image_model(
+                    image, seqhw = seqhw, train=train, **kw)
             for k, v in out_img.items():
                 out[f"img/{k}"] = v
-
+            
             # Normalize the embeddings the models give us.
             out["img/norm"] = jnp.linalg.norm(zimg, axis=1, keepdims=True)
             out["img/normalized"] = zimg = zimg / (out["img/norm"] + 1e-8)

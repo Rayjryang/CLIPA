@@ -97,7 +97,7 @@ def get_config(arg=None):
   config.loss_use_global_batch = True
   config.local_loss = True
 
-
+    
   # log section
   config.log_training_steps = 50
   config.ckpt_steps = 1000

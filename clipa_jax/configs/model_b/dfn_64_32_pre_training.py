@@ -24,12 +24,12 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=60, runlocal=False, batchsize=8192,  token_len=16, txt='bert_base', img='B/16',
+      arg,  res=64, runlocal=False, batchsize=8192,  token_len=16, txt='bert_base', img='B/16',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
   config = ConfigDict()
-
+  
 
  # input section include augmentation
   config.input = {}
@@ -90,7 +90,7 @@ def get_config(arg=None):
 #   imagenet_samples = 1281167
   imagenet_samples = 12800
   vitual_imagenet_epoch = 10000
-  total_seen_samples = imagenet_samples * vitual_imagenet_epoch
+  total_seen_samples = imagenet_samples * vitual_imagenet_epoch * (38/23)
 
   config.optax_name = 'scale_by_adam'
   config.total_steps = int(total_seen_samples // arg.batchsize)  # seen_samples // batchsize to get the number of steps
@@ -103,7 +103,7 @@ def get_config(arg=None):
   config.schedule = [
       ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr = 5e-4)),
   ]
-    
+
   config.optax = dict(mu_dtype='bfloat16',  b1=0.9,  b2=0.95)
 
 
@@ -128,6 +128,8 @@ def get_config(arg=None):
 
   # Eval section (Both few-shot and zero-shot)
   config.eval_only = False
+  # config.eval_only = True
+
   eval_common = dict(
       type='proj.image_text.contrastive',
       use_global_batch=config.loss_use_global_batch,

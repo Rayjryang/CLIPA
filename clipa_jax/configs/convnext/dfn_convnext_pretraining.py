@@ -125,9 +125,10 @@ def get_config(arg=None):
   )
   config.save_ckpt = True
 
-
+  
   # Eval section (Both few-shot and zero-shot)
-  config.eval_only = False
+  # config.eval_only = False
+  config.eval_only = True
   eval_common = dict(
       type='proj.image_text.contrastive',
       use_global_batch=config.loss_use_global_batch,

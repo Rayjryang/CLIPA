@@ -24,7 +24,7 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=60, runlocal=False, batchsize=8192,  token_len=16, txt='bert_base', img='B/16',
+      arg,  res=60, runlocal=False, batchsize=4096,  token_len=16, txt='bert_base', img='B/16',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
@@ -69,11 +69,11 @@ def get_config(arg=None):
       'variant': 'B',
       'pool_type': 'tok',
       'posemb': 'learn',
-      'patch_size': (12, 12),
-      'posemb_size': (5, 5),
+      'patch_size': (6, 6),
+      'posemb_size': (10, 10),
       'seqhw': None,  # Dynamic!
   })
-  
+
   config.model.text = ConfigDict({
       'variant': img_name,
       'pool_type': 'last',
@@ -84,7 +84,7 @@ def get_config(arg=None):
   dim = {'T': 192, 'S':384, 'B': 512, 'L': 768, 'H': 1024}[arg.img[0]]
  # dim = 768
   config.model.out_dim = (dim if arg.img_head else None, dim)  # (image_out_dim, text_out_dim)
-
+  
     ## flexi vit 
 
     # Define the model parameters which are flexible:
@@ -141,8 +141,8 @@ def get_config(arg=None):
 
 
   # Eval section (Both few-shot and zero-shot)
-  config.eval_only = False
-#   config.eval_only = True
+  # config.eval_only = False
+  config.eval_only = True
   eval_common = dict(
       type='proj.image_text.contrastive',
       use_global_batch=config.loss_use_global_batch,
