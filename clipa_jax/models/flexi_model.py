@@ -121,7 +121,7 @@ class _Model(nn.Module):
   posemb: str = "learn"  # Can also be "sincos2d"
   pool_type: str = "gap"  # Can also be "map" or "tok"
   head_zeroinit: bool = False
-  
+  remat_policy: str = "none"
   seqhw: Optional[int] = None
 
   @nn.compact
@@ -158,6 +158,7 @@ class _Model(nn.Module):
         depth=self.depth,
         mlp_dim=self.mlp_dim,
         num_heads=self.num_heads,
+        remat_policy=self.remat_policy,
         name="Transformer")(x)
     encoded = out["encoded"] = x
     
