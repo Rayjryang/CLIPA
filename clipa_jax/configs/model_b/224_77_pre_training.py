@@ -62,7 +62,7 @@ def get_config(arg=None):
       resume=False,
       debug_data=False,
       project='clip_scaling',
-      experiment=f'tpu-pod-v4-64-vit-b16-dfn-align-clip-setup_32k_B16_32k_{arg.res}_{arg.token_len}_tok_learn_scale_lr',
+      experiment=f'tpu-pod-v4-64-vit-B16_16k_{arg.res}_{arg.token_len}_tok_learn_scale_lr_baseline_3x_ep_FLOPs',
       entity='1999ray9999'
   )
     
@@ -134,17 +134,18 @@ def get_config(arg=None):
 
   config.optax_name = 'scale_by_adam'
 
-  batch_factor = 4
+  batch_factor = 2
   batch_size = 1024 * 8 * batch_factor
+  batch_size = int(batch_size)
   config.input.batch_size = batch_size
 
 #   config.total_epochs = 7.0 if not arg.runlocal else 1
   
   imagenet_samples = 12800
-  vitual_imagenet_epoch = 10000
+  vitual_imagenet_epoch = 10000 * 3 
   total_seen_samples = imagenet_samples * vitual_imagenet_epoch
   config.total_steps = int(total_seen_samples // batch_size)  # seen_samples // batchsize to get the number of steps 
-
+  
   config.lr = 8e-6 * 64  * batch_factor # lr for 256
 #   config.lr = 5e-4
   config.wd = 0.2
@@ -154,7 +155,7 @@ def get_config(arg=None):
       ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=8e-6 * 64 * batch_factor)),
         # ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=5e-4))
   ]
-
+  
   config.optax = dict(mu_dtype='float32',  b1=0.9,  b2=0.95)
 
   
@@ -180,7 +181,7 @@ def get_config(arg=None):
   config.evals = {}
 
   sub = '[:4]' if arg.runlocal else ''
-
+   
   config.evals.disclf = {}
   config.evals.disclf.dataset_names = ['imagenet2012']
   config.evals.disclf.split = f'validation{sub}'
