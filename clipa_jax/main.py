@@ -83,7 +83,7 @@ def all_gather(z):
 def main(argv):
     del argv
     tf.config.experimental.set_visible_devices([], "GPU")
-
+    jax.distributed.initialize()
     config = flags.FLAGS.config
     workdir = flags.FLAGS.workdir
     logging.info(  # pylint: disable=logging-fstring-interpolation
@@ -114,7 +114,7 @@ def main(argv):
     # These functions do more stuff internally, for OSS release we mock them by
     # trivial alternatives in order to minize disruptions in the code.
     xid, wid = -1, -1
-
+    
     def info(s, *a):
         logging.info("\u001b[33mNOTE\u001b[0m: " + s, *a)
 
