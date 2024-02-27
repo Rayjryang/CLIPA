@@ -116,10 +116,10 @@ class Encoder(nn.Module):
   mlp_dim: Optional[int] = None  # Defaults to 4x input dim
   num_heads: int = 12
   dropout: float = 0.0
-  scan: bool = False
+  scan: bool = True
   remat_policy: str = "nothing_saveable"
   dtype_mm: str = "float32"
-
+  
   @nn.compact
   def __call__(self, x, deterministic=True):
     out = {}
