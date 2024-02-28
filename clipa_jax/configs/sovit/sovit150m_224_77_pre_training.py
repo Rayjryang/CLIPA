@@ -63,15 +63,15 @@ def get_config(arg=None):
         resume=False,
         debug_data=False,
         project='clip_scaling',
-        experiment=f'tpu-pod-v4-64-ross_sovit150m-14-dfn-align-clip-setup_32k_{arg.res}_{arg.token_len}_tok_sin2d_lr8e',
+        experiment=f'tpu-pod-v4-64-ross_sovit150m14_laion_16k_{arg.res}_{arg.token_len}_tok_learn_scale_lr_3x_ep_align_FLOPs_resume',
         entity='1999ray9999'
     )
   
   config.save_ckpt = True
 
   config.input = {}
-#   config.input.data = dict(name='liaon-400m', split='full', data_dir='')
-  config.input.data = dict(name='dfn2b', split='subset', data_dir='[your data(laion-400m) location]')
+  config.input.data = dict(name='liaon-400m', split='full', data_dir='')
+#   config.input.data = dict(name='dfn2b', split='subset', data_dir='[your data(laion-400m) location]')
 
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
@@ -118,7 +118,7 @@ def get_config(arg=None):
   config.model.image = ConfigDict({
       'variant': img_name,
       'pool_type': 'tok',
-      'posemb': 'sincos2d',
+      'posemb': 'learn',
       'remat_policy': 'actcp',
       'head_zeroinit': False,
   })
@@ -135,20 +135,22 @@ def get_config(arg=None):
 
   config.optax_name = 'scale_by_adam'
 
-  batch_factor = 2
+  batch_factor = arg.batchsize // (1024*8)
 #   batch_size = 1024 * 16 * batch_factor
 #   config.input.batch_size = batch_size
 
 #   config.total_epochs = 7.0 if not arg.runlocal else 1
   
   imagenet_samples = 12800
-  vitual_imagenet_epoch = 10000
+  #vitual_imagenet_epoch = 10000 * 6
+  vitual_imagenet_epoch = (10000*3) * (20.58/39.78) 
   total_seen_samples = imagenet_samples * vitual_imagenet_epoch
   config.total_steps = int(total_seen_samples // arg.batchsize)  # seen_samples // batchsize to get the number of steps 
-    
+
   config.lr = 8e-6 * 64  * batch_factor # lr for 256
   config.wd = 0.2
-  warmup_steps = 3200 // (batch_factor * 4) # for 16k batch size  # max(int(0.03 * config.total_epochs), 100)
+  config.warmup_samples = 400*16384
+  warmup_steps = ((400*16384) // arg.batchsize) 
   config.schedule = [
       ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=8e-6 * 64 * batch_factor)),
   ]
