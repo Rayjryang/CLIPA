@@ -29,6 +29,7 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 import scipy.ndimage
+from flax.linen.partitioning import remat
 
 
 def posemb_sincos_2d(h, w, width, temperature=10_000., dtype=jnp.float32):
@@ -81,6 +82,7 @@ class Encoder1DBlock(nn.Module):
   mlp_dim: Optional[int] = None  # Defaults to 4x input dim
   num_heads: int = 12
   dropout: float = 0.0
+  drop_path: float = 0.0
   dtype_mm: str = "float32"
 
   @nn.compact
@@ -110,50 +112,46 @@ class Encoder1DBlock(nn.Module):
     return x, out
 
 
+
 class Encoder(nn.Module):
-  """Transformer Model Encoder for sequence to sequence translation."""
-  depth: int
-  mlp_dim: Optional[int] = None  # Defaults to 4x input dim
-  num_heads: int = 12
-  dropout: float = 0.0
-  scan: bool = True
-  remat_policy: str = "nothing_saveable"
-  dtype_mm: str = "float32"
-  
-  @nn.compact
-  def __call__(self, x, deterministic=True):
-    out = {}
+    """Transformer Model Encoder for sequence to sequence translation."""
+    depth: int
+    mlp_dim: Optional[int] = None  # Defaults to 4x input dim
+    num_heads: int = 12
+    dropout: float = 0.0
+    drop_path: float = 0.0
+    remat_policy: str = "none"
 
-    if self.scan:
-      block = nn.remat(
-          Encoder1DBlock,
-          prevent_cse=False,
-          static_argnums=(-1,),
-          policy=getattr(jax.checkpoint_policies, self.remat_policy, None),
-          )
-      x, _ = nn.scan(block,
-                     variable_axes={"params": 0},
-                     split_rngs={"params": True, "dropout": True},
-                     in_axes=nn.broadcast,
-                     length=self.depth)(
-                         name="encoderblock",
-                         dtype_mm=self.dtype_mm,
-                         mlp_dim=self.mlp_dim,
-                         num_heads=self.num_heads,
-                         dropout=self.dropout)(x, deterministic)
-    else:
-      # Input Encoder
-      for lyr in range(self.depth):
-        block_cur = Encoder1DBlock(
-            name=f"encoderblock_{lyr}",
-            dtype_mm=self.dtype_mm,
-            mlp_dim=self.mlp_dim, num_heads=self.num_heads,
-            dropout=self.dropout)
-        x, out[f"block{lyr:02d}"] = block_cur(x, deterministic)
-      out["pre_ln"] = x  # Alias for last block, but without the number in it.
+    @nn.compact
+    def __call__(self, x, deterministic=True):
+        out = {}
+        dpr = [
+            float(x) for x in np.linspace(
+                0,
+                self.drop_path,
+                self.depth)]  # drop path decay
+        # Input Encoder
+        BlockLayer = Encoder1DBlock
+        if self.remat_policy not in (None, "none"):
+            logging.info(f"remat policy: {self.remat_policy}")
+            if self.remat_policy == "minimal":
+                policy = jax.checkpoint_policies.checkpoint_dots_with_no_batch_dims
+            else:
+                policy = None
+            logging.info(f"activation checkpointing {self.remat_policy}")
+            BlockLayer = remat(  # pylint: disable=invalid-name
+                Encoder1DBlock, prevent_cse=True, policy=policy, static_argnums=(1,)
+            )  # "deterministic" is a static argument in Encoder1DBlock
 
-    return nn.LayerNorm(name="encoder_norm")(x), out
+        for lyr in range(self.depth):
+            x, out[f"block{lyr:02d}"] = BlockLayer(
+                name=f"encoderblock_{lyr}",
+                mlp_dim=self.mlp_dim, num_heads=self.num_heads, dropout=self.dropout, drop_path=dpr[lyr])(x, deterministic)
+         # x, out[f"block{lyr:02d}"] = block(x, deterministic)
+        # Alias for last block, but without the number in it.
+        out["pre_ln"] = x
 
+        return x, out
 
 class MAPHead(nn.Module):
   """Multihead Attention Pooling."""
@@ -211,13 +209,15 @@ class _Model(nn.Module):
     n, h, w, c = x.shape
     x = jnp.reshape(x, [n, h * w, c])
 
+    # if self.pool_type == "tok":
+    cls = self.param("cls", nn.initializers.zeros, (1, 1, c), x.dtype)
+    x = jnp.concatenate([jnp.tile(cls, [n, 1, 1]), x], axis=1)
+
     # Add posemb before adding extra token.
     x = out["with_posemb"] = x + get_posemb(
         self, self.posemb, (h, w), c, "pos_embedding", x.dtype)
 
-    if self.pool_type == "tok":
-      cls = self.param("cls", nn.initializers.zeros, (1, 1, c), x.dtype)
-      x = jnp.concatenate([jnp.tile(cls, [n, 1, 1]), x], axis=1)
+    
 
     n, l, c = x.shape  # pylint: disable=unused-variable
     x = nn.Dropout(rate=self.dropout)(x, not train)
@@ -227,25 +227,27 @@ class _Model(nn.Module):
         mlp_dim=self.mlp_dim,
         num_heads=self.num_heads,
         dropout=self.dropout,
-        scan=self.scan,
+        drop_path = 0.0,
         remat_policy=self.remat_policy,
-        dtype_mm=self.dtype_mm,
         name="Transformer")(
             x, deterministic=not train)
     encoded = out["encoded"] = x
 
     if self.pool_type == "map":
-      x = out["head_input"] = MAPHead(
-          num_heads=self.num_heads, mlp_dim=self.mlp_dim)(x)
+          x = out["head_input"] = MAPHead(
+              num_heads=self.num_heads, mlp_dim=self.mlp_dim)(x)
     elif self.pool_type == "gap":
-      x = out["head_input"] = jnp.mean(x, axis=1)
+        x = jnp.mean(x[:, 1:], axis=1)
+        x = out["head_input"] = nn.LayerNorm(name="encoder_norm")(x)
+        encoded = encoded[:, 1:]
     elif self.pool_type == "0":
-      x = out["head_input"] = x[:, 0]
+        x = out["head_input"] = x[:, 0]
     elif self.pool_type == "tok":
-      x = out["head_input"] = x[:, 0]
-      encoded = encoded[:, 1:]
+        x = nn.LayerNorm(name="encoder_norm")(x)
+        x = out["head_input"] = x[:, 0]
+        encoded = encoded[:, 1:]
     else:
-      raise ValueError(f"Unknown pool type: '{self.pool_type}'")
+        raise ValueError(f"Unknown pool type: '{self.pool_type}'")
 
     x_2d = jnp.reshape(encoded, [n, h, w, -1])
 
@@ -259,7 +261,7 @@ class _Model(nn.Module):
 
     out["pre_logits_2d"] = x_2d
     out["pre_logits"] = x
-
+  
     if self.num_classes:
       kw = {"kernel_init": nn.initializers.zeros} if self.head_zeroinit else {}
       head = nn.Dense(self.num_classes, name="head", **kw)

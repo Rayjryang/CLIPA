@@ -266,6 +266,7 @@ class _Model(nn.Module):
             x, _, _ = self.random_masking(
                 x[:, 1:], mask_ratio=mask_ratio, rng_mask=rng_mask)
             x = jnp.concatenate([cls_token, x], axis=1)
+        
         encoder_blocks = Encoder(
             depth=self.depth,
             mlp_dim=self.mlp_dim,
@@ -277,8 +278,9 @@ class _Model(nn.Module):
 
         x, out["encoder"] = encoder_blocks(
             x, deterministic=not train)
+        
         encoded = out["encoded"] = x
-
+        
         if self.pool_type == "map":
             x = out["head_input"] = MAPHead(
                 num_heads=self.num_heads, mlp_dim=self.mlp_dim)(x)

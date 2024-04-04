@@ -125,7 +125,7 @@ class _Model(nn.Module):
   seqhw: Optional[int] = None
 
   @nn.compact
-  def __call__(self, image, *, seqhw=None, train=False):
+  def __call__(self, image, *, seqhw=None, train=False, mask_ratio = 0):
     out = {}
 
     
@@ -153,39 +153,73 @@ class _Model(nn.Module):
 
     # == Encoder
     n, l, c = x.shape  # pylint: disable=unused-variable
-
+    
+    if mask_ratio > 0:   
+      rng_mask = self.make_rng('random_mask')
+      x, _, _ = self.random_masking(
+          x, mask_ratio=mask_ratio, rng_mask=rng_mask)
+          
+    
     x, out["encoder"] = vit.Encoder(
         depth=self.depth,
         mlp_dim=self.mlp_dim,
         num_heads=self.num_heads,
         remat_policy=self.remat_policy,
-        name="Transformer")(x)
+        name="Transformer")(x, deterministic=not train)
+    
     encoded = out["encoded"] = x
     
     if self.pool_type == "map":
       x = out["head_input"] = vit.MAPHead(
           num_heads=self.num_heads, mlp_dim=self.mlp_dim)(x)
     elif self.pool_type == "gap":
-      x = out["head_input"] = jnp.mean(x, axis=1)
+      x = jnp.mean(x, axis=1)
+      x = out["head_input"] = nn.LayerNorm(name="encoder_norm")(x)
     elif self.pool_type == "tok":
-      x = out["head_input"] = x[:, 0]
-      encoded = encoded[:, 1:]
+       x = nn.LayerNorm(name="encoder_norm")(x)
+       x = out["head_input"] = x[:, 0]
+       encoded = encoded[:, 1:]
     else:
       raise ValueError(f"Unknown pool type: '{self.pool_type}'")
-
-    x_2d = jnp.reshape(encoded, [n, h, w, -1])
-
-    out["pre_logits_2d"] = x_2d
-    out["pre_logits"] = x
-
+    
     if self.num_classes:
-      kw = {"kernel_init": nn.initializers.zeros} if self.head_zeroinit else {}
-      head = nn.Dense(self.num_classes, name="head", **kw)
-      x_2d = out["logits_2d"] = head(x_2d)
+      head = nn.Dense(
+                self.num_classes,
+                name="head",
+                kernel_init=nn.initializers.normal(
+                    stddev=self.width ** -0.5),
+                use_bias=False,
+            )
       x = out["logits"] = head(x)
 
 
     return x, out
+
+  def random_masking(self, x, mask_ratio, rng_mask=None):
+
+      N, L, D = x.shape  # batch, length, dim
+      len_keep = int(L * (1 - mask_ratio))
+
+      noise = jax.random.uniform(rng_mask, (N, L))
+
+      # sort noise for each sample
+      # ascend: small is keep, large is remove
+      ids_shuffle = jnp.argsort(noise, axis=1)
+      ids_restore = jnp.argsort(ids_shuffle, axis=1)
+
+      # keep the first subset
+      ids_keep = ids_shuffle[:, :len_keep]
+      #x_masked = batched_gather(x, ids_keep)
+
+      x_masked = jnp.take_along_axis(x, ids_keep[:, :, None], 1)
+
+      # generate the binary mask: 0 is keep, 1 is remove
+      mask = jnp.ones((N, L))
+      mask = mask.at[:, :len_keep].set(0)
+
+      #mask = batched_gather(mask, ids_restore)
+      mask = jnp.take_along_axis(mask, ids_restore, 1)
+      return x_masked, mask, ids_restore
 
 
 def Model(num_classes, *, variant=None, **kw):  # pylint: disable=invalid-name

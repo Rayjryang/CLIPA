@@ -84,6 +84,7 @@ def all_gather(z):
 def main(argv):
     del argv
     tf.config.experimental.set_visible_devices([], "GPU")
+    jax.distributed.initialize()
 
     config = flags.FLAGS.config
     workdir = flags.FLAGS.workdir
@@ -413,15 +414,15 @@ def main(argv):
                 for i in range(len(img_grads['Transformer'].keys())):
                     if i >= 12:
                         continue
-                    block_name = 'encoderblock_' + str(i)
-                    gs = jax.tree_leaves(
-                        optim.replace_frozen(
-                            config.schedule,
-                            img_grads['Transformer'][block_name]['MlpBlock_0']['Dense_1']['kernel'],
-                            0.))
-                    #g =  jax.tree_leaves(img_grads['Transformer'][block_name]['MlpBlock_0']['Dense_1']['kernel'])
-                    measurements["l2_grad_" +
-                                 block_name] = jnp.sqrt(sum([jnp.vdot(g, g) for g in gs]))
+                    # block_name = 'encoderblock_' + str(i)
+                    # gs = jax.tree_leaves(
+                    #     optim.replace_frozen(
+                    #         config.schedule,
+                    #         img_grads['Transformer'][block_name]['MlpBlock_0']['Dense_1']['kernel'],
+                    #         0.))
+                    # #g =  jax.tree_leaves(img_grads['Transformer'][block_name]['MlpBlock_0']['Dense_1']['kernel'])
+                    # measurements["l2_grad_" +
+                    #              block_name] = jnp.sqrt(sum([jnp.vdot(g, g) for g in gs]))
             return measurements
 
         measurements = record_grads(grads, measurements)

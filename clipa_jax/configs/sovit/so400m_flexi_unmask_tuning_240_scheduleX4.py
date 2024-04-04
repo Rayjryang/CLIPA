@@ -25,7 +25,7 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=224, runlocal=False, batchsize=32768,  token_len=32, txt='bert_base', img='So400m/14',
+      arg,  res=240, runlocal=False, batchsize=32768,  token_len=32, txt='bert_base', img='So400m/14',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
@@ -62,12 +62,14 @@ def get_config(arg=None):
   config.model_name = 'two_towers'
   config.model_load = {}
   config.model = ConfigDict()
-  config.model.image_model = 'vit'
+  config.model.image_model = 'flexi_model'
   config.model.text_model = 'text_transformer'
   config.model.image = ConfigDict({
-      'variant': img_name,
+      'variant': 'So400m',
       'pool_type': 'gap',
       'posemb': 'sincos2d',
+      'patch_size': (14, 14),
+      'posemb_size': (7, 7),
       'remat_policy': 'actcp', #gradient checkpointing
       'head_zeroinit': False,
   })
@@ -82,12 +84,25 @@ def get_config(arg=None):
   dim = {'T': 192, 'S':384, 'B': 512, 'L': 768, 'H': 1024 , 'So400m': 1024}[arg.img.split('/')[0]]
   config.model.out_dim = (dim if arg.img_head else None, dim)  # (image_out_dim, text_out_dim)
 
+  config.flexi = dict()
+  config.flexi.seqhw = dict(
+        # The settings to sample from. Corresponding patch-sizes at 240px:
+        # 48, 40, 30, 24, 20, 16, 15, 12, 10, 8
+        # v=(5, 6, 8, 10, 12, 15, 16, 20, 24, 30),
+        # The probabilities/weights of them. Default uniform.
+        # p=(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        v=(12, 15, 20),
+        p=(1, 1, 1),
+    )
+  
+  config.test_seqhw = 15
+
   # load pre-trained ckpt
   config.masked_init = "[your pre-trained weight lcoation]"
 
   # optimizer config
   config.optax_name = 'scale_by_adam'
-  config.total_steps = int(131072000 * 4 * 1.479 // arg.batchsize)  # seen_samples // batchsize to get the number of steps
+  config.total_steps = int(131072000 * 4 * 1.464 // arg.batchsize)  # seen_samples // batchsize to get the number of steps
   config.lr = 4e-7 * (arg.batchsize // 256)
   config.wd = 0.2
   warmup_steps = int(26214400 // arg.batchsize) # seen_samples // batchsize to get the number of steps
@@ -109,14 +124,16 @@ def get_config(arg=None):
       resume=False,
       debug_data=False,
       project='clip_scaling',
-      experiment=f'v3-256-sovit400m14_datacomp1b_32k_{arg.res}_{arg.token_len}_gap_sin2d_align_H14_2.56b_FLOPs_ft_224_512m_mask',
+      experiment=f'v3-256-flexi_sovit400m14_datacomp1b_32k_{arg.res}_{arg.token_len}_gap_sin2d_H14_2.56b_FLOPs_ft_224_512m_mask',
       entity='1999ray9999'
   )
   config.save_ckpt = True
+  
+  config.masked_no_load = {'dont_load': ['.*img/embedding.*','.*img/pos_embedding.*','.*txt/pos_embedding.*','img/cls', 'img/embedding/bias']}
+#   config.masked_no_load = {'dont_load': ['.*txt/pos_embedding.*','img/cls', 'img/embedding/bias']}
 
-#   config.masked_no_load = {'dont_load': ['.*img/embedding.*','.*img/pos_embedding.*']}
-  config.masked_no_load = {'dont_load': ['.*txt/pos_embedding.*']}
- 
+#   config.masked_no_load = {'dont_load': ['.*txt/pos_embedding.*']}
+    
 
   # Eval section (Both few-shot and zero-shot)
   config.eval_only = False
