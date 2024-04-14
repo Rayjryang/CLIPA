@@ -23,7 +23,7 @@ import importlib
 from typing import Any, Callable
 
 import flax
-
+from functools import partial
 
 def from_config(config, predict_fns,
                 write_note=lambda s: s,
@@ -41,6 +41,8 @@ def from_config(config, predict_fns,
     pred_key = cfg.pop("pred", "predict")
     pred_kw = cfg.pop("pred_kw", None)
     prefix = cfg.pop("prefix", f"{name}/")
+    test_seqhw = cfg.pop("test_seqhw", None)
+
     logsteps = get_steps("log", cfg)
     for typ in ("steps", "epochs", "examples", "percent"):
       cfg.pop(f"log_{typ}", None)
@@ -58,6 +60,8 @@ def from_config(config, predict_fns,
           + "\n".join(predict_fns)) from e
     if pred_kw is not None:
       predict_fn = _CacheablePartial(predict_fn, flax.core.freeze(pred_kw))
+    
+    predict_fn = partial(predict_fn,seqhw = test_seqhw) # flexivit
     evaluator = module.Evaluator(predict_fn, **cfg)
     evaluators.append((name, evaluator, logsteps, prefix))
 

@@ -25,7 +25,7 @@ from ml_collections import ConfigDict
 def get_config(arg=None):
   """The base configuration."""
   arg = bvcc.parse_arg(
-      arg,  res=224, runlocal=False, batchsize=32768,  token_len=32, txt='bert_base', img='L/16',
+      arg,  res=224, runlocal=False, batchsize=32768, token_len=32, txt='bert_base', img='L/14',
       init='', img_head=True, load_pretrain=False)
   img_name, img_init = common.inits[arg.img]
   txt_name, txt_init = common.inits[arg.txt]
@@ -34,7 +34,8 @@ def get_config(arg=None):
 
  # input section include augmentation
   config.input = {}
-  config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
+  #config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
+  config.input.data = dict(name='datacomp1b', split='full', data_dir='[your data(laion-400m) location]')
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
   config.init_shapes = [(1, arg.res, arg.res, 3), (1, arg.token_len,)]
@@ -65,7 +66,7 @@ def get_config(arg=None):
   config.model.text_model = 'text_transformer'
   config.model.image = ConfigDict({
       'variant': img_name,
-      'pool_type': 'tok',
+      'pool_type': 'gap',
       'posemb': 'sincos2d',
       'remat_policy': 'actcp', #gradient checkpointing
       'head_zeroinit': False,
@@ -73,6 +74,7 @@ def get_config(arg=None):
   config.model.text = ConfigDict({
       'variant': img_name,
       'pool_type': 'last',
+      'remat_policy': 'actcp', #gradient checkpointing
       'head_zeroinit': False,
   })
   config.model.temperature_init = 1/0.07
@@ -81,15 +83,16 @@ def get_config(arg=None):
 
   # load pre-trained ckpt
   config.masked_init = "[your pre-trained weight lcoation]"
+  config.masked_no_load = {'dont_load': ['.*txt/pos_embedding.*']}
 
   # optimizer config
   config.optax_name = 'scale_by_adam'
-  config.total_steps = int(131072000 // arg.batchsize)  # seen_samples // batchsize to get the number of steps
-  config.lr = 8e-7 * (arg.batchsize // 256)
+  config.total_steps = int(131072000*4*1.494 // arg.batchsize)  # seen_samples // batchsize to get the number of steps
+  config.lr = 4e-7 * (arg.batchsize // 256)
   config.wd = 0.2
   warmup_steps = int(26214400 // arg.batchsize) # seen_samples // batchsize to get the number of steps
   config.schedule = [
-      ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=8e-7 * (arg.batchsize // 256))),
+      ('.*', dict(decay_type='cosine', warmup_steps=warmup_steps, min_lr=0, max_lr=4e-7 * (arg.batchsize // 256))),
   ]
 
   config.optax = dict(mu_dtype='float32',  b1=0.9,  b2=0.95)
@@ -105,9 +108,9 @@ def get_config(arg=None):
       wandb_offline=False,
       resume=False,
       debug_data=False,
-      project='clip_image_scaling_unmask_tuning',
-      experiment=f'B16_32k_{arg.res}_{arg.token_len}_tok_sin2d_lr8e',
-      entity='[your wandb login name]'
+      project='clip_scaling',
+      experiment=f'v3-256-L14-datacomp1b-bs65k_84_8_gap_sin2d_8e-6_wm3200_align_H14_2.56b_FLOPs_ft_align_224_512m_fixed',
+      entity='1999ray9999' 
   )
   config.save_ckpt = True
 
@@ -127,7 +130,7 @@ def get_config(arg=None):
   config.evals.disclf.dataset_names = ['imagenet2012']
   config.evals.disclf.split = f'validation{sub}'
   config.evals.disclf.data_dir = 'gs://celt-tfds-imagenet-eu'
-  config.evals.disclf.pp_img = f'|resize_small({arg.res}, method="bilinear", antialias=True)|central_crop({arg.res})|vgg_value_range'
+  config.evals.disclf.pp_img = f'|resize({arg.res}, method="bilinear", antialias=True)|vgg_value_range' # directly resize works better
   config.evals.disclf.pp_txt = tokenizer('texts')
   config.evals.disclf.type = 'proj.image_text.discriminative_classifier'
   config.evals.disclf.prefix = 'z/0shot/'

@@ -88,7 +88,7 @@ def get_config(arg=None):
 
   # optimizer config
   config.optax_name = 'scale_by_adam'
-  config.total_steps = int(131072000 // arg.batchsize)  # seen_samples // batchsize to get the number of steps
+  config.total_steps = int(131072000*1.48711727 // arg.batchsize)  # seen_samples // batchsize to get the number of steps
   config.lr = 1e-7 * (arg.batchsize // 256)
   config.wd = 0.2
   warmup_steps = int(26214400 // arg.batchsize) # seen_samples // batchsize to get the number of steps
@@ -110,7 +110,7 @@ def get_config(arg=None):
       resume=False,
       debug_data=False,
       project='clip_scaling',
-      experiment=f'v3-256-sovit400m14_datacomp1b_65k_{arg.res}_{arg.token_len}_gap_sin2d_12.8b_resume_from_v3128_finetune_336_128m',
+      experiment=f'v3-256-sovit400m14_datacomp1b_32k_224_32_gap_sin2d_align_H14_2.56b_FLOPs_ft_224_512m_mask_336_128m',
       entity='1999ray9999'
   )
   config.save_ckpt = True

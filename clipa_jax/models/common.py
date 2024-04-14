@@ -76,6 +76,8 @@ def merge_params(loaded, inited, dont_load=()):
     inited_flat, _ = u.tree_flatten_with_names(inited)
     loaded_flat = {k: v for k, v in loaded_flat}
     inited_flat = {k: v for k, v in inited_flat}
+    # print("loaded_flat:",loaded_flat.keys())
+    # print("inited_flat:",inited_flat.keys())
 
     # Let's first build the pytree from all common keys.
     merged = {}
@@ -134,7 +136,7 @@ def merge_params(loaded, inited, dont_load=()):
         pp("Parameters in model but not in checkpoint", not_in_loaded))
     logging.info(
         pp("Parameters in checkpoint but not in model", not_in_inited))
-
+    
     # And now see if any of them are not explicitly ignored => an error
     not_in_loaded = {k for k in not_in_loaded if should_merge(k)}
     not_in_inited = {k for k in not_in_inited if should_merge(k)}

@@ -441,7 +441,8 @@ def main(argv):
     # does it later. We output as many intermediate tensors as possible for
     # maximal flexibility. Later `jit` will prune out things that are not
     # needed.
-    def predict_fn(params, image=None, text=None, seqhw=config.test_seqhw, **unused_kwargs):
+    # def predict_fn(params, image=None, text=None, seqhw=config.test_seqhw, **unused_kwargs):
+    def predict_fn(params, image=None, text=None, seqhw=None, **unused_kwargs): # for multi seqhw testing
         del unused_kwargs  # `unused_kwargs` is to be compatible with few-shot
         zimg, ztxt, out = model.apply({"params": params}, image, text, seqhw = seqhw)
         return zimg, ztxt, out
@@ -588,7 +589,7 @@ def main(argv):
             copy_step = None
             if itstime(step, get_steps("keep_ckpt", None), total_steps):
                 copy_step = step
-
+        
             ckpt = {
                 "params": params_cpu,
                 "opt": opt_cpu,

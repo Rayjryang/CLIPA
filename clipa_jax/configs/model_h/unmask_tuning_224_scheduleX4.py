@@ -34,7 +34,8 @@ def get_config(arg=None):
 
  # input section include augmentation
   config.input = {}
-  config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
+  #config.input.data = dict(name='liaon-400m', split='full', data_dir='[your data(laion-400m) location]')
+  config.input.data = dict(name='datacomp1b', split='full', data_dir='[your data(laion-400m) location]')
   config.input.cach_raw = True
   config.input.shuffle_buffer_size = 250_000  if not arg.runlocal else 50
   config.init_shapes = [(1, arg.res, arg.res, 3), (1, arg.token_len,)]
@@ -106,11 +107,12 @@ def get_config(arg=None):
       wandb_offline=False,
       resume=False,
       debug_data=False,
-      project='clip_image_scaling_unmask_tuning',
-      experiment=f'H14_224_mask30_32k_{arg.res}_{arg.token_len}_gap_sin2d_lr8e',
-      entity='[your wandb login name]'
+      project='clip_scaling',
+      experiment=f'v3-256-H14_datacomp1b_32k_{arg.res}_{arg.token_len}_gap_sin2d_2.56b_ft_224_512m_mask',
+      entity='1999ray9999'
   )
   config.save_ckpt = True
+  config.masked_no_load = {'dont_load': ['.*txt/pos_embedding.*']}
 
 
   # Eval section (Both few-shot and zero-shot)

@@ -57,7 +57,7 @@ def get_config(arg=None):
 
   config.cpu_unit8 = True
   config.mask_ratio = 0.0
-  
+ 
   # Model section
   config.model_name = 'two_towers'
   config.model_load = {}
@@ -136,7 +136,8 @@ def get_config(arg=None):
     
 
   # Eval section (Both few-shot and zero-shot)
-  config.eval_only = False
+#   config.eval_only = False
+  config.eval_only = True
   eval_common = dict(
       type='proj.image_text.contrastive',
       use_global_batch=config.loss_use_global_batch,
@@ -146,15 +147,31 @@ def get_config(arg=None):
   config.evals = {}
   sub = '[:4]' if arg.runlocal else ''
 
-  config.evals.disclf = {}
-  config.evals.disclf.dataset_names = ['imagenet2012']
-  config.evals.disclf.split = f'validation{sub}'
-  config.evals.disclf.data_dir = 'gs://celt-tfds-imagenet-eu'
-  config.evals.disclf.pp_img = f'|resize({arg.res}, method="bilinear", antialias=True)|vgg_value_range' # directly resize works better
-  config.evals.disclf.pp_txt = tokenizer('texts')
-  config.evals.disclf.type = 'proj.image_text.discriminative_classifier'
-  config.evals.disclf.prefix = 'z/0shot/'
-  config.evals.disclf.log_steps = eval_common['log_steps']
+#   config.evals.disclf = {}
+#   config.evals.disclf.dataset_names = ['imagenet2012']
+#   config.evals.disclf.split = f'validation{sub}'
+#   config.evals.disclf.data_dir = 'gs://celt-tfds-imagenet-eu'
+#   config.evals.disclf.pp_img = f'|resize({arg.res}, method="bilinear", antialias=True)|vgg_value_range' # directly resize works better
+#   config.evals.disclf.pp_txt = tokenizer('texts')
+#   config.evals.disclf.type = 'proj.image_text.discriminative_classifier'
+#   config.evals.disclf.prefix = 'z/0shot/'
+#   config.evals.disclf.log_steps = eval_common['log_steps']
+
+  for v in [6,8,10]:
+    disclf = 'disclf' + f'_seqhw_{v}'
+
+    config.evals[disclf] = {}
+
+    config.evals[disclf]['dataset_names'] = ['imagenet2012']
+    config.evals[disclf]['split'] = f'validation{sub}'
+    config.evals[disclf]['data_dir'] = 'gs://tfds-imagenet-us-east1'
+    config.evals[disclf]['pp_img'] = f'|resize_small({arg.res}, method="bilinear", antialias=True)|central_crop({arg.res})|vgg_value_range'
+    config.evals[disclf]['pp_txt'] = tokenizer('texts')
+    config.evals[disclf]['type'] = 'proj.image_text.discriminative_classifier'
+    config.evals[disclf]['prefix'] = f'z/0shot/seqhw_{v}/'
+    config.evals[disclf]['log_steps'] = eval_common['log_steps']
+    config.evals[disclf]['test_seqhw'] = v
+
 
   config.seed = 0
   config.l = config.m = 0
